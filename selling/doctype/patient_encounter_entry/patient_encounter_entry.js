@@ -8,14 +8,18 @@ cur_frm.add_fetch('technologist', 'employee_name', 'technologist_name');
 cur_frm.add_fetch('appointment_slot', 'start_time', 'start_time');
 cur_frm.add_fetch('appointment_slot', 'end_time', 'end_time');
 cur_frm.add_fetch('patient', 'patient_online_id', 'global_id')
-
+cur_frm.add_fetch('undertaking', 'template_data', 'undertacking_details')
+cur_frm.cscript.images = function(doc, cdt, cdn){
+	var WshShell = new ActiveXObject("WScript.Shell");
+    WshShell.Run("Iexplore " + "http://yahoo.com");
+}
 cur_frm.cscript.onload = function(doc, cdt, cdn) {
 	// cur_frm.cscript.referrer_name(doc)
-	alert(this.frm.doc.encounter)
+	// alert(this.frm.doc.encounter)
 	if(this.frm.doc.encounter){
 		wn.call({
 			method: "selling.doctype.patient_encounter_entry.patient_encounter_entry.set_slot",
-			args:{modality:this.frm.doc.encounter, start_time:this.frm.doc.start_time, end_time:this.frm.doc.end_time},
+			args:{modality:this.frm.doc.encounter, modality:this.frm.doc.study,start_time:this.frm.doc.start_time, end_time:this.frm.doc.end_time},
 			callback: function(r) {
 				cur_frm.set_value("start_time", r.message[0]);
 				cur_frm.set_value("end_time", r.message[1]);
@@ -229,4 +233,54 @@ cur_frm.cscript.get_patient = function(doc, dt ,dn) {
 	d.show();
 }
 
+
+cur_frm.cscript.patient_entry = function(doc, dt ,dn) {
+	var d = new wn.ui.Dialog({
+		title:wn._('Patient Entry'),
+		fields: [
+			{fieldtype:'Data', fieldname:'first_name', label:wn._('First Name'), reqd:true, 
+				description: wn._("Enter Patient Global Id")+
+				wn._("Enter Patient Global Id")},
+			{fieldtype:'Data', fieldname:'last_name', label:wn._('Last Name'), reqd:true, 
+				description: wn._("Enter Patient Global Id")+
+				wn._("Enter Patient Global Id")},
+			{fieldtype:'Select', fieldname:'gender', label:wn._('Gender'), reqd:true, 
+				options:'Male\nFemale',description: wn._("Enter Patient Global Id")+
+				wn._("Enter Patient Global Id")},
+			{fieldtype:'Date', fieldname:'date_of_birth', label:wn._('DOB'), reqd:true, 
+				description: wn._("Enter Patient Global Id")+
+				wn._("Enter Patient Global Id")},
+			{fieldtype:'Data', fieldname:'mobile_no', label:wn._('Mobile Number'), reqd:true, 
+				description: wn._("Enter Patient Global Id")+
+				wn._("Enter Patient Global Id")},
+			{fieldtype:'Data', fieldname:'email', label:wn._('email'), reqd:true, 
+				description: wn._("Enter Patient Global Id")+
+				wn._("Enter Patient Global Id")},
+			{fieldtype:'Link', fieldname:'branch', label:wn._('Branch Id'), reqd:true,
+				options:'LabBranch', description: wn._("Enter Patient Global Id")+
+				wn._("Enter Patient Global Id")},
+			{fieldtype:'Button', fieldname:'fetch_patient', label:wn._('New Patient Entry') }
+		]
+	})
+	var fd = d.fields_dict;
+	$(fd.fetch_patient.input).click(function() {
+			var btn = this;
+			$(btn).set_working();
+			var patient_id  = d.get_values();
+			if(!patient_id) return;	
+			return wn.call({
+				args: patient_id,
+				method:'selling.doctype.patient_encounter_entry.patient_encounter_entry.create_patient',
+				callback: function(r) {
+					console.log(r)
+					doc.patient = r.message
+					refresh_field('patient');
+					$(btn).done_working();
+					d.hide();
+				}
+			});
+		});
+
+	d.show();
+}
 

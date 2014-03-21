@@ -1,6 +1,5 @@
 from __future__ import unicode_literals
 import webnotes
-from webnotes.model.doc import Document
 from webnotes.utils import flt, fmt_money, cstr, cint
 from  selling.doctype.customer.customer import DocType
 import datetime
@@ -9,9 +8,22 @@ from selling.doctype.lead.lead import create_contact
 from webnotes.model.code import get_obj
 from webnotes.model.bean import getlist, copy_doclist
 from selling.doctype.patient_encounter_entry.notification_schedular import get_encounters
+from webnotes.model.doc import Document, make_autoname
+
 class DocType():
         def __init__(self, d, dl):
                 self.doc, self.doclist = d, dl
+
+        def autoname(self):
+            entry = make_autoname(webnotes.conn.get_value('DocType', 'Patient Encounter Entry', 'autoname'))
+            company = webnotes.conn.sql(""" select name from tabCompany 
+                where name = (select value from tabSingles 
+                where doctype = 'Global Defaults' and field = 'default_company') """)[0][0]
+            self.doc.name = company + ' ' + entry
+
+        def validate(self):pass
+            # if not webnotes.conn.sql("select patient from `tabPatient Encounter Entry` where name = '%s'"%self.doc.name):
+                    # self.send_notification()
 
         def on_update(self):
                 patient_id = None
@@ -51,7 +63,6 @@ class DocType():
                         # else:
                         #         webnotes.msgprint("Selected slot is not available",raise_exception=1)
                 # get_encounters()
-                # self.send_notification()
 
         def send_notification(self):
                 mail_list = []
@@ -65,12 +76,13 @@ class DocType():
                 patient_contact = webnotes.conn.sql("select mobile, email from `tabPatient Register` where name = '%s'"%(self.doc.patient),as_list=1)
 
                 webnotes.errprint([technologiest_contact, patient_contact])
-
-                mail_list.append(technologiest_contact[0][1])
-                mail_list.append(patient_contact[0][1])
-
-                number.append(technologiest_contact[0][0])
-                number.append(patient_contact[0][0])
+                if mail_list:
+                    mail_list.append(technologiest_contact[0][1])
+                    mail_list.append(patient_contact[0][1])
+                    
+                if number:
+                    number.append(technologiest_contact[0][0])
+                    number.append(patient_contact[0][0])
 
                 self.send_mail(msg, mail_list)
                 self.send_sms(msg, number)
@@ -359,8 +371,12 @@ def get_modality():
         return webnotes.conn.sql("select name from tabModality", as_list=1)
 
 @webnotes.whitelist()
-def set_slot(modality, start_time, end_time):
-        time = get_modality_time(modality)
+def get_study(modality):
+        return webnotes.conn.sql("select name from tabStudy where modality = '%s'"%modality, as_list=1)
+
+@webnotes.whitelist()
+def set_slot(modality, study, start_time, end_time):
+        time = get_study_time(study)
         if cint(time) > 30:
                 start_time = calc_start_time(start_time, modality)
         end_time = calc_end_time(cstr(start_time),time)
@@ -386,8 +402,11 @@ def check_availability(modality, start_time, end_time, time):
                 return start_time, end_time
 
 
-def get_modality_time(modality):
-        return webnotes.conn.get_value('Modality',modality,'time_required')
+# def get_modality_time(modality):
+#         return webnotes.conn.get_value('Modality',modality,'time_required')
+
+def get_study_time(study):
+        return webnotes.conn.get_value('Study',modality,'study_time')
 
 def calc_end_time(start_time,time):
         import datetime
@@ -408,3 +427,18 @@ def calc_start_time(start_time, modality):
 @webnotes.whitelist()
 def get_patient(patient_id):
         get_obj('DB SYNC', 'DB SYNCl').sync_db(patient_id)
+
+
+@webnotes.whitelist()
+def create_patient(first_name,last_name,gender,date_of_birth,mobile_no,email, branch):
+    # webnotes.errprint([first_name,last_name,gender,date_of_birth,mobile_no,email])
+    d = Document('Patient Register')
+    d.first_name = first_name
+    d.last_name = last_name
+    d.birth_date = date_of_birth
+    d.gender = gender
+    d.mobile = mobile_no
+    d.email = email
+    d.lab_branch = branch
+    d.save()
+    return d.name

@@ -49,7 +49,8 @@ def update_profile_name(args):
 			"doctype":"Profile",
 			"email": args.get("email"),
 			"first_name": args.get("first_name"),
-			"last_name": args.get("last_name")
+			"last_name": args.get("last_name"),
+			"profile_type":"Employee"
 		}).insert()
 		webnotes.flags.mute_emails = False
 		from webnotes.auth import _update_password
@@ -123,6 +124,12 @@ def set_defaults(args):
 		"time_zone": args.get("time_zone")
 	})
 	global_defaults.save()
+
+	locglobkey = webnotes.bean("LocGlobKey", "LocGlobKey")
+	locglobkey.doc.fields.update({
+		'key': 'AA'
+	})
+	locglobkey.save()
 	
 	accounts_settings = webnotes.bean("Accounts Settings")
 	accounts_settings.doc.auto_accounting_for_stock = 1

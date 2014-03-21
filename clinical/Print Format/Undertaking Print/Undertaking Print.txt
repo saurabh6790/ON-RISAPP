@@ -1,0 +1,22 @@
+[
+ {
+  "creation": "2014-03-19 12:02:09", 
+  "docstatus": 0, 
+  "modified": "2014-03-19 12:12:23", 
+  "modified_by": "Administrator", 
+  "owner": "Administrator"
+ }, 
+ {
+  "doc_type": "Patient Encounter Entry", 
+  "doctype": "Print Format", 
+  "html": "<html>\n    <body style=\"margin-left:50px\">\n       <div style=\"width: 300px; align: center;\">\n         <table style=\"width: 100%;\">\n           <tr>\n             <td><script>doc.undertacking_details</script></td>\n           </tr>\n           <tr >\n              <td style=\"padding-top:10%;\"><b> Patient Signature </b></td>\n              <td style=\"padding-top:10%;\"><b> Date </b></td>\n           </tr>\n         </table>\n       </div>\n    </body>\n</html>", 
+  "module": "Clinical", 
+  "name": "__common__", 
+  "print_format_type": "Client", 
+  "standard": "Yes"
+ }, 
+ {
+  "doctype": "Print Format", 
+  "name": "Undertaking Print"
+ }
+]

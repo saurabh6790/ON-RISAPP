@@ -337,7 +337,7 @@ class DocType:
             self.create_account_head(cust)
 
         if self.doc.flag=='false':
-            self.create_profile()
+            # self.create_profile()
             self.generate_barcode()
             self.create_new_contact()
             a=webnotes.conn.sql("select name from `tabEncounter` where parent='"+self.doc.name+"'",as_list=1)        

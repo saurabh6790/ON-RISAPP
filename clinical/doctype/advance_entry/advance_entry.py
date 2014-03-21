@@ -9,8 +9,11 @@ import webnotes
 class DocType:
 	def __init__(self, d, dl):
 		self.doc, self.doclist = d, dl
-	
-	def on_update(self):
+	def validate(self):
+		if not webnotes.conn.sql("select patient_id from `tabAdvance Entry` where name = '%s'"%self.doc.name):
+			self.create_advance()
+
+	def create_advance(self):
 		from accounts.utils import create_advance_entry
 		webnotes.errprint(self.doc.company)
 		debit_to = webnotes.conn.sql("select name from tabAccount where master_name='%s'"%self.doc.patient_id,as_list=1)	

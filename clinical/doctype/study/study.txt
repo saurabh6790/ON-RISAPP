@@ -2,7 +2,7 @@
  {
   "creation": "2014-01-21 18:39:40", 
   "docstatus": 0, 
-  "modified": "2014-03-14 18:30:49", 
+  "modified": "2014-03-19 16:30:48", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -107,6 +107,13 @@
   "fieldname": "study_fees", 
   "fieldtype": "Currency", 
   "label": "Study Fees"
+ }, 
+ {
+  "description": "Specify Time in minits", 
+  "doctype": "DocField", 
+  "fieldname": "study_time", 
+  "fieldtype": "Data", 
+  "label": "Study Time"
  }, 
  {
   "doctype": "DocField", 
