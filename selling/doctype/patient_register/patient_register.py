@@ -26,7 +26,7 @@ class DocType:
         def on_update(self):
 		webnotes.errprint('in on update')
                 self.create_new_contact()
-                flag = webnotes.conn.sql("select ifnull(name,'') from tabProfile where name='"+self.doc.email+"'",as_list=1,debug=1)
+                flag = webnotes.conn.sql("select ifnull(name,'') from tabProfile where name='"+self.doc.email+"'",as_list=1)
                 if not flag:
                         webnotes.errprint(flag)
                         self.create_profile()

@@ -63,7 +63,7 @@ make_linking('disc')
 
 function make_linking(show_key){
 	for (var key in a){
-		console.log(key)
+		// console.log(key)
 		$('button[data-fieldname='+key+']').css("width","200");
 		if(key==show_key){
 			if(key=='encounter_data'){
@@ -272,7 +272,7 @@ cur_frm.cscript.patient_entry = function(doc, dt ,dn) {
 				args: patient_id,
 				method:'selling.doctype.patient_encounter_entry.patient_encounter_entry.create_patient',
 				callback: function(r) {
-					console.log(r)
+					// console.log(r)
 					doc.patient = r.message
 					refresh_field('patient');
 					$(btn).done_working();

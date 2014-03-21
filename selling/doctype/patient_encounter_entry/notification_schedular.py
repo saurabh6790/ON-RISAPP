@@ -27,7 +27,7 @@ def send_notification(encounter_detail):
 	technologiest_contact = webnotes.conn.sql("select cell_number, personal_email from tabEmployee where name = '%s'"%(encounter_detail['technologist']),as_list=1)
 	patient_contact = webnotes.conn.sql("select mobile, email from `tabPatient Register` where name = '%s'"%(encounter_detail['patient']),as_list=1)
 
-	webnotes.errprint([technologiest_contact, patient_contact])
+	# webnotes.errprint([technologiest_contact, patient_contact])
 
 	mail_list.append(technologiest_contact[0][1])
 	mail_list.append(patient_contact[0][1])

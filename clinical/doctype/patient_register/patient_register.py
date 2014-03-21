@@ -281,8 +281,8 @@ class DocType:
     def __init__(self, d, dl):
         self.doc, self.doclist = d, dl
     
-    def test_data(self):
-        webnotes.errprint("asd")
+    def test_data(self):pass
+        # webnotes.errprint("asd")
 
     def autoname(self):
         key = webnotes.conn.get_value("LocGlobKey", None, "key")
@@ -328,8 +328,8 @@ class DocType:
 
     def on_update(self):
         self.check_valid_priority()
-        check_name=webnotes.conn.sql("select name from `tabCustomer` where name='"+self.doc.name+"'",as_list=1,debug=1)
-        webnotes.errprint(['name',check_name])
+        check_name=webnotes.conn.sql("select name from `tabCustomer` where name='"+self.doc.name+"'",as_list=1)
+        # webnotes.errprint(['name',check_name])
 
         if not check_name:
             self.doc.master_type = "Patient Register"
@@ -342,7 +342,7 @@ class DocType:
             self.create_new_contact()
             a=webnotes.conn.sql("select name from `tabEncounter` where parent='"+self.doc.name+"'",as_list=1)        
             if not a:
-                webnotes.errprint("hii uygsiuc sdfuksghfui")
+                # webnotes.errprint("hii uygsiuc sdfuksghfui")
                 self.create_patient_encounter_entry()
             self.doc.flag='True'
             self.doc.save()
@@ -361,7 +361,7 @@ class DocType:
         p=s=t=0
         from webnotes.model.bean import getlist
         for d in getlist(self.doclist, 'insurance_table'):
-            webnotes.errprint(d.length)
+            # webnotes.errprint(d.length)
             if d.priority=='Primary ':
                 p=p+1
             elif d.priority=='Secondary':
@@ -375,7 +375,7 @@ class DocType:
             webnotes.msgprint(("Maximum 5 'Insurence Profiles' can be entered. Please remove extra entry(ies)"),raise_exception=1)
 
     def create_customer(self):
-        webnotes.errprint('customer creation starts')
+        # webnotes.errprint('customer creation starts')
         from webnotes.model.doc import Document
         d = Document('Customer')
         d.customer_name = self.doc.name
@@ -444,7 +444,7 @@ class DocType:
         dv.save(new=1)
 
     def generate_barcode(self):
-        webnotes.errprint([self.doc.naming_series])
+        # webnotes.errprint([self.doc.naming_series])
         # self.doc.patient_online_id=self.doc.name
         # from barcode.writer import ImageWriter
         # ean = barcode.get('code39','123322ABS232')

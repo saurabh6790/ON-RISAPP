@@ -87,7 +87,7 @@ cur_frm.cscript.add_deduct_tax = function(doc, cdt, cdn) {
     d.add_deduct_tax = '';
   }
   else if(d.category != 'Total' && d.add_deduct_tax == 'Deduct') {
-	console.log([d.category, d.add_deduct_tax]);
+	// console.log([d.category, d.add_deduct_tax]);
     msgprint(wn._("You cannot deduct when category is for 'Valuation' or 'Valuation and Total'"));
     d.add_deduct_tax = '';
   }

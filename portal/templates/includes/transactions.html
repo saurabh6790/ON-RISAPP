@@ -38,7 +38,7 @@ var get_transactions = function(btn) {
 			$list.find(".progress").remove();
 			$show_more.toggleClass("hide", !(r.message && r.message.length===20));
 			if(!(r.message && r.message.length)) {
-				console.log("empty");
+				// console.log("empty");
 				if(!$list.html().trim()) {
 					$list.html("<div class='alert alert-warning'>\
 						{{ empty_list_message }}</div>");
