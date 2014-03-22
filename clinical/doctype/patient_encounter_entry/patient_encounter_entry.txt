@@ -11,7 +11,7 @@
   "doctype": "DocType", 
   "document_type": "Master", 
   "icon": "icon-file-text", 
-  "module": "Selling", 
+  "module": "Clinical", 
   "name": "__common__"
  }, 
  {
