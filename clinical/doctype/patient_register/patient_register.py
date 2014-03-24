@@ -269,7 +269,7 @@ from __future__ import unicode_literals
 import webnotes
 
 from webnotes.utils import cstr, cint, flt, comma_or, nowdate, get_base_path,today
-import barcode
+# import barcode
 import os
 from webnotes import msgprint, _
 from datetime import date
@@ -322,7 +322,7 @@ class DocType:
             webnotes.conn.sql("update tabSeries set current = current+1 where name='GID'")
             current = cint(current) + 1
         else:
-            webnotes.conn.sql("insert into tabSeries (name, current) values (GID, 1)")
+            webnotes.conn.sql("insert into tabSeries (name, current) values ('GID', 1)")
             current = 1
         return ('%0'+str(digits)+'d') % current
 
@@ -338,7 +338,7 @@ class DocType:
 
         if self.doc.flag=='false':
             # self.create_profile()
-            self.generate_barcode()
+            # self.generate_barcode()
             self.create_new_contact()
             a=webnotes.conn.sql("select name from `tabEncounter` where parent='"+self.doc.name+"'",as_list=1)        
             if not a:

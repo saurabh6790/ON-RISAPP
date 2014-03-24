@@ -1,13 +1,13 @@
 from __future__ import unicode_literals
 import webnotes
 from webnotes.utils import flt, fmt_money, cstr, cint
-from  selling.doctype.customer.customer import DocType
+# from  selling.doctype.customer.customer import DocType
 import datetime
 from webnotes import msgprint, _
 from selling.doctype.lead.lead import create_contact
 from webnotes.model.code import get_obj
 from webnotes.model.bean import getlist, copy_doclist
-from selling.doctype.patient_encounter_entry.notification_schedular import get_encounters
+# from selling.doctype.patient_encounter_entry.notification_schedular import get_encounters
 from webnotes.model.doc import Document, make_autoname
 
 class DocType():

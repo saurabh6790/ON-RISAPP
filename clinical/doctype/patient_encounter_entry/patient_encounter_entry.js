@@ -181,7 +181,7 @@ cur_frm.fields_dict.referrer_name.get_query = function(doc,cdt,cdn) {
 
 cur_frm.fields_dict.patient.get_query = function(doc,cdt,cdn) {
   return{
-    query:"selling.doctype.patient_encounter_entry.patient_encounter_entry.get_patient_details"
+    query:"clinical.doctype.patient_encounter_entry.patient_encounter_entry.get_patient_details"
   }
 }
 
@@ -222,7 +222,7 @@ cur_frm.cscript.get_patient = function(doc, dt ,dn) {
 			if(!patient_id) return;	
 			return wn.call({
 				args: patient_id,
-				method:'selling.doctype.patient_encounter_entry.patient_encounter_entry.get_patient',
+				method:'clinical.doctype.patient_encounter_entry.patient_encounter_entry.get_patient',
 				callback: function(r) {
 					$(btn).done_working();
 					d.hide();
@@ -270,7 +270,7 @@ cur_frm.cscript.patient_entry = function(doc, dt ,dn) {
 			if(!patient_id) return;	
 			return wn.call({
 				args: patient_id,
-				method:'selling.doctype.patient_encounter_entry.patient_encounter_entry.create_patient',
+				method:'clinical.doctype.patient_encounter_entry.patient_encounter_entry.create_patient',
 				callback: function(r) {
 					// console.log(r)
 					doc.patient = r.message
