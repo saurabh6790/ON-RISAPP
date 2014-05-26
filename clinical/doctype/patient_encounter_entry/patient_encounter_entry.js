@@ -1,7 +1,7 @@
 cur_frm.add_fetch('patient', 'first_name', 'patient_name')
 cur_frm.add_fetch('doctor', 'lead_name', 'doctor_name')
-cur_frm.add_fetch('referrer_name','rules','rules')
-cur_frm.add_fetch('referrer_name','value','value')
+// cur_frm.add_fetch('referrer_name','rules','rules')
+// cur_frm.add_fetch('referrer_name','value','value')
 cur_frm.add_fetch('radiologist_name', 'employee_name', 'radiologist_');
 cur_frm.add_fetch('referrer_name', 'lead_name', 'referral');
 cur_frm.add_fetch('technologist', 'employee_name', 'technologist_name');
@@ -16,14 +16,18 @@ cur_frm.cscript.images = function(doc, cdt, cdn){
 cur_frm.cscript.onload = function(doc, cdt, cdn) {
 	// cur_frm.cscript.referrer_name(doc)
 	// alert(this.frm.doc.encounter)
+	console.log(this.frm.doc.encounter,this.frm.doc.study,this.frm.doc.start_time,this.frm.doc.end_time)
 	if(this.frm.doc.encounter){
 		wn.call({
-			method: "selling.doctype.patient_encounter_entry.patient_encounter_entry.set_slot",
-			args:{modality:this.frm.doc.encounter, modality:this.frm.doc.study,start_time:this.frm.doc.start_time, end_time:this.frm.doc.end_time},
+			method: "clinical.doctype.patient_encounter_entry.patient_encounter_entry.set_slot",
+			args:{modality:this.frm.doc.encounter, study:this.frm.doc.study,start_time:this.frm.doc.start_time, end_time:this.frm.doc.end_time},
 			callback: function(r) {
 				cur_frm.set_value("start_time", r.message[0]);
 				cur_frm.set_value("end_time", r.message[1]);
 			}
+		})
+		return $c('runserverobj', args={'method':'fill_study_items', 'arg':this.frm.doc.study , 'docs': wn.model.compress(make_doclist(doc.doctype, doc.name))}, function(r,rt) {
+			refresh_field('study_items')
 		})
 	}
 	if(this.frm.doc.__islocal) {

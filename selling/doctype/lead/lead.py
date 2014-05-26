@@ -9,6 +9,7 @@ from webnotes import session, msgprint
 from webnotes.model.doc import Document, make_autoname
 	
 from controllers.selling_controller import SellingController
+from webnotes.model.doc import Document, make_autoname
 
 #sql = webnotes.conn.sql
 
@@ -23,6 +24,10 @@ class DocType(SellingController):
 			"contact_by": webnotes.conn.get_value("Lead", self.doc.name, "contact_by") if \
 				(not cint(self.doc.fields.get("__islocal"))) else None,
 		})
+	def autoname(self):
+		lab_branch = webnotes.conn.get_value("Global Defaults", None, "branch_id")
+		gl_name = make_autoname(lab_branch + '- REF' + '.#####')
+		self.doc.name = gl_name
 
 	def onload(self):
 		customer = webnotes.conn.get_value("Customer", {"lead_name": self.doc.name})

@@ -269,7 +269,7 @@ from __future__ import unicode_literals
 import webnotes
 
 from webnotes.utils import cstr, cint, flt, comma_or, nowdate, get_base_path,today
-# import barcode
+import barcode
 import os
 from webnotes import msgprint, _
 from datetime import date
@@ -295,9 +295,9 @@ class DocType:
             webnotes.conn.set_value("LocGlobKey", "LocGlobKey", "key", key)
         self.doc.patient_local_id = make_autoname('A'+str(date.today().year)[-2:]+key+'.##')
         # self.doc.name = self.doc.patient_local_id
-    
+        lab_branch = webnotes.conn.get_value("Global Defaults", None, "branch_id")
         dt=today()
-        ss="C"+cstr(dt[2:4]+cstr(dt[5:7]))+self.doc.lab_branch[1:]+"-"+key+"-"+''
+        ss="C"+cstr(dt[2:4]+cstr(dt[5:7]))+lab_branch+"-"+key+"-"+''
         key="GID.##"
         n = ''
         l = key.split('.')
@@ -337,8 +337,8 @@ class DocType:
             self.create_account_head(cust)
 
         if self.doc.flag=='false':
-            # self.create_profile()
-            # self.generate_barcode()
+            self.create_profile()
+            self.generate_barcode()
             self.create_new_contact()
             a=webnotes.conn.sql("select name from `tabEncounter` where parent='"+self.doc.name+"'",as_list=1)        
             if not a:
@@ -465,13 +465,13 @@ class DocType:
         import barcode
         from barcode.writer import ImageWriter
         ean = barcode.get('code39', s, writer=ImageWriter())
-        path = os.path.join(get_base_path(), "public", "barcode_img")+"/"+s
+        path = os.path.join(get_base_path(), "public", "files")+"/"+s
         filename = ean.save(path)
         barcode_img = '<html>\
                         <table style="width: 100%; table-layout: fixed;">\
                             <tr>\
                                 <td style="width:510px">\
-                                    <img src="'"../barcode_img/"+s+".png"'" width="200px">\
+                                    <img src="'"../files/"+s+".png"'" width="200px">\
                                 </td>\
                             </tr>\
                         </table>\

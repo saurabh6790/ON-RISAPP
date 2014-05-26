@@ -13,11 +13,9 @@ class DocType:
 		self.doc, self.doclist = d, dl
 
 	def autoname(self):
-		gl_name = make_autoname(webnotes.conn.get_value('DocType', 'GL Entry', 'autoname'))
-		company = webnotes.conn.sql(""" select name from tabCompany 
-				where name = (select value from tabSingles 
-					where doctype = 'Global Defaults' and field = 'default_company') """)[0][0]
-		self.doc.name = company + ' ' + gl_name
+		lab_branch = webnotes.conn.get_value("Global Defaults", None, "branch_id")
+		gl_name = make_autoname(lab_branch + '-' +webnotes.conn.get_value('DocType', 'GL Entry', 'autoname'))
+		self.doc.name = gl_name
 
 
 	def validate(self):

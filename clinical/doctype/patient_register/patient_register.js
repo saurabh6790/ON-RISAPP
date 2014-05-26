@@ -11,7 +11,7 @@ cur_frm.cscript.encounter_table_add=function(doc,cdt,cdn){
 }
 
 cur_frm.fields_dict.encounter_table.grid.get_field("radiologist_name").get_query = function(doc,cdt,cdn) {
-        return{ query:"selling.doctype.patient_encounter_entry.patient_encounter_entry.get_employee"}
+        return{ query:"clinical.doctype.patient_encounter_entry.patient_encounter_entry.get_employee"}
 }
 
 cur_frm.add_fetch('radiologist_name', 'employee_name', 'radiologist_');

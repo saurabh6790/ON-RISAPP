@@ -2,7 +2,7 @@
  {
   "creation": "2013-04-10 11:45:37", 
   "docstatus": 0, 
-  "modified": "2014-02-28 12:11:02", 
+  "modified": "2014-04-21 16:13:09", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -95,6 +95,18 @@
  }, 
  {
   "doctype": "DocField", 
+  "fieldname": "salutation", 
+  "fieldtype": "Select", 
+  "label": "Salutation", 
+  "options": "Dr.\nMr.\nMiss.\nMrs"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "column_break_11", 
+  "fieldtype": "Column Break"
+ }, 
+ {
+  "doctype": "DocField", 
   "fieldname": "naming_series", 
   "fieldtype": "Select", 
   "label": "Series", 
@@ -142,6 +154,26 @@
   "doctype": "DocField", 
   "fieldname": "cb6", 
   "fieldtype": "Column Break"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "physician_type", 
+  "fieldtype": "Select", 
+  "label": "Physician Type", 
+  "options": "Internal\nExternal"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "specialty", 
+  "fieldtype": "Link", 
+  "label": "Specialty", 
+  "options": "Specialty"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "qualification", 
+  "fieldtype": "Small Text", 
+  "label": "Qualification"
  }, 
  {
   "default": "Referring Physician", 
@@ -193,6 +225,18 @@
   "label": "Communication", 
   "options": "icon-comments", 
   "print_hide": 1
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "facebook_profile", 
+  "fieldtype": "Data", 
+  "label": "Facebook Profile"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "twitter_profile", 
+  "fieldtype": "Data", 
+  "label": "Twitter Profile"
  }, 
  {
   "default": "__user", 
@@ -384,6 +428,19 @@
   "oldfieldtype": "Link", 
   "options": "Territory", 
   "print_hide": 1
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "referral_fees", 
+  "fieldtype": "Section Break", 
+  "label": "Referral Fees"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "physician_values", 
+  "fieldtype": "Table", 
+  "label": "Physician Values", 
+  "options": "Physician Values"
  }, 
  {
   "doctype": "DocField", 

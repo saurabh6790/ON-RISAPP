@@ -2,7 +2,7 @@
  {
   "creation": "2013-05-02 17:53:24", 
   "docstatus": 0, 
-  "modified": "2014-03-20 11:34:47", 
+  "modified": "2014-04-20 13:06:11", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -193,6 +193,44 @@
   "fieldname": "pacs_server_id", 
   "fieldtype": "Data", 
   "label": "Pacs Server Id"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "must_sync_after", 
+  "fieldtype": "Select", 
+  "label": "Must Sync After", 
+  "options": "\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "last_sync_date", 
+  "fieldtype": "Date", 
+  "label": "Last Sync Date"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "is_active", 
+  "fieldtype": "Check", 
+  "label": "Is Active"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "root_password", 
+  "fieldtype": "Password", 
+  "label": "Root Password"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "unique_id", 
+  "fieldtype": "Data", 
+  "label": "Unique Id"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "branch_id", 
+  "fieldtype": "Data", 
+  "label": "branch_id", 
+  "read_only": 1
  }, 
  {
   "doctype": "DocPerm"

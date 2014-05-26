@@ -2,7 +2,7 @@
  {
   "creation": "2014-01-31 12:25:24", 
   "docstatus": 0, 
-  "modified": "2014-03-03 16:25:20", 
+  "modified": "2014-04-20 13:17:07", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -245,10 +245,11 @@
   "doctype": "DocField", 
   "fieldname": "lab_branch", 
   "fieldtype": "Link", 
+  "hidden": 1, 
   "label": "Account Id", 
   "options": "LabBranch", 
   "permlevel": 0, 
-  "reqd": 1
+  "reqd": 0
  }, 
  {
   "doctype": "DocField", 

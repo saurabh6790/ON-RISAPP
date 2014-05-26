@@ -1,0 +1,32 @@
+[
+ {
+  "creation": "2014-03-26 13:06:00", 
+  "docstatus": 0, 
+  "modified": "2014-03-26 13:06:43", 
+  "modified_by": "Administrator", 
+  "owner": "Administrator"
+ }, 
+ {
+  "doctype": "Page", 
+  "module": "Clinical", 
+  "name": "__common__", 
+  "page_name": "ts", 
+  "standard": "Yes", 
+  "title": "ts"
+ }, 
+ {
+  "doctype": "Page Role", 
+  "name": "__common__", 
+  "parent": "ts", 
+  "parentfield": "roles", 
+  "parenttype": "Page", 
+  "role": "Administrator"
+ }, 
+ {
+  "doctype": "Page", 
+  "name": "ts"
+ }, 
+ {
+  "doctype": "Page Role"
+ }
+]

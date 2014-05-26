@@ -1,0 +1,22 @@
+[
+ {
+  "creation": "2014-04-11 11:19:17", 
+  "docstatus": 0, 
+  "modified": "2014-04-11 11:19:17", 
+  "modified_by": "Administrator", 
+  "owner": "Administrator"
+ }, 
+ {
+  "doctype": "Report", 
+  "is_standard": "Yes", 
+  "json": "{\"filters\":[[\"Patient Encounter Entry\",\"name\",\"=\",\"Indictranstechnology ENC000004\"]],\"columns\":[[\"name\",\"Patient Encounter Entry\"],[\"global_id\",\"Patient Encounter Entry\"],[\"company\",\"Patient Encounter Entry\"],[\"encounter\",\"Patient Encounter Entry\"],[\"global_id\",\"Patient Encounter Entry\"]],\"sort_by\":\"Patient Encounter Entry.modified\",\"sort_order\":\"desc\",\"sort_by_next\":\"\",\"sort_order_next\":\"desc\"}", 
+  "name": "__common__", 
+  "ref_doctype": "Patient Encounter Entry", 
+  "report_name": "test", 
+  "report_type": "Report Builder"
+ }, 
+ {
+  "doctype": "Report", 
+  "name": "test"
+ }
+]

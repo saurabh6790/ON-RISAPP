@@ -16,11 +16,12 @@ class DocType:
 		
 	def autoname(self):
 		naming_method = webnotes.conn.get_value("HR Settings", None, "emp_created_by")
+		lab_branch = webnotes.conn.get_value("Global Defaults", None, "branch_id")
 		if not naming_method:
 			webnotes.throw(_("Please setup Employee Naming System in Human Resource > HR Settings"))
 		else:
 			if naming_method=='Naming Series':
-				self.doc.name = make_autoname(self.doc.naming_series + '.####')
+				self.doc.name = make_autoname(lab_branch+'-'+self.doc.naming_series + '.####')
 			elif naming_method=='Employee Number':
 				self.doc.name = self.doc.employee_number
 

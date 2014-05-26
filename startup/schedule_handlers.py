@@ -24,6 +24,9 @@ def execute_all():
 
 	from webnotes.utils.email_lib.bulk import flush
 	run_fn(flush)
+
+	# from stock.utils import reorder_item
+	# run_fn(reorder_item)
 	
 def execute_daily():
 	# event reminders

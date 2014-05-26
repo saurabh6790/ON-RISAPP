@@ -153,16 +153,16 @@ e.parent ='%s' and s.name = e.study) AS foo"""%(self.doc.customer),as_dict=1)
 		referrer1={}
 
 		for s in getlist(self.doclist,'entries'):
-			if s.item_code:
-				bin_qty=webnotes.conn.sql("select actual_qty from tabBin where item_code='"+s.item_code+"' and warehouse='"+s.warehouse+"'",as_list=1)
+			if s.item:
+				bin_qty=webnotes.conn.sql("select actual_qty from tabBin where item_code='"+s.item+"' and warehouse='"+s.warehouse+"'",as_list=1)
 				if bin_qty:
 					bin_amt=flt(bin_qty[0][0])-flt(s.qty)
 				else:
 					bin_amt=flt(s.qty)
-				a=webnotes.conn.sql("update tabBin set actual_qty="+cstr(bin_amt)+" where item_code='"+s.item_code+"'  and warehouse='"+s.warehouse+"'")
+				a=webnotes.conn.sql("update tabBin set actual_qty="+cstr(bin_amt)+", projected_qty = "+cstr(bin_amt)+" where item_code='"+s.item+"'  and warehouse='"+s.warehouse+"'")
 				stl=Document('Stock Ledger Entry')	
 				stl.actual_qty=cstr(0-flt(s.qty))
-				stl.item_code=s.item_code
+				stl.item_code=s.item 
 				stl.warehouse=s.warehouse
 				stl.save()
 				

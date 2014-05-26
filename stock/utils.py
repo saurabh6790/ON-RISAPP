@@ -273,10 +273,12 @@ def reorder_item():
 				where `tabItem`.name = `tabBin`.item_code and 
 				is_stock_item='Yes' and (is_purchase_item='Yes' or is_sub_contracted_item='Yes') and
 				(ifnull(end_of_life, '')='' or end_of_life > now()))""", as_dict=True)
+		print bin_list
 		for bin in bin_list:
 			#check if re-order is required
 			item_reorder = webnotes.conn.get("Item Reorder", 
 				{"parent": bin.item_code, "warehouse": bin.warehouse})
+			# print item_reorder
 			if item_reorder:
 				reorder_level = item_reorder.warehouse_reorder_level
 				reorder_qty = item_reorder.warehouse_reorder_qty
@@ -284,6 +286,8 @@ def reorder_item():
 			else:
 				reorder_level, reorder_qty = webnotes.conn.get_value("Item", bin.item_code,
 					["re_order_level", "re_order_qty"])
+				print reorder_level
+				print reorder_qty
 				material_request_type = "Purchase"
 		
 			if flt(reorder_level) and flt(bin.projected_qty) < flt(reorder_level):

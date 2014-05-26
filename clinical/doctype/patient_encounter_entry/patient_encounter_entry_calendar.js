@@ -16,5 +16,5 @@ wn.views.calendar["Patient Encounter Entry"] = {
 		"Waiting": "info",
 		"Canceled": "warning"
 	},
-	get_events_method: "selling.doctype.patient_encounter_entry.patient_encounter_entry.get_events"
+	get_events_method: "clinical.doctype.patient_encounter_entry.patient_encounter_entry.get_events"
 }

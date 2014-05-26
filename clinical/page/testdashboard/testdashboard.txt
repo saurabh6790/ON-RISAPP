@@ -1,0 +1,32 @@
+[
+ {
+  "creation": "2014-03-26 12:59:18", 
+  "docstatus": 0, 
+  "modified": "2014-03-26 13:01:37", 
+  "modified_by": "Administrator", 
+  "owner": "Administrator"
+ }, 
+ {
+  "doctype": "Page", 
+  "module": "Clinical", 
+  "name": "__common__", 
+  "page_name": "testdashboard", 
+  "standard": "Yes", 
+  "title": "dashboard"
+ }, 
+ {
+  "doctype": "Page Role", 
+  "name": "__common__", 
+  "parent": "testdashboard", 
+  "parentfield": "roles", 
+  "parenttype": "Page", 
+  "role": "All"
+ }, 
+ {
+  "doctype": "Page", 
+  "name": "testdashboard"
+ }, 
+ {
+  "doctype": "Page Role"
+ }
+]

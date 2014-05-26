@@ -156,6 +156,17 @@ wn.pages['setup-wizard'].onload = function(wrapper) {
 					});
 				}
 			},
+
+			// Logo
+			{
+				icon: "icon-bookmark",
+				title: wn._("Logo and Letter Heads"),
+				help: wn._('Upload your letter head and logo - you can edit them later.'),
+				fields: [
+					{fieldtype:"Attach Image", fieldname:"attach_letterhead", label:"Attach Letterhead..."},
+					{fieldtype:"Attach Image", fieldname:"attach_logo", label:"Attach Logo..."},
+				],
+			},
 			
 			// Logo
 			{

@@ -11,7 +11,7 @@
   "doctype": "DocType", 
   "document_type": "Master", 
   "icon": "icon-tag", 
-  "module": "Stock", 
+  "module": "Master", 
   "name": "__common__"
  }, 
  {

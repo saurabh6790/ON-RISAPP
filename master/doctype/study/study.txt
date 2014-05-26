@@ -10,7 +10,7 @@
   "doctype": "DocType", 
   "document_type": "Master", 
   "icon": "icon-file-text", 
-  "module": "Clinical", 
+  "module": "Master", 
   "name": "__common__"
  }, 
  {

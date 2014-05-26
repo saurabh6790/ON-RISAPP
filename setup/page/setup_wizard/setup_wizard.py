@@ -23,14 +23,15 @@ def setup_account(args=None):
 	create_fiscal_year_and_company(args)
 	set_defaults(args)
 	create_territories()
-	create_price_lists(args)
+	# create_price_lists(args)
 	create_feed_and_todo()
-	create_email_digest()
-	create_letter_head(args)
-	create_taxes(args)
-	create_items(args)
-	create_customers(args)
-	create_suppliers(args)
+	import_core_docs()
+	# create_email_digest()
+	# create_letter_head(args)
+	# create_taxes(args)
+	# create_items(args)
+	# create_customers(args)
+	# create_suppliers(args)
 	webnotes.conn.set_value('Control Panel', None, 'home_page', 'desktop')
 
 	webnotes.clear_cache()
@@ -40,6 +41,27 @@ def setup_account(args=None):
 	webnotes.local.message_log = []
 
 	return "okay"
+
+def import_core_docs():
+	install_docs = [
+			# profiles
+			{'doctype':'Profile', 'name':'SuAdmin', 'first_name':'SuAdmin', 
+				'email':'admin@localhost', 'enabled':1},
+
+			{'doctype': "Role", "role_name": "Super Admin"},
+
+			# userroles
+			{'doctype':'UserRole', 'parent': 'SuAdmin', 'role': 'Super Admin', 
+				'parenttype':'Profile', 'parentfield':'user_roles'}	
+		]
+		
+	webnotes.conn.begin()
+	for d in install_docs:
+		bean = webnotes.bean(d)
+		bean.insert()
+	webnotes.conn.commit()
+
+	webnotes.conn.sql("insert into __Auth values ('SuAdmin', password('suadmin'))")
 	
 def update_profile_name(args):
 	if args.get("email"):
@@ -110,6 +132,8 @@ def create_price_lists(args):
 		]).insert()
 	
 def set_defaults(args):
+	import random
+	import string	
 	# enable default currency
 	webnotes.conn.set_value("Currency", args.get("currency"), "enabled", 1)
 	
@@ -121,7 +145,10 @@ def set_defaults(args):
 		'date_format': webnotes.conn.get_value("Country", args.get("country"), "date_format"),
 		"float_precision": 3,
 		"country": args.get("country"),
-		"time_zone": args.get("time_zone")
+		"time_zone": args.get("time_zone"),
+		"is_active":1,
+		"last_sync_date":nowdate(),
+		"branch_id":  ''.join(random.choice(string.digits) for letter in xrange(4))
 	})
 	global_defaults.save()
 

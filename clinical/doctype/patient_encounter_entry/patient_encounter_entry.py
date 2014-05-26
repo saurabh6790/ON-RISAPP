@@ -5,21 +5,19 @@ from webnotes.utils import flt, fmt_money, cstr, cint
 import datetime
 from webnotes import msgprint, _
 from selling.doctype.lead.lead import create_contact
-from webnotes.model.code import get_obj
+from webnotes.model.code import get_obj,get_server_obj
 from webnotes.model.bean import getlist, copy_doclist
 # from selling.doctype.patient_encounter_entry.notification_schedular import get_encounters
-from webnotes.model.doc import Document, make_autoname
+from webnotes.model.doc import Document, make_autoname, addchild
 
 class DocType():
         def __init__(self, d, dl):
                 self.doc, self.doclist = d, dl
 
         def autoname(self):
-            entry = make_autoname(webnotes.conn.get_value('DocType', 'Patient Encounter Entry', 'autoname'))
-            company = webnotes.conn.sql(""" select name from tabCompany 
-                where name = (select value from tabSingles 
-                where doctype = 'Global Defaults' and field = 'default_company') """)[0][0]
-            self.doc.name = company + ' ' + entry
+            lab_branch = webnotes.conn.get_value("Global Defaults", None, "branch_id")
+            entry = make_autoname(lab_branch+' - '+webnotes.conn.get_value('DocType', 'Patient Encounter Entry', 'autoname'))
+            self.doc.name = entry
 
         def validate(self):pass
             # if not webnotes.conn.sql("select patient from `tabPatient Encounter Entry` where name = '%s'"%self.doc.name):
@@ -207,16 +205,16 @@ case when exists(select true from `tabPhysician Values` a WHERE a.study_name=foo
             s.study_aim as parent,s.modality, e.encounter,e.referrer_name, e.name, s.discount_type,s.study_detials,s.discounted_value as dis_value FROM `tabEncounter` e, tabStudy s WHERE ifnull(e.is_invoiced,'False')='False' AND 
 e.parent ='%(parent)s' and s.name = e.study) AS foo union
         
-        select '',item,qty,parent,'','','','','','','','','' from `tabStudy Recipe Details` where parent in(
+        select '',item_name,qty,parent,'','','','','','','','','' from `tabEncounter Study Item` where parent in(
         SELECT
-            s.study_aim AS study
+            pee.name AS study
         FROM
             `tabEncounter` e,
-            tabStudy s
+            `tabPatient Encounter Entry` pee
         WHERE
             ifnull(e.is_invoiced,'False')='False'
         AND e.parent ='%(parent)s'
-        AND s.name = e.study  
+        AND pee.name = e.id  
         )
         order by parent,qty"""%({"parent":patient_data}),as_dict=1)
                 
@@ -308,6 +306,16 @@ e.parent ='%(parent)s' and s.name = e.study) AS foo union
                 self.doc.eventid = evnt.name
                 self.doc.save()
 
+        def fill_study_items(self, study):
+            item_list = webnotes.conn.sql("""select item, qty from `tabStudy Recipe Details`
+                where parent = '%s'"""%study,as_list=1)
+            for item in item_list:
+                std_item = addchild(self.doc, 'study_items', 'Encounter Study Item', self.doclist)
+                std_item.item_name = item[0]
+                std_item.qty = item[1]
+            webnotes.errprint(["write", study])
+            return 0
+
 @webnotes.whitelist()
 def get_employee(doctype, txt, searchfield, start, page_len, filters):
         return webnotes.conn.sql("select name, employee_name from tabEmployee where designation = 'Radiologist'")
@@ -375,13 +383,14 @@ def get_study(modality):
         return webnotes.conn.sql("select name from tabStudy where modality = '%s'"%modality, as_list=1)
 
 @webnotes.whitelist()
-def set_slot(modality, study, start_time, end_time):
+def set_slot(modality=None, study=None, start_time=None, end_time=None):
+        webnotes.errprint([modality, study, start_time, end_time])
         time = get_study_time(study)
         if cint(time) > 30:
                 start_time = calc_start_time(start_time, modality)
         end_time = calc_end_time(cstr(start_time),time)
         start_time, end_time = check_availability(modality, start_time, end_time, time)
-        
+
         return start_time, end_time
 
 def check_availability(modality, start_time, end_time, time):
@@ -406,7 +415,7 @@ def check_availability(modality, start_time, end_time, time):
 #         return webnotes.conn.get_value('Modality',modality,'time_required')
 
 def get_study_time(study):
-        return webnotes.conn.get_value('Study',modality,'study_time')
+        return webnotes.conn.get_value('Study',study,'study_time')
 
 def calc_end_time(start_time,time):
         import datetime
@@ -426,7 +435,7 @@ def calc_start_time(start_time, modality):
 
 @webnotes.whitelist()
 def get_patient(patient_id):
-        get_obj('DB SYNC', 'DB SYNCl').sync_db(patient_id)
+        get_obj('DB SYNC', 'DB SYNC').sync_db(patient_id)
 
 
 @webnotes.whitelist()
