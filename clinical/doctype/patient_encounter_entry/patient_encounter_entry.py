@@ -24,6 +24,7 @@ class DocType():
                     # self.send_notification()
 
         def on_update(self):
+                webnotes.errprint(self.doc.end_time)
                 patient_id = None
                 from datetime import datetime
 
@@ -370,7 +371,7 @@ def get_events(start, end, doctype,op,filters=None):
                         "end": end,
                         "conditions": conditions,
                         "cnd":cnd
-                }, as_dict=True, update={"allDay": 0})
+                }, as_dict=True, update={"allDay": 0}, debug=1)
 
         return data
 
@@ -385,6 +386,7 @@ def get_study(modality):
 @webnotes.whitelist()
 def set_slot(modality=None, study=None, start_time=None, end_time=None):
         webnotes.errprint([modality, study, start_time, end_time])
+        fill_study_items(study)
         time = get_study_time(study)
         if cint(time) > 30:
                 start_time = calc_start_time(start_time, modality)
@@ -451,3 +453,15 @@ def create_patient(first_name,last_name,gender,date_of_birth,mobile_no,email, br
     d.lab_branch = branch
     d.save()
     return d.name
+
+def fill_study_items(study):
+    from webnotes.model.doc import get
+    doc = get('Study', study)
+    doclist = get('Study', study, with_children=1)
+    item_list = webnotes.conn.sql("""select item, qty from `tabStudy Recipe Details`
+                where parent = '%s'"""%study,as_list=1,debug=1)
+    for item in item_list:
+        std_item = addchild(doc[0], 'study_items', 'Encounter Study Item', doclist)
+        std_item.item_name = item[0]
+        std_item.qty = item[1]
+        std_item.save()

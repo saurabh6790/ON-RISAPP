@@ -48,7 +48,7 @@ def import_core_docs():
 			{'doctype':'Profile', 'name':'SuAdmin', 'first_name':'SuAdmin', 
 				'email':'admin@localhost', 'enabled':1},
 
-			{'doctype': "Role", "role_name": "Super Admin"},
+			# {'doctype': "Role", "role_name": "Super Admin"},
 
 			# userroles
 			{'doctype':'UserRole', 'parent': 'SuAdmin', 'role': 'Super Admin', 

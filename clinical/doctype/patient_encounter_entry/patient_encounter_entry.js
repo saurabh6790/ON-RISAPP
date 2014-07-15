@@ -24,14 +24,16 @@ cur_frm.cscript.onload = function(doc, cdt, cdn) {
 			callback: function(r) {
 				cur_frm.set_value("start_time", r.message[0]);
 				cur_frm.set_value("end_time", r.message[1]);
+				refresh_field('study_items')
 			}
 		})
-		return $c('runserverobj', args={'method':'fill_study_items', 'arg':this.frm.doc.study , 'docs': wn.model.compress(make_doclist(doc.doctype, doc.name))}, function(r,rt) {
-			refresh_field('study_items')
-		})
+		// return $c('runserverobj', args={'method':'fill_study_items', 'arg':this.frm.doc.study , 'docs': wn.model.compress(make_doclist(doc.doctype, doc.name))}, function(r,rt) {
+		// 	refresh_field('study_items')
+		// })
 	}
 	if(this.frm.doc.__islocal) {
 		doc.encounter_date=get_today();
+		cur_frm.set_value('encounter_date', get_today())
 	}
 }
 /*cur_frm.cscript.refresh = function(doc){
