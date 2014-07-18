@@ -136,7 +136,9 @@ def set_defaults(args):
 	import string	
 	# enable default currency
 	webnotes.conn.set_value("Currency", args.get("currency"), "enabled", 1)
-	
+	salt = get_salt()
+	digest = encrypt_mac(salt)
+
 	global_defaults = webnotes.bean("Global Defaults", "Global Defaults")
 	global_defaults.doc.fields.update({
 		'current_fiscal_year': args.curr_fiscal_year,
@@ -148,7 +150,9 @@ def set_defaults(args):
 		"time_zone": args.get("time_zone"),
 		"is_active":1,
 		"last_sync_date":nowdate(),
-		"branch_id":  ''.join(random.choice(string.digits) for letter in xrange(4))
+		"branch_id":  ''.join(random.choice(string.digits) for letter in xrange(4)),
+		"mac_id": digest,
+		"salt": salt
 	})
 	global_defaults.save()
 
@@ -200,7 +204,21 @@ def set_defaults(args):
 	cp = webnotes.doc("Control Panel", "Control Panel")
 	cp.company_name = args["company_name"]
 	cp.save()
-			
+
+def get_salt():
+	import os, base64
+	return base64.b64encode(os.urandom(32))
+
+def encrypt_mac(salt):
+	import os, base64, hashlib, uuid
+
+	raw_mac = "%12x" % uuid.getnode() 
+	mac_id = ":".join(x+y for x, y in zip(raw_mac[::2], raw_mac[1::2]))
+
+	digest = hashlib.sha256(salt + mac_id).hexdigest()
+
+	return digest
+
 def create_feed_and_todo():
 	"""update activty feed and create todo for creation of item, customer, vendor"""
 	import home
