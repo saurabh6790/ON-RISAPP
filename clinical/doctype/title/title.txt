@@ -1,0 +1,49 @@
+[
+ {
+  "creation": "2014-09-08 19:05:06", 
+  "docstatus": 0, 
+  "modified": "2014-09-08 19:11:53", 
+  "modified_by": "Administrator", 
+  "owner": "Administrator"
+ }, 
+ {
+  "autoname": "field:title", 
+  "doctype": "DocType", 
+  "document_type": "Master", 
+  "module": "Clinical", 
+  "name": "__common__"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "title", 
+  "fieldtype": "Data", 
+  "label": "Title", 
+  "name": "__common__", 
+  "parent": "Title", 
+  "parentfield": "fields", 
+  "parenttype": "DocType", 
+  "permlevel": 0
+ }, 
+ {
+  "create": 1, 
+  "doctype": "DocPerm", 
+  "name": "__common__", 
+  "parent": "Title", 
+  "parentfield": "permissions", 
+  "parenttype": "DocType", 
+  "permlevel": 0, 
+  "read": 1, 
+  "role": "All", 
+  "write": 1
+ }, 
+ {
+  "doctype": "DocType", 
+  "name": "Title"
+ }, 
+ {
+  "doctype": "DocField"
+ }, 
+ {
+  "doctype": "DocPerm"
+ }
+]

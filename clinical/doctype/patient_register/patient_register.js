@@ -115,7 +115,7 @@ make_linking('encounters_data')
 
 }
 
-cur_frm.cscript.title=function(doc,cdt,cdn){
+/*cur_frm.cscript.title=function(doc,cdt,cdn){
         get_server_fields('test_data','','',doc,cdt,cdn,1)
 }
-
+*/

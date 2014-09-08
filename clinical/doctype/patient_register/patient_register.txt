@@ -2,7 +2,7 @@
  {
   "creation": "2014-01-31 12:25:24", 
   "docstatus": 0, 
-  "modified": "2014-04-20 13:17:07", 
+  "modified": "2014-09-08 19:55:05", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -18,7 +18,7 @@
   "max_attachments": 20, 
   "module": "Clinical", 
   "name": "__common__", 
-  "search_fields": "customer_name"
+  "search_fields": "first_name, last_name, birth_date"
  }, 
  {
   "doctype": "DocField", 
@@ -143,9 +143,9 @@
  {
   "doctype": "DocField", 
   "fieldname": "title", 
-  "fieldtype": "Select", 
+  "fieldtype": "Link", 
   "label": "Title", 
-  "options": "\nMr.\nMs.", 
+  "options": "Title", 
   "permlevel": 0
  }, 
  {
@@ -153,7 +153,7 @@
   "fieldname": "customer_name", 
   "fieldtype": "Data", 
   "hidden": 1, 
-  "in_filter": 1, 
+  "in_filter": 0, 
   "in_list_view": 1, 
   "label": "Full Name", 
   "no_copy": 1, 
@@ -169,6 +169,7 @@
   "doctype": "DocField", 
   "fieldname": "first_name", 
   "fieldtype": "Data", 
+  "in_filter": 1, 
   "label": "First Name", 
   "permlevel": 0, 
   "reqd": 1
@@ -177,6 +178,7 @@
   "doctype": "DocField", 
   "fieldname": "last_name", 
   "fieldtype": "Data", 
+  "in_filter": 1, 
   "label": "Last Name", 
   "permlevel": 0
  }, 
@@ -193,6 +195,13 @@
   "fieldtype": "Select", 
   "label": "Gender", 
   "options": "\nMale\nFemale", 
+  "permlevel": 0
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "age", 
+  "fieldtype": "Int", 
+  "label": "Age", 
   "permlevel": 0
  }, 
  {
@@ -599,7 +608,7 @@
   "fieldname": "profession", 
   "fieldtype": "Select", 
   "label": "Profession", 
-  "options": "\nAcademics\nAccountants\nActuaries\nArchitects\nAudiologist\nBusiness Manager\nDiplomats\nEconomists\nEngineers\nJournalist\nLanguage professionals\nLawyers\nLibrarians\nNurses\nPharmacists\nPhysicians\nPhysiotherapists\nProfessors \nScientists\nSocial workers\nSpeech-Language Pathologist\nsports\nStatisticians\nSurveyors\nTeachers\nUrban Planners", 
+  "options": "\nAcademics\nAccountants\nActuaries\nArchitects\nAudiologist\nBusiness Manager\nDiplomats\nEconomists\nEngineers\nJournalist\nLanguage professionals\nLawyers\nLibrarians\nNurses\nPharmacists\nPhysicians\nPhysiotherapists\nProfessors \nScientists\nSocial workers\nSpeech-Language Pathologist\nsports\nStatisticians\nStudent\nSurveyors\nTeachers\nUrban Planners", 
   "permlevel": 0
  }, 
  {

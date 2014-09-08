@@ -644,7 +644,6 @@ e.parent ='%s' and s.name = e.study) AS foo"""%(self.doc.customer),as_dict=1)
                 jv.fiscal_year = '2013-14'
                 jv.total_credit = jv.total_debit = sum_patient_amt
                 jv.company = company
-		jv.against_bill = self.doc.name
                 jv.save()
 
                 jvd = Document('Journal Voucher Detail')

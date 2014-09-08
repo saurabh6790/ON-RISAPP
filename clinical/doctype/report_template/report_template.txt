@@ -1,0 +1,62 @@
+[
+ {
+  "creation": "2014-08-25 17:37:16", 
+  "docstatus": 0, 
+  "modified": "2014-08-25 18:20:13", 
+  "modified_by": "Administrator", 
+  "owner": "Administrator"
+ }, 
+ {
+  "allow_rename": 1, 
+  "autoname": "field:title", 
+  "doctype": "DocType", 
+  "document_type": "Master", 
+  "module": "Clinical", 
+  "name": "__common__"
+ }, 
+ {
+  "doctype": "DocField", 
+  "name": "__common__", 
+  "parent": "Report Template", 
+  "parentfield": "fields", 
+  "parenttype": "DocType", 
+  "permlevel": 0
+ }, 
+ {
+  "create": 1, 
+  "doctype": "DocPerm", 
+  "name": "__common__", 
+  "parent": "Report Template", 
+  "parentfield": "permissions", 
+  "parenttype": "DocType", 
+  "permlevel": 0, 
+  "read": 1, 
+  "write": 1
+ }, 
+ {
+  "doctype": "DocType", 
+  "name": "Report Template"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "title", 
+  "fieldtype": "Data", 
+  "label": "Title", 
+  "reqd": 1
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "report_template", 
+  "fieldtype": "Text Editor", 
+  "label": "Report Template"
+ }, 
+ {
+  "cancel": 0, 
+  "doctype": "DocPerm", 
+  "role": "Patient"
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Administrator"
+ }
+]

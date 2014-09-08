@@ -1,0 +1,186 @@
+[
+ {
+  "creation": "2014-08-25 20:09:41", 
+  "docstatus": 0, 
+  "modified": "2014-09-06 12:43:37", 
+  "modified_by": "Administrator", 
+  "owner": "Administrator"
+ }, 
+ {
+  "doctype": "DocType", 
+  "document_type": "System", 
+  "issingle": 1, 
+  "module": "Clinical", 
+  "name": "__common__"
+ }, 
+ {
+  "doctype": "DocField", 
+  "name": "__common__", 
+  "parent": "Patient Report Setting", 
+  "parentfield": "fields", 
+  "parenttype": "DocType", 
+  "permlevel": 0
+ }, 
+ {
+  "create": 1, 
+  "doctype": "DocPerm", 
+  "name": "__common__", 
+  "parent": "Patient Report Setting", 
+  "parentfield": "permissions", 
+  "parenttype": "DocType", 
+  "permlevel": 0, 
+  "read": 1, 
+  "write": 1
+ }, 
+ {
+  "doctype": "DocType", 
+  "name": "Patient Report Setting"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "pateint_information", 
+  "fieldtype": "Section Break", 
+  "label": "Pateint Information"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "patient_id", 
+  "fieldtype": "Check", 
+  "label": "Patient ID"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "age", 
+  "fieldtype": "Check", 
+  "label": "Age"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "accession_number", 
+  "fieldtype": "Check", 
+  "label": "Accession Number"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "referring_physician", 
+  "fieldtype": "Check", 
+  "label": "Referring Physician"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "study_date", 
+  "fieldtype": "Check", 
+  "label": "Study date\\Bill Date"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "patient_birth_date", 
+  "fieldtype": "Check", 
+  "label": "Patient Birth date"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "patient_comment", 
+  "fieldtype": "Check", 
+  "label": "Patient Comment"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "column_break_8", 
+  "fieldtype": "Column Break"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "patient_name", 
+  "fieldtype": "Check", 
+  "label": "Patient Name"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "sex", 
+  "fieldtype": "Check", 
+  "label": "Sex"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "modality", 
+  "fieldtype": "Check", 
+  "label": "Modality"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "study", 
+  "fieldtype": "Check", 
+  "label": "Study"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "study_time", 
+  "fieldtype": "Check", 
+  "label": "Study Time"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "institution_name", 
+  "fieldtype": "Check", 
+  "label": "Institution Name"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "study_comment", 
+  "fieldtype": "Check", 
+  "label": "Study Comment"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "font_and_size_details", 
+  "fieldtype": "Section Break", 
+  "label": "Font and Size Details"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "lable_font", 
+  "fieldtype": "Select", 
+  "label": "Lable Font", 
+  "options": "\nTimes New Roman\nLiberation Sans\nLiberation Sarif\nBitstream Charter\nCentury Schoolbook L"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "column_break_18", 
+  "fieldtype": "Column Break"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "lable_size", 
+  "fieldtype": "Select", 
+  "label": "Lable Size", 
+  "options": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "table_border_visibility", 
+  "fieldtype": "Section Break", 
+  "label": "Table Border Visibility"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "show_table_border", 
+  "fieldtype": "Check", 
+  "label": "Show Table Border"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "branch_id", 
+  "fieldtype": "Select", 
+  "label": "Branch Id", 
+  "options": "attach_files:"
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Patient"
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Administrator"
+ }
+]

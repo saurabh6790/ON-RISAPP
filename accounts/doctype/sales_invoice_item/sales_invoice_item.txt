@@ -2,7 +2,7 @@
  {
   "creation": "2013-06-04 11:02:19", 
   "docstatus": 0, 
-  "modified": "2014-02-02 21:16:40", 
+  "modified": "2014-09-04 14:56:57", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -141,7 +141,6 @@
   "reqd": 0
  }, 
  {
-  "default": "Cash - MS", 
   "doctype": "DocField", 
   "fieldname": "referrer_physician_debit_to", 
   "fieldtype": "Link", 
@@ -322,7 +321,6 @@
   "label": "Accounting"
  }, 
  {
-  "default": "Sales - MS", 
   "doctype": "DocField", 
   "fieldname": "income_account", 
   "fieldtype": "Link", 
@@ -372,12 +370,11 @@
   "doctype": "DocField", 
   "fieldname": "warehouse_and_reference", 
   "fieldtype": "Section Break", 
-  "hidden": 1, 
+  "hidden": 0, 
   "in_list_view": 0, 
   "label": "Warehouse and Reference"
  }, 
  {
-  "default": "Stores - MS", 
   "doctype": "DocField", 
   "fieldname": "warehouse", 
   "fieldtype": "Link", 

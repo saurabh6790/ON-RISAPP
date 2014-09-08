@@ -142,7 +142,7 @@ cur_frm.cscript['Make Bill'] = function() {
                         si.discount_as_amount = cur_frm.doc.discount_as_amount;
                         si.discount_in_percent = cur_frm.doc.discount_in_percent;
                         si.discount_type = cur_frm.doc.discount_type;
-
+                        si.patient_credit_to = 'Cash - Ind'
                         for(i=0;i<(r.message).length;i++)
                         {
                                 var d1 = wn.model.add_child(si, 'Sales Invoice Item', 'entries');
@@ -160,6 +160,9 @@ cur_frm.cscript['Make Bill'] = function() {
                                 d1.discount_in_amt=r.message[i]['discount_in_amt']
                                 d1.referral_fee=r.message[i]['referral_fee']
                                 d1.discount=r.message[i]['dis_value']
+				d1.warehouse=r.message[i]['warehouse']
+				d1.referrer_physician_debit_to=r.message[i]['default_cash_account']
+				d1.income_account=r.message[i]['default_cash_account']
                                 si.patient_amount = r.message[i]['amount']
                                 d1.encounter_id = r.message[i]['name']
                         }

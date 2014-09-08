@@ -2,7 +2,7 @@
  {
   "creation": "2014-01-07 11:10:12", 
   "docstatus": 0, 
-  "modified": "2014-02-28 15:32:56", 
+  "modified": "2014-09-08 19:06:47", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -119,9 +119,9 @@
  {
   "doctype": "DocField", 
   "fieldname": "title", 
-  "fieldtype": "Select", 
+  "fieldtype": "Link", 
   "label": "Title", 
-  "options": "\nMr.\nMs.", 
+  "options": "Title", 
   "permlevel": 0
  }, 
  {
@@ -171,6 +171,13 @@
   "fieldtype": "Select", 
   "label": "Gender", 
   "options": "\nMale\nFemale", 
+  "permlevel": 0
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "age", 
+  "fieldtype": "Int", 
+  "label": "Age", 
   "permlevel": 0
  }, 
  {

@@ -24,7 +24,12 @@ wn.module_page["Clinical"] = [
                         {
                                 "label":wn._("Patient Report"),
                                 doctype: "Patient Report"
-                        },          
+                        },   
+                        {
+                                "label":wn._("Patient Report Setting"),
+                                "route": "Form/Patient Report Setting",
+                                doctype: "Patient Report Setting"
+                        } 
                 ]
         }/*,
         {
