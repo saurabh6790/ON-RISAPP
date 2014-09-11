@@ -20,6 +20,7 @@ cur_frm.add_fetch('referrer_name', 'lead_name', 'referral');
 
 cur_frm.add_fetch('referred_by','lead_name','contact_name');
 cur_frm.cscript.refresh = function(doc, cdt, cdn){
+        cur_frm.appframe.add_primary_action(wn._('Appointment Scheduler'), cur_frm.cscript['Appointment Scheduler'])
 //
 //        var cl = getchildren('Insurance Profile', doc.name, 'insurance_table');
 //        //console.log(cl)
@@ -68,6 +69,10 @@ cur_frm.cscript.refresh = function(doc, cdt, cdn){
 
 var a={"general_information":". General Information","additional_information":". Additional Iformation","insurance_profile_data":". Insurance Profile","encounters_data":". Encounters"};
 
+
+ cur_frm.cscript['Appointment Scheduler'] = function(doc){
+        wn.set_route('Calendar', 'Patient Encounter Entry')
+ }
 
 cur_frm.cscript.general_information=function(doc,cdt,cdn){
 make_linking('general_information')

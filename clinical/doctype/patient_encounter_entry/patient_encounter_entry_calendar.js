@@ -4,6 +4,7 @@ wn.views.calendar["Patient Encounter Entry"] = {
 	field_map: {
 		"proj":"encounter",
 		"proj1": "study",
+		"patient_id": "patient",
 		"start": "start_time",
 		"end": "end_time",
 		"id": "name",

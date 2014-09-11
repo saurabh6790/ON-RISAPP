@@ -386,8 +386,11 @@ def get_study(modality):
         return webnotes.conn.sql("select name from tabStudy where modality = '%s'"%modality, as_list=1)
 
 @webnotes.whitelist()
-def set_slot(modality=None, study=None, start_time=None, end_time=None):
+def set_slot(modality=None, study=None, start_time=None, end_time=None, patient_id=None):
         webnotes.errprint([modality, study, start_time, end_time])
+        patient_details = ''
+        if patient_id:
+            patient_details = get_patient_details(patient_id)
         fill_study_items(study)
         time = get_study_time(study)
         if cint(time) > 30:
@@ -395,7 +398,7 @@ def set_slot(modality=None, study=None, start_time=None, end_time=None):
         end_time = calc_end_time(cstr(start_time),time)
         start_time, end_time = check_availability(modality, start_time, end_time, time)
 
-        return start_time, end_time
+        return start_time, end_time, patient_details
 
 def check_availability(modality, start_time, end_time, time):
         # webnotes.errprint(start_time)
@@ -436,6 +439,9 @@ def calc_start_time(start_time, modality):
                 start_time = start_time_list[0][0]
         
         return start_time
+
+def get_patient_details(patient_id):
+    return webnotes.conn.sql("""select first_name, birth_date, age, gender from `tabPatient Register` where name = '%s'"""%(patient_id),as_dict=1, debug=1)[0]
 
 @webnotes.whitelist()
 def get_patient(patient_id):

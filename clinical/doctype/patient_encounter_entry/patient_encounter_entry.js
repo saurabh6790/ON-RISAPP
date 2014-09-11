@@ -24,11 +24,19 @@ cur_frm.cscript.onload = function(doc, cdt, cdn) {
 	if(this.frm.doc.encounter){
 		wn.call({
 			method: "clinical.doctype.patient_encounter_entry.patient_encounter_entry.set_slot",
-			args:{modality:this.frm.doc.encounter, study:this.frm.doc.study,start_time:this.frm.doc.start_time, end_time:this.frm.doc.end_time},
+			args:{modality:this.frm.doc.encounter, study:this.frm.doc.study,start_time:this.frm.doc.start_time, end_time:this.frm.doc.end_time, patient_id: this.frm.doc.patient},
 			callback: function(r) {
 				cur_frm.set_value("start_time", r.message[0]);
 				cur_frm.set_value("end_time", r.message[1]);
-				refresh_field('study_items')
+				cur_frm.set_value("patient_name",r.message[2].first_name);
+				cur_frm.set_value('patient_birth_date', r.message[2].birth_date);
+				cur_frm.set_value('age',r.message[2].age)
+				cur_frm.set_value('gender',r.message[2].gender)
+				refresh_fields('study_items')
+				refresh_fields('patient_name')
+				refresh_fields('patient_birth_date')
+				refresh_fields('age')
+				refresh_fields('gender')
 			}
 		})
 		// return $c('runserverobj', args={'method':'fill_study_items', 'arg':this.frm.doc.study , 'docs': wn.model.compress(make_doclist(doc.doctype, doc.name))}, function(r,rt) {
