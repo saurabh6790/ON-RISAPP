@@ -9,6 +9,10 @@ cur_frm.add_fetch('appointment_slot', 'start_time', 'start_time');
 cur_frm.add_fetch('appointment_slot', 'end_time', 'end_time');
 cur_frm.add_fetch('patient', 'patient_online_id', 'global_id')
 cur_frm.add_fetch('undertaking', 'template_data', 'undertacking_details')
+cur_frm.add_fetch("patient","birth_date","patient_birth_date")
+cur_frm.add_fetch("patient","age","age")
+cur_frm.add_fetch("patient","gender","gender")
+
 cur_frm.cscript.images = function(doc, cdt, cdn){
 	var WshShell = new ActiveXObject("WScript.Shell");
     WshShell.Run("Iexplore " + "http://yahoo.com");
@@ -111,6 +115,7 @@ make_linking('encounter_data')
 cur_frm.cscript.refresh = function(doc, cdt, cdn){
 	// cur_frm.cscript.referrer_name(doc)
         cur_frm.appframe.add_primary_action(wn._('Make Bill'), cur_frm.cscript['Make Bill'])
+        cur_frm.appframe.add_primary_action(wn._('Make Report'), cur_frm.cscript['Make Report'])
 	setTimeout(function(){
                         for (var key in a)
                         {
@@ -182,6 +187,15 @@ cur_frm.cscript['Make Bill'] = function() {
 		});
   
 }*/
+
+cur_frm.cscript['Make Report'] = function() {
+	//console.log("in the create quetionnnaire");
+	wn.model.open_mapped_doc({
+		method: "clinical.doctype.patient_encounter_entry.patient_encounter_entry.make_report",
+		source_name: cur_frm.doc.name
+	})					
+}
+
 cur_frm.fields_dict.referrer_name.get_query = function(doc,cdt,cdn) {
   return{
     query:"controllers.queries.lead_query",

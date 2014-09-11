@@ -15,12 +15,15 @@ cur_frm.fields_dict.technologist_id.get_query =function(doc,cdt,cdn)
 		}
    	}
 }
-cur_frm.add_fetch("report","report_template","template_details")
-cur_frm.add_fetch("patient_id","first_name","patient_name")
-cur_frm.add_fetch("patient_id","birth_date","patient_birth_date")
-cur_frm.add_fetch("patient_id","age","age")
-cur_frm.add_fetch("patient_id","gender","sex")
-cur_frm.add_fetch("accession_number","encounter","modality")
-cur_frm.add_fetch("accession_number","study","study")
-cur_frm.add_fetch("accession_number","referrer_name","referral_name")
-cur_frm.add_fetch('technologist_id', 'employee_name', 'technologist_name');
+
+cur_frm.cscript.onload = function(){
+	cur_frm.add_fetch("report","report_template","template_details")
+	cur_frm.add_fetch("patient_id","first_name","patient_name")
+	cur_frm.add_fetch("patient_id","birth_date","patient_birth_date")
+	cur_frm.add_fetch("patient_id","age","age")
+	cur_frm.add_fetch("patient_id","gender","sex")
+	cur_frm.add_fetch("accession_number","encounter","modality")
+	cur_frm.add_fetch("accession_number","study","study")
+	cur_frm.add_fetch("accession_number","referrer_name","referral_name")
+	cur_frm.add_fetch('technologist_id', 'employee_name', 'technologist_name');
+}

@@ -72,27 +72,27 @@ erpnext.accounts.SalesInvoiceController = erpnext.selling.SellingController.exte
 
 			cur_frm.appframe.add_button(wn._('Send SMS'), cur_frm.cscript.send_sms, 'icon-mobile-phone');
 
-			if(cint(doc.update_stock)!=1) {
-				// show Make Delivery Note button only if Sales Invoice is not created from Delivery Note
-				var from_delivery_note = false;
-				from_delivery_note = cur_frm.get_doclist({parentfield: "entries"})
-					.some(function(item) { 
-						return item.delivery_note ? true : false; 
-					});
+			// if(cint(doc.update_stock)!=1) {
+			// 	// show Make Delivery Note button only if Sales Invoice is not created from Delivery Note
+			// 	var from_delivery_note = false;
+			// 	from_delivery_note = cur_frm.get_doclist({parentfield: "entries"})
+			// 		.some(function(item) { 
+			// 			return item.delivery_note ? true : false; 
+			// 		});
 				
-				if(!from_delivery_note)
-					cur_frm.appframe.add_primary_action(wn._('Make Delivery'), cur_frm.cscript['Make Delivery Note'])
-			}
+			// 	if(!from_delivery_note)
+			// 		cur_frm.appframe.add_primary_action(wn._('Make Delivery'), cur_frm.cscript['Make Delivery Note'])
+			// }
 
 			if(doc.outstanding_amount!=0)
 				cur_frm.appframe.add_primary_action(wn._('Make Payment Entry'), cur_frm.cscript.make_bank_voucher);
 		}
 
 		// Show buttons only when pos view is active
-		if (doc.docstatus===0 && !this.pos_active) {
-			cur_frm.cscript.sales_order_btn();
-			cur_frm.cscript.delivery_note_btn();
-		}
+		// if (doc.docstatus===0 && !this.pos_active) {
+		// 	// cur_frm.cscript.sales_order_btn();
+		// 	// cur_frm.cscript.delivery_note_btn();
+		// }
 		setTimeout(function(){
                         for (var key in a)
                         {

@@ -2,7 +2,7 @@
  {
   "creation": "2014-03-03 11:41:45", 
   "docstatus": 0, 
-  "modified": "2014-09-06 12:14:25", 
+  "modified": "2014-09-11 17:43:32", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -56,12 +56,6 @@
  }, 
  {
   "doctype": "DocField", 
-  "fieldname": "study_date", 
-  "fieldtype": "Date", 
-  "label": "Study date/Bill date"
- }, 
- {
-  "doctype": "DocField", 
   "fieldname": "patient_birth_date", 
   "fieldtype": "Date", 
   "label": "Patient Birth Date"
@@ -102,6 +96,12 @@
   "fieldtype": "Link", 
   "label": "Accassion Number", 
   "options": "Patient Encounter Entry"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "study_date", 
+  "fieldtype": "Date", 
+  "label": "Study date/Bill date"
  }, 
  {
   "doctype": "DocField", 

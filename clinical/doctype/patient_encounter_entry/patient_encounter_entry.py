@@ -24,7 +24,7 @@ class DocType():
                     # self.send_notification()
 
         def on_update(self):
-                webnotes.errprint(self.doc.end_time)
+                # webnotes.errprint(self.doc.end_time)
                 patient_id = None
                 from datetime import datetime
 
@@ -467,3 +467,37 @@ def fill_study_items(study):
         std_item.item_name = item[0]
         std_item.qty = item[1]
         std_item.save()
+
+@webnotes.whitelist()
+def make_report(source_name, target_doclist=None):
+    dic = get_patient_info(source_name)
+
+    from webnotes.model.mapper import get_mapped_doclist
+    def postprocess(source, doclist):
+        doclist[0].accession_number = source_name
+
+    doclist = get_mapped_doclist("Patient Encounter Entry", source_name, 
+    {"Patient Encounter Entry": {
+            "doctype": "Patient Report",
+            "field_map": {
+                "patient": "patient_id",
+                "patient_name": "patient_name",
+                "encounter": "modality",
+                "start_time":"study_time",
+                "encounter_date":"study_date",
+                "technologist": "technologist_id",
+                "technologist_name":"technologist_name",
+                "referral": "referral_name",
+                "gender": "sex"
+            },
+            "validation": {
+                "docstatus": ["=", 0]
+            }
+        }
+    }, target_doclist, postprocess)
+    return [d if isinstance(d, dict) else d.fields for d in doclist]
+
+def get_patient_info(encounter_id):
+    return webnotes.conn.sql(""" select age, gender, birth_date from `tabPatient Register` 
+            where name = (select patient from `tabPatient Encounter Entry` 
+                where name = '%s')"""%(encounter_id),as_dict=1)[0]

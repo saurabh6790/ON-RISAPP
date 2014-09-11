@@ -140,8 +140,8 @@ e.parent ='%s' and s.name = e.study) AS foo"""%(self.doc.customer),as_dict=1)
 		self.make_gl_entries()
 		self.check_credit_limit(self.doc.debit_to)
 
-		if not cint(self.doc.is_pos) == 1:
-			self.update_against_document_in_jv()
+		# if not cint(self.doc.is_pos) == 1:
+		# 	self.update_against_document_in_jv()
 
 		self.update_c_form()
 		self.update_time_log_batch(self.doc.name)
@@ -197,8 +197,7 @@ e.parent ='%s' and s.name = e.study) AS foo"""%(self.doc.customer),as_dict=1)
 		outstanding_amount=flt(self.doc.patient_amount)-flt(self.doc.paid_amount_data)-flt(amt)
 
 		w=webnotes.conn.sql("update `tabSales Invoice` set outstanding_amount='"+cstr(outstanding_amount)+"' where name='"+self.doc.name+"'")
-		# webnotes.errprint(referrer)
-		# webnotes.errprint(referrer1)
+		
 		for key in referrer:	
 			self.make_JV(referrer[key],key,referrer1[key],self.doc.company)
 

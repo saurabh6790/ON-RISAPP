@@ -2,7 +2,7 @@
  {
   "creation": "2014-01-16 12:38:55", 
   "docstatus": 0, 
-  "modified": "2014-03-20 13:34:05", 
+  "modified": "2014-09-11 17:40:35", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -119,6 +119,24 @@
   "in_list_view": 1, 
   "label": "Patient Name", 
   "read_only": 1
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "age", 
+  "fieldtype": "Data", 
+  "label": "age"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "gender", 
+  "fieldtype": "Data", 
+  "label": "gender"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "patient_birth_date", 
+  "fieldtype": "Data", 
+  "label": "patient_birth_date"
  }, 
  {
   "doctype": "DocField", 
