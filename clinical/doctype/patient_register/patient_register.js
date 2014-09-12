@@ -19,6 +19,18 @@ cur_frm.add_fetch('referrer_name', 'lead_name', 'referral');
 
 
 cur_frm.add_fetch('referred_by','lead_name','contact_name');
+
+cur_frm.cscript.birth_date = function(doc, cdt, cdn){
+        wn.call({
+                method:"clinical.doctype.patient_register.patient_register.get_age",
+                args:{"born":doc.birth_date},
+                callback:function(r){
+                        cur_frm.set_value("age", r.message);
+                        refresh_field("age");
+                }
+        })
+}
+
 cur_frm.cscript.refresh = function(doc, cdt, cdn){
         cur_frm.appframe.add_primary_action(wn._('Appointment Scheduler'), cur_frm.cscript['Appointment Scheduler'])
 //

@@ -338,7 +338,7 @@ class DocType:
 
         if self.doc.flag=='false':
             self.create_profile()
-            self.generate_barcode()
+            # self.generate_barcode()
             self.create_new_contact()
             a=webnotes.conn.sql("select name from `tabEncounter` where parent='"+self.doc.name+"'",as_list=1)        
             if not a:
@@ -499,3 +499,18 @@ class DocType:
                 enct.entry_in_child = 'True'
                 enct.save()
                 webnotes.conn.sql("update tabEncounter set id = '%s' where name = '%s'"%(enct.name,encounter.name))
+
+@webnotes.whitelist()
+def get_age(born):
+    from datetime import date
+    from webnotes.utils import getdate
+    born = getdate(born)
+    today = date.today()
+    try: 
+        birthday = born.replace(year=today.year)
+    except ValueError: # raised when birth date is February 29 and the current year is not a leap year
+        birthday = born.replace(year=today.year, month=born.month+1, day=1)
+    if birthday > today:
+        return today.year - born.year - 1
+    else:
+        return today.year - born.year

@@ -143,6 +143,7 @@ def reconcile_against_document(args):
 		d['against_fld'] = against_fld[d['against_voucher_type']]
 
 		# cancel JV
+		webnotes.errprint(d)
 		jv_obj = webnotes.get_obj('Journal Voucher', d['voucher_no'], with_children=1)
 		jv_obj.make_gl_entries(cancel=1, adv_adj=1)
 		
@@ -386,9 +387,11 @@ def create_advance_entry(advance_amount, customer_name, debit_to, company):
 	jv.voucher_type = 'Cash Voucher'
 	jv.user_remark = 'Advance Payment'
 	jv.fiscal_year = webnotes.conn.get_value('Global Defaults',None,'current_fiscal_year')
+	jv.user_remark = "Advance from patient %s"%customer_name
+	jv.remark = "User Remark : Advance from patient %s"%customer_name
 	jv.company = company
 	jv.posting_date = nowdate()
-	jv.docstatus = 1 
+	jv.docstatus=1
 	jv.save()
 
 	chld1 = Document('Journal Voucher Detail')
@@ -405,3 +408,46 @@ def create_advance_entry(advance_amount, customer_name, debit_to, company):
 	chld2.cost_center = webnotes.conn.get_value('Company',company,'cost_center')
 	chld2.debit = advance_amount
 	chld2.save()
+
+	create_gl_entry(jv.name, jv.user_remark, company)
+
+def create_gl_entry(jv, remark, company,cancel=0, adv_adj=0):
+	from accounts.general_ledger import make_gl_entries
+	from webnotes.model.doc import get
+	from webnotes.utils import today
+
+	gl_map = []
+	for d in get('Journal Voucher', jv).get({"parentfield": "entries"}):
+		if d.debit or d.credit:
+			gl_map.append(
+				get_gl_dict({
+					"account": d.account,
+					"against": d.against_account,
+					"debit": d.debit,
+					"credit": d.credit,
+					"against_voucher_type": ((d.against_voucher and "Purchase Invoice") 
+						or (d.against_invoice and "Sales Invoice") 
+						or (d.against_jv and "Journal Voucher")),
+					"against_voucher": d.against_voucher or d.against_invoice or d.against_jv,
+					"remarks": remark,
+					"cost_center": d.cost_center,
+					'company': company,
+					'posting_date': today(),
+					'voucher_type': 'Journal Voucher',
+					'voucher_no': jv,
+					'aging_date': today(),
+					'fiscal_year':  webnotes.conn.get_value('Global Defaults',None,'current_fiscal_year'),
+				})
+			)
+	if gl_map:
+		make_gl_entries(gl_map, cancel=cancel, adv_adj=adv_adj)
+
+def get_gl_dict( args):
+		"""this method populates the common properties of a gl entry record"""
+		gl_dict = webnotes._dict({			
+			'debit': 0,
+			'credit': 0,
+			'is_opening': "No",
+		})
+		gl_dict.update(args)
+		return gl_dict

@@ -140,8 +140,8 @@ e.parent ='%s' and s.name = e.study) AS foo"""%(self.doc.customer),as_dict=1)
 		self.make_gl_entries()
 		self.check_credit_limit(self.doc.debit_to)
 
-		# if not cint(self.doc.is_pos) == 1:
-		# 	self.update_against_document_in_jv()
+		if not cint(self.doc.is_pos) == 1:
+			self.update_against_document_in_jv()
 
 		self.update_c_form()
 		self.update_time_log_batch(self.doc.name)

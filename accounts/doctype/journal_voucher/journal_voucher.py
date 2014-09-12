@@ -241,6 +241,7 @@ class DocType(AccountsController):
 
 	def make_gl_entries(self, cancel=0, adv_adj=0):
 		from accounts.general_ledger import make_gl_entries
+		webnotes.errprint(['adv_adj',adv_adj])
 		gl_map = []
 		for d in self.doclist.get({"parentfield": "entries"}):
 			if d.debit or d.credit:
