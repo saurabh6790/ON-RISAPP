@@ -2,7 +2,7 @@
  {
   "creation": "2014-01-31 12:25:24", 
   "docstatus": 0, 
-  "modified": "2014-09-10 16:10:07", 
+  "modified": "2014-09-15 12:48:18", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -356,6 +356,14 @@
   "label": "Referred By", 
   "options": "Lead", 
   "permlevel": 0
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "referral_name", 
+  "fieldtype": "Data", 
+  "label": "Referral Name", 
+  "permlevel": 0, 
+  "read_only": 1
  }, 
  {
   "description": "To create an Account Head under a different company, select the company and save customer.", 

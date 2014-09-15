@@ -441,7 +441,7 @@ def calc_start_time(start_time, modality):
         return start_time
 
 def patient_details(patient_id):
-    return webnotes.conn.sql("""select first_name, birth_date, age, gender from `tabPatient Register` where name = '%s'"""%(patient_id),as_dict=1, debug=1)[0]
+    return webnotes.conn.sql("""select first_name, birth_date, age, gender, referred_by, referral_name from `tabPatient Register` where name = '%s'"""%(patient_id),as_dict=1, debug=1)[0]
 
 @webnotes.whitelist()
 def get_patient(patient_id):
@@ -504,6 +504,6 @@ def make_report(source_name, target_doclist=None):
     return [d if isinstance(d, dict) else d.fields for d in doclist]
 
 def get_patient_info(encounter_id):
-    return webnotes.conn.sql(""" select age, gender, birth_date, referred_by, referral_name from `tabPatient Register` 
+    return webnotes.conn.sql(""" select age, gender, birth_date from `tabPatient Register` 
             where name = (select patient from `tabPatient Encounter Entry` 
-                where name = '%s')"""%(encounter_id),as_dict=1)[0]
+                where name = '%s')"""%(encounter_id),as_dict=1, debug=1)[0]
