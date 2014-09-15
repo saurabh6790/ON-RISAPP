@@ -504,6 +504,6 @@ def make_report(source_name, target_doclist=None):
     return [d if isinstance(d, dict) else d.fields for d in doclist]
 
 def get_patient_info(encounter_id):
-    return webnotes.conn.sql(""" select age, gender, birth_date from `tabPatient Register` 
+    return webnotes.conn.sql(""" select age, gender, birth_date, referred_by, referral_name from `tabPatient Register` 
             where name = (select patient from `tabPatient Encounter Entry` 
                 where name = '%s')"""%(encounter_id),as_dict=1)[0]

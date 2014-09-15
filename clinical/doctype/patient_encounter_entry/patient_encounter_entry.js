@@ -32,11 +32,15 @@ cur_frm.cscript.onload = function(doc, cdt, cdn) {
 				cur_frm.set_value('patient_birth_date', r.message[2].birth_date);
 				cur_frm.set_value('age',r.message[2].age)
 				cur_frm.set_value('gender',r.message[2].gender)
-				refresh_fields('study_items')
-				refresh_fields('patient_name')
-				refresh_fields('patient_birth_date')
-				refresh_fields('age')
-				refresh_fields('gender')
+				cur_frm.set_value('referrer_name',r.message[2].referred_by)
+				cur_frm.set_value('referral',r.message[2].referral_name)
+				refresh_field('study_items')
+				refresh_field('patient_name')
+				refresh_field('patient_birth_date')
+				refresh_field('age')
+				refresh_field('gender')
+				refresh_field('referrer_name')
+				refresh_field('referral')
 			}
 		})
 		// return $c('runserverobj', args={'method':'fill_study_items', 'arg':this.frm.doc.study , 'docs': wn.model.compress(make_doclist(doc.doctype, doc.name))}, function(r,rt) {
@@ -151,6 +155,7 @@ cur_frm.cscript['Make Bill'] = function() {
                         var si = wn.model.make_new_doc_and_get_name('Sales Invoice');
                         si = locals['Sales Invoice'][si];
                         si.customer = cur_frm.doc.patient;
+                        si.patient_name = cur_frm.doc.patient_name;
                         si.posting_date = dateutil.obj_to_str(new Date());
                         si.discount_as_amount = cur_frm.doc.discount_as_amount;
                         si.discount_in_percent = cur_frm.doc.discount_in_percent;

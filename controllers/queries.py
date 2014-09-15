@@ -63,16 +63,17 @@ def customer_query(doctype, txt, searchfield, start, page_len, filters):
 	cust_master_name = webnotes.defaults.get_user_default("cust_master_name")
 
 	if cust_master_name == "Customer Name":
-		fields = ["name", "customer_group", "territory"]
+		fields = ["name", "full_name", "customer_group", "territory"]
 	else:
-		fields = ["name", "customer_name", "customer_group", "territory"]
+		fields = ["name", "full_name","customer_name", "customer_group", "territory"]
 
 	fields = ", ".join(fields) 
 
 	return webnotes.conn.sql("""select %(field)s from `tabCustomer` 
 		where docstatus < 2 
 			and (%(key)s like "%(txt)s" 
-				or customer_name like "%(txt)s") 
+				or customer_name like "%(txt)s"
+				or full_name like "%(txt)s") 
 			%(mcond)s
 		order by 
 			case when name like "%(txt)s" then 0 else 1 end, 

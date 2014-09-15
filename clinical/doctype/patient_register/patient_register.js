@@ -1,3 +1,4 @@
+cur_frm.add_fetch('referred_by','lead_name','referral_name')
 cur_frm.cscript.user_image = function(doc) {
         refresh_field("user_image_show");
 }
@@ -12,6 +13,12 @@ cur_frm.cscript.encounter_table_add=function(doc,cdt,cdn){
 
 cur_frm.fields_dict.encounter_table.grid.get_field("radiologist_name").get_query = function(doc,cdt,cdn) {
         return{ query:"clinical.doctype.patient_encounter_entry.patient_encounter_entry.get_employee"}
+}
+
+cur_frm.fields_dict.referred_by.get_query = function(doc,cdt,cdn) {
+  return{
+    query:"controllers.queries.lead_query",
+  }
 }
 
 cur_frm.add_fetch('radiologist_name', 'employee_name', 'radiologist_');

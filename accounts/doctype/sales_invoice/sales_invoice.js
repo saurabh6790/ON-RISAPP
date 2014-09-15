@@ -13,7 +13,7 @@ cur_frm.add_fetch('study', 'study_fees', 'export_rate');
 cur_frm.add_fetch('study', 'study_detials', 'details');
 cur_frm.add_fetch('item', 'price', 'export_rate');
 cur_frm.add_fetch('item', 'description', 'description');
-cur_frm.add_fetch('customer', 'full_name', 'customer_name_data');
+cur_frm.add_fetch('customer', 'full_name', 'patient_name');
 
 wn.require('app/accounts/doctype/sales_taxes_and_charges_master/sales_taxes_and_charges_master.js');
 wn.require('app/utilities/doctype/sms_control/sms_control.js');
