@@ -7,6 +7,9 @@ import webnotes, json, base64
 from webnotes.utils import cint, cstr, getdate, now, nowdate, get_defaults
 from webnotes import _
 from webnotes.utils.file_manager import save_file
+from webnotes.utils import get_base_path
+from install_erpnext import exec_in_shell
+import os
 
 @webnotes.whitelist()
 def setup_account(args=None):
@@ -137,7 +140,7 @@ def set_defaults(args):
 	# enable default currency
 	webnotes.conn.set_value("Currency", args.get("currency"), "enabled", 1)
 	salt = get_salt()
-	digest = encrypt_mac(salt)
+	digest = encrypt_uuid(salt)
 
 	global_defaults = webnotes.bean("Global Defaults", "Global Defaults")
 	global_defaults.doc.fields.update({
@@ -209,15 +212,25 @@ def get_salt():
 	import os, base64
 	return base64.b64encode(os.urandom(32))
 
-def encrypt_mac(salt):
+def encrypt_uuid(salt):
 	import os, base64, hashlib, uuid
 
-	raw_mac = "%12x" % uuid.getnode() 
-	mac_id = ":".join(x+y for x, y in zip(raw_mac[::2], raw_mac[1::2]))
-
-	digest = hashlib.sha256(salt + mac_id).hexdigest()
-
+	dump_sys_info()
+	digest = hashlib.sha256(salt + get_uuid()).hexdigest()
 	return digest
+
+def dump_sys_info():
+	exec_in_shell(""" echo indictrans | sudo -S lshw -xml > {path}/hardware.xml
+		""".format(path=os.path.join(get_base_path(), "public", "files")))
+
+def get_uuid():
+	import xml.etree.ElementTree as ET
+	tree = ET.parse('{path}/hardware.xml'.format(path=os.path.join(get_base_path(), "public", "files")))
+	root = tree.getroot()
+	for child in root.iter('setting'):
+		if child.attrib['id'] == 'uuid':
+			return child.attrib['value']
+
 
 def create_feed_and_todo():
 	"""update activty feed and create todo for creation of item, customer, vendor"""

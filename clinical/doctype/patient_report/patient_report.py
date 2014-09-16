@@ -7,6 +7,8 @@ from __future__ import unicode_literals
 import webnotes
 from webnotes.utils import cstr
 import os, json
+from webnotes.utils import get_base_path
+from install_erpnext import exec_in_shell
 
 class DocType:
 	def __init__(self, d, dl):
@@ -34,8 +36,6 @@ class DocType:
 		webnotes.errprint(signature_path)
 		if signature_path:
 			self.doc.signiture_image=signature_path[0][0]
-
-	
 
 @webnotes.whitelist()
 def get_server_id():
