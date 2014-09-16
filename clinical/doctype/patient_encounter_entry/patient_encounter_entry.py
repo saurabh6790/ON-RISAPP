@@ -261,7 +261,8 @@ e.parent ='%(parent)s' and s.name = e.study) AS foo union
                         	tot_amt = flt(srv['basic_charges']) + tot_amt
                         	srv['amount'] = tot_amt
 				srv['default_cash_account'] = webnotes.conn.get_value('Company', self.doc.company, 'default_cash_account')
-				srv['warehouse']='Stores - ' + webnotes.conn.get_value('Company', self.doc.company, 'abbr') 
+				srv['warehouse']='Stores - ' + webnotes.conn.get_value('Company', self.doc.company, 'abbr')
+				srv['patient_credit_to'] = webnotes.conn.get_value('Company', self.doc.company, 'default_cash_account') 
                         	patient_data_new.append(srv)
                 	webnotes.errprint(patient_data_new)
                 	return patient_data_new

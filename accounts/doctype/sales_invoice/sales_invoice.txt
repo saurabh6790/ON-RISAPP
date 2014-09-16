@@ -2,7 +2,7 @@
  {
   "creation": "2013-05-24 19:29:05", 
   "docstatus": 0, 
-  "modified": "2014-09-15 12:46:48", 
+  "modified": "2014-09-16 09:27:30", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -913,7 +913,6 @@
   "search_index": 1
  }, 
  {
-  "default": "Cash - MS", 
   "doctype": "DocField", 
   "fieldname": "patient_credit_to", 
   "fieldtype": "Link", 
