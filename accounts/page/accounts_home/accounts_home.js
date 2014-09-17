@@ -190,7 +190,7 @@ wn.module_page["Accounts"] = [
 			},
 			{
 				"label":wn._("Referral Payment Details"),
-				route: "query-report/Referral Payment Details"
+				route: "query-report/Referral Payment Info"
 			},
 		]
 	},

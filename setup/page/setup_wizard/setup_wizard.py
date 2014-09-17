@@ -154,7 +154,7 @@ def set_defaults(args):
 		"is_active":1,
 		"last_sync_date":nowdate(),
 		"branch_id":  ''.join(random.choice(string.digits) for letter in xrange(4)),
-		"mac_id": digest,
+		"uuid": digest,
 		"salt": salt
 	})
 	global_defaults.save()
