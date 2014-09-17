@@ -2,7 +2,7 @@
  {
   "creation": "2013-05-02 17:53:24", 
   "docstatus": 0, 
-  "modified": "2014-04-20 13:06:11", 
+  "modified": "2014-09-17 09:26:15", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -231,6 +231,19 @@
   "fieldtype": "Data", 
   "label": "branch_id", 
   "read_only": 1
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "uuid", 
+  "fieldtype": "Data", 
+  "label": "UUID", 
+  "read_only": 0
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "salt", 
+  "fieldtype": "Data", 
+  "label": "Salt"
  }, 
  {
   "doctype": "DocPerm"
