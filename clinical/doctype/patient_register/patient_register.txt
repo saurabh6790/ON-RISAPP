@@ -2,7 +2,7 @@
  {
   "creation": "2014-01-31 12:25:24", 
   "docstatus": 0, 
-  "modified": "2014-09-17 07:48:44", 
+  "modified": "2014-09-17 17:01:39", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -35,8 +35,7 @@
   "parenttype": "DocType", 
   "permlevel": 0, 
   "read": 1, 
-  "report": 1, 
-  "write": 1
+  "report": 1
  }, 
  {
   "doctype": "DocType", 
@@ -945,11 +944,29 @@
   "create": 1, 
   "doctype": "DocPerm", 
   "role": "Administrator", 
-  "submit": 0
+  "submit": 0, 
+  "write": 1
  }, 
  {
   "doctype": "DocPerm", 
   "match": "global_id", 
-  "role": "Patient"
+  "role": "Patient", 
+  "write": 1
+ }, 
+ {
+  "create": 1, 
+  "doctype": "DocPerm", 
+  "role": "Receptionist", 
+  "write": 1
+ }, 
+ {
+  "create": 1, 
+  "doctype": "DocPerm", 
+  "role": "Technologist", 
+  "write": 1
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Transcriptionist"
  }
 ]

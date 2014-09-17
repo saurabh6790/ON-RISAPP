@@ -652,6 +652,7 @@ cur_frm.cscript.paid_amount_data=function(doc,cdt,cdn){
 	cur_frm.cscript.outstanding_amt(doc,cdt,cdn)
 }
 
+//Problem of outstanding amount check before leaving
 cur_frm.cscript.outstanding_amt=function(doc,cdt,cdn){
 	var out_amt=getchildren('Sales Invoice Advance',doc.name,'advance_adjustment_details')
 	var amt=0;
@@ -662,8 +663,13 @@ cur_frm.cscript.outstanding_amt=function(doc,cdt,cdn){
 			amt=amt+parseFloat(out_amt[i].allocated_amount)
 		}
 	}
+	if(doc.__islocal){
+		doc.outstanding_amount = parseFloat(doc.paid_amount_data)-parseFloat(amt)
+	}
+	else{
+		doc.outstanding_amount = parseFloat(doc.outstanding_amount)-parseFloat(doc.paid_amount_data)
+	}
 	
-	doc.outstanding_amount=parseFloat(doc.outstanding_amount)-parseFloat(doc.paid_amount_data)-parseFloat(amt)
 	refresh_field('outstanding_amount')	
 	// console.log(doc.outstanding_amount)
 }

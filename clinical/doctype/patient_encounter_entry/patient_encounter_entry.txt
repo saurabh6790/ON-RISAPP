@@ -2,7 +2,7 @@
  {
   "creation": "2014-01-16 12:38:55", 
   "docstatus": 0, 
-  "modified": "2014-09-11 17:40:35", 
+  "modified": "2014-09-17 17:02:01", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -23,8 +23,6 @@
   "permlevel": 0
  }, 
  {
-  "cancel": 1, 
-  "create": 1, 
   "doctype": "DocPerm", 
   "name": "__common__", 
   "parent": "Patient Encounter Entry", 
@@ -32,8 +30,7 @@
   "parenttype": "DocType", 
   "permlevel": 0, 
   "read": 1, 
-  "report": 1, 
-  "write": 1
+  "report": 1
  }, 
  {
   "doctype": "DocType", 
@@ -687,12 +684,33 @@
   "options": "Company"
  }, 
  {
+  "cancel": 1, 
+  "create": 1, 
   "doctype": "DocPerm", 
-  "role": "Administrator"
+  "role": "Administrator", 
+  "write": 1
+ }, 
+ {
+  "cancel": 1, 
+  "create": 1, 
+  "doctype": "DocPerm", 
+  "match": "patient", 
+  "role": "Patient", 
+  "write": 1
+ }, 
+ {
+  "create": 1, 
+  "doctype": "DocPerm", 
+  "role": "Receptionist", 
+  "write": 1
  }, 
  {
   "doctype": "DocPerm", 
-  "match": "patient", 
-  "role": "Patient"
+  "role": "Technologist", 
+  "write": 1
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Transcriptionist"
  }
 ]

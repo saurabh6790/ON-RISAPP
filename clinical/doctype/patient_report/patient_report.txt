@@ -2,16 +2,19 @@
  {
   "creation": "2014-03-03 11:41:45", 
   "docstatus": 0, 
-  "modified": "2014-09-11 17:43:32", 
+  "modified": "2014-09-17 17:01:00", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
  {
   "autoname": "REPO.#######", 
+  "default_print_format": "Patient Report", 
   "doctype": "DocType", 
   "document_type": "Master", 
+  "is_submittable": 1, 
   "module": "Clinical", 
-  "name": "__common__"
+  "name": "__common__", 
+  "read_only_onload": 1
  }, 
  {
   "doctype": "DocField", 
@@ -186,6 +189,16 @@
   "label": "Signiture Image"
  }, 
  {
+  "doctype": "DocField", 
+  "fieldname": "amended_from", 
+  "fieldtype": "Link", 
+  "label": "Amended From", 
+  "no_copy": 1, 
+  "options": "Patient Report", 
+  "print_hide": 1, 
+  "read_only": 1
+ }, 
+ {
   "cancel": 0, 
   "create": 1, 
   "doctype": "DocPerm", 
@@ -196,5 +209,33 @@
   "doctype": "DocPerm", 
   "match": "patient_id", 
   "role": "Patient"
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Receptionist"
+ }, 
+ {
+  "amend": 1, 
+  "cancel": 1, 
+  "create": 1, 
+  "doctype": "DocPerm", 
+  "role": "Radiologist", 
+  "submit": 1, 
+  "write": 1
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Technologist", 
+  "write": 0
+ }, 
+ {
+  "create": 1, 
+  "doctype": "DocPerm", 
+  "role": "Transcriptionist", 
+  "write": 1
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Physician"
  }
 ]

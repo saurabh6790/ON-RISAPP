@@ -2,7 +2,7 @@
  {
   "creation": "2012-02-20 15:46:39", 
   "docstatus": 0, 
-  "modified": "2013-07-11 14:44:01", 
+  "modified": "2014-09-17 17:08:37", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -21,7 +21,7 @@
   "parent": "selling-home", 
   "parentfield": "roles", 
   "parenttype": "Page", 
-  "role": "All"
+  "role": "Administrator"
  }, 
  {
   "doctype": "Page", 

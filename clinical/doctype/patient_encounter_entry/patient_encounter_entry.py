@@ -507,4 +507,4 @@ def make_report(source_name, target_doclist=None):
 def get_patient_info(encounter_id):
     return webnotes.conn.sql(""" select age, gender, birth_date from `tabPatient Register` 
             where name = (select patient from `tabPatient Encounter Entry` 
-                where name = '%s')"""%(encounter_id),as_dict=1, debug=1)[0]
+                where name = '%s')"""%(encounter_id),as_dict=1)[0]

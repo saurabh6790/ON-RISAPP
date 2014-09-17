@@ -35,4 +35,4 @@ def get_entries(filters):
 			and gl.voucher_no = jv.name 
 			and sii.parent = si.name
 			and ld.name = acc.master_name %s
-		GROUP BY sii.study """  % ('%Accounts Payable%',conditions), as_list=1)
+		GROUP BY sii.study """  % ('%Accounts Payable%',conditions), as_list=1, debug=1)

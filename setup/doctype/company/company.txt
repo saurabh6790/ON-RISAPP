@@ -2,7 +2,7 @@
  {
   "creation": "2013-04-10 08:35:39", 
   "docstatus": 0, 
-  "modified": "2014-02-28 14:38:44", 
+  "modified": "2014-09-17 13:47:20", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -25,13 +25,20 @@
   "permlevel": 0
  }, 
  {
+  "amend": 0, 
+  "cancel": 1, 
+  "create": 1, 
   "doctype": "DocPerm", 
   "name": "__common__", 
   "parent": "Company", 
   "parentfield": "permissions", 
   "parenttype": "DocType", 
   "permlevel": 0, 
-  "read": 1
+  "read": 1, 
+  "report": 1, 
+  "role": "System Manager", 
+  "submit": 0, 
+  "write": 1
  }, 
  {
   "doctype": "DocType", 
@@ -347,17 +354,6 @@
   "read_only": 1
  }, 
  {
-  "amend": 0, 
-  "cancel": 1, 
-  "create": 1, 
-  "doctype": "DocPerm", 
-  "report": 1, 
-  "role": "System Manager", 
-  "submit": 0, 
-  "write": 1
- }, 
- {
-  "doctype": "DocPerm", 
-  "role": "All"
+  "doctype": "DocPerm"
  }
 ]

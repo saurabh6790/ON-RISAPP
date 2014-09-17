@@ -2,7 +2,7 @@
  {
   "creation": "2013-05-24 19:29:05", 
   "docstatus": 0, 
-  "modified": "2014-09-16 09:27:30", 
+  "modified": "2014-09-17 17:02:41", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -328,6 +328,38 @@
  }, 
  {
   "doctype": "DocField", 
+  "fieldname": "advances", 
+  "fieldtype": "Section Break", 
+  "hidden": 0, 
+  "label": "Advances", 
+  "oldfieldtype": "Section Break", 
+  "options": "icon-money", 
+  "print_hide": 1, 
+  "read_only": 0
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "get_advances_received", 
+  "fieldtype": "Button", 
+  "label": "Get Advances Received", 
+  "oldfieldtype": "Button", 
+  "options": "get_advances", 
+  "print_hide": 1, 
+  "read_only": 0
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "advance_adjustment_details", 
+  "fieldtype": "Table", 
+  "label": "Bill Advance", 
+  "oldfieldname": "advance_adjustment_details", 
+  "oldfieldtype": "Table", 
+  "options": "Sales Invoice Advance", 
+  "print_hide": 1, 
+  "read_only": 0
+ }, 
+ {
+  "doctype": "DocField", 
   "fieldname": "items", 
   "fieldtype": "Section Break", 
   "label": "Items", 
@@ -401,7 +433,7 @@
   "doctype": "DocField", 
   "fieldname": "net_total_export", 
   "fieldtype": "Currency", 
-  "hidden": 1, 
+  "hidden": 0, 
   "label": "Net Total", 
   "options": "currency", 
   "print_hide": 0, 
@@ -431,6 +463,17 @@
  }, 
  {
   "doctype": "DocField", 
+  "fieldname": "outstanding_amount", 
+  "fieldtype": "Currency", 
+  "hidden": 0, 
+  "label": "Outstanding Amount", 
+  "no_copy": 1, 
+  "options": "Company:company:default_currency", 
+  "print_hide": 0, 
+  "read_only": 1
+ }, 
+ {
+  "doctype": "DocField", 
   "fieldname": "paid_amount_data", 
   "fieldtype": "Currency", 
   "label": "Paid Amount", 
@@ -444,17 +487,6 @@
   "label": "Paid Amount", 
   "options": "Company:company:default_currency", 
   "reqd": 0
- }, 
- {
-  "doctype": "DocField", 
-  "fieldname": "outstanding_amount", 
-  "fieldtype": "Currency", 
-  "hidden": 1, 
-  "label": "Outstanding Amount", 
-  "no_copy": 1, 
-  "options": "Company:company:default_currency", 
-  "print_hide": 1, 
-  "read_only": 1
  }, 
  {
   "doctype": "DocField", 
@@ -687,38 +719,6 @@
   "options": "Company:company:default_currency", 
   "print_hide": 1, 
   "read_only": 1
- }, 
- {
-  "doctype": "DocField", 
-  "fieldname": "advances", 
-  "fieldtype": "Section Break", 
-  "hidden": 0, 
-  "label": "Advances", 
-  "oldfieldtype": "Section Break", 
-  "options": "icon-money", 
-  "print_hide": 1, 
-  "read_only": 0
- }, 
- {
-  "doctype": "DocField", 
-  "fieldname": "get_advances_received", 
-  "fieldtype": "Button", 
-  "label": "Get Advances Received", 
-  "oldfieldtype": "Button", 
-  "options": "get_advances", 
-  "print_hide": 1, 
-  "read_only": 0
- }, 
- {
-  "doctype": "DocField", 
-  "fieldname": "advance_adjustment_details", 
-  "fieldtype": "Table", 
-  "label": "Bill Advance", 
-  "oldfieldname": "advance_adjustment_details", 
-  "oldfieldtype": "Table", 
-  "options": "Sales Invoice Advance", 
-  "print_hide": 1, 
-  "read_only": 0
  }, 
  {
   "depends_on": "is_pos", 
@@ -1350,5 +1350,11 @@
   "doctype": "DocPerm", 
   "match": "customer", 
   "role": "Customer"
+ }, 
+ {
+  "create": 1, 
+  "doctype": "DocPerm", 
+  "role": "Receptionist", 
+  "write": 1
  }
 ]

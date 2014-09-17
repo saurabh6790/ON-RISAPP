@@ -2,7 +2,7 @@
  {
   "creation": "2013-06-11 14:26:44", 
   "docstatus": 0, 
-  "modified": "2014-04-20 13:14:18", 
+  "modified": "2014-09-17 16:59:00", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -456,5 +456,10 @@
   "permlevel": 0, 
   "role": "Administrator", 
   "write": 1
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "permlevel": 0, 
+  "role": "Receptionist"
  }
 ]

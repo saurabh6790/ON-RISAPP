@@ -2,7 +2,7 @@
  {
   "creation": "2014-01-21 18:39:40", 
   "docstatus": 0, 
-  "modified": "2014-03-19 16:30:48", 
+  "modified": "2014-09-17 17:00:31", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -22,8 +22,6 @@
   "permlevel": 0
  }, 
  {
-  "cancel": 1, 
-  "create": 1, 
   "doctype": "DocPerm", 
   "name": "__common__", 
   "parent": "Study", 
@@ -31,9 +29,7 @@
   "parenttype": "DocType", 
   "permlevel": 0, 
   "read": 1, 
-  "report": 1, 
-  "role": "Administrator", 
-  "write": 1
+  "report": 1
  }, 
  {
   "doctype": "DocType", 
@@ -168,6 +164,30 @@
   "label": "Discounted Value"
  }, 
  {
-  "doctype": "DocPerm"
+  "cancel": 1, 
+  "create": 1, 
+  "doctype": "DocPerm", 
+  "role": "Administrator", 
+  "write": 1
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Receptionist"
+ }, 
+ {
+  "create": 1, 
+  "doctype": "DocPerm", 
+  "role": "Radiologist", 
+  "write": 1
+ }, 
+ {
+  "create": 1, 
+  "doctype": "DocPerm", 
+  "role": "Technologist", 
+  "write": 1
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Transcriptionist"
  }
 ]

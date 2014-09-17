@@ -2,7 +2,7 @@
  {
   "creation": "2014-01-31 10:46:00", 
   "docstatus": 0, 
-  "modified": "2014-02-18 20:38:37", 
+  "modified": "2014-09-17 17:00:15", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -23,7 +23,6 @@
   "permlevel": 0
  }, 
  {
-  "create": 1, 
   "doctype": "DocPerm", 
   "name": "__common__", 
   "parent": "Modality", 
@@ -31,9 +30,7 @@
   "parenttype": "DocType", 
   "permlevel": 0, 
   "read": 1, 
-  "report": 1, 
-  "role": "All", 
-  "write": 1
+  "report": 1
  }, 
  {
   "doctype": "DocType", 
@@ -85,6 +82,29 @@
   "label": "Time Required"
  }, 
  {
-  "doctype": "DocPerm"
+  "create": 1, 
+  "doctype": "DocPerm", 
+  "role": "Administrator", 
+  "write": 1
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Receptionist"
+ }, 
+ {
+  "create": 1, 
+  "doctype": "DocPerm", 
+  "role": "Radiologist", 
+  "write": 1
+ }, 
+ {
+  "create": 1, 
+  "doctype": "DocPerm", 
+  "role": "Technologist", 
+  "write": 1
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Transcriptionist"
  }
 ]

@@ -2,7 +2,7 @@
  {
   "creation": "2014-09-08 19:05:06", 
   "docstatus": 0, 
-  "modified": "2014-09-08 19:11:53", 
+  "modified": "2014-09-17 17:03:25", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -33,7 +33,6 @@
   "parenttype": "DocType", 
   "permlevel": 0, 
   "read": 1, 
-  "role": "All", 
   "write": 1
  }, 
  {
@@ -44,6 +43,17 @@
   "doctype": "DocField"
  }, 
  {
-  "doctype": "DocPerm"
+  "doctype": "DocPerm", 
+  "role": "All"
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "report": 1, 
+  "role": "Receptionist"
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "report": 1, 
+  "role": "Technologist"
  }
 ]
