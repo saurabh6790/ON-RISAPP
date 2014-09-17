@@ -314,6 +314,13 @@ class DocType:
             n+=en
         self.doc.patient_online_id=ss+n[3:]
         self.doc.name = self.doc.patient_online_id
+        self.create_global_id(ss+n[3:])
+        self.doc.global_id = ss+n[3:]
+
+    def create_global_id(self, pid):
+        gid = Document("Global Id")
+        gid.patient_id = pid
+        gid.save()
 
     def getseries(self,key, digits, doctype=''):                        
         current = webnotes.conn.sql("select `current` from `tabSeries` where name='GID' for update")
@@ -441,6 +448,13 @@ class DocType:
         dv.parenttype='Control Panel'
         dv.defkey='patient_id'
         dv.defvalue=self.doc.name
+        dv.save(new=1)
+        dv=Document("DefaultValue")
+        dv.parent = self.doc.patient_online_id
+        dv.parentfield = 'system_defaults'
+        dv.parenttype = 'Control Panel'
+        dv.defkey = 'global_id'
+        dv.defvalue = self.doc.name
         dv.save(new=1)
 
     def generate_barcode(self):
