@@ -54,7 +54,7 @@ erpnext.accounts.SalesInvoiceController = erpnext.selling.SellingController.exte
 
 		cur_frm.cscript.is_opening(doc, dt, dn);
 		cur_frm.dashboard.reset();
-
+		cur_frm.cscript.outstanding_amt(doc,dt,dn);
 		if(doc.docstatus==1) {
 			cur_frm.appframe.add_button('View Ledger', function() {
 				wn.route_options = {
@@ -348,13 +348,17 @@ cur_frm.cscript.calculate_amt=function(doc,cdt,cdn){
 	var cl=getchildren('Sales Invoice Item',doc.name,'entries')
 	// console.log(cl)
 	var s=0;
+	var dic = 0.0;
 	for (i=0;i<cl.length;i++)
 	{
 		s=s+parseFloat(cl[i].basic_charges)
+		dic = dic+(parseFloat(cl[i].export_rate)-parseFloat(cl[i].basic_charges))
 	}
+	doc.total_discount = String(dic)
 	doc.patient_amount=String(s)
 	doc.outstanding_amount_data=doc.patient_amount
 	refresh_field('patient_amount')
+	refresh_field('total_discount')
 	refresh_field('outstanding_amount_data')
 }
 
@@ -598,7 +602,9 @@ cur_frm.cscript.discount_type = function(doc,cdt,cdn){
 	var d=locals[cdt][cdn];
 	if(d.discount_type=="Referral discount"){
 		d.discount = 0;
+		d.discount_in_amt = 0;
 		refresh_field('discount', d.name, 'entries');
+		refresh_field('discount_in_amt', d.name, 'entries');
 		if(d.referral_rule=='Fixed Cost'){	
 			d.basic_charges = (flt(d.export_rate)*flt(d.qty)) - flt(d.referral_fee)
 			refresh_field('basic_charges', d.name, 'entries');
@@ -610,12 +616,22 @@ cur_frm.cscript.discount_type = function(doc,cdt,cdn){
 		}
 	}
 	else{
-		if(!d.discount){
+		if(!d.discount && !d.discount_in_amt){
 			d.discount = 0;
-                	refresh_field('discount', d.name, 'entries');}
-		var amount = (flt(d.export_rate)*flt(d.qty))*flt(d.discount / 100)
-                d.basic_charges = (flt(d.export_rate)*flt(d.qty)) - amount
-                refresh_field('basic_charges', d.name, 'entries');
+            refresh_field('discount', d.name, 'entries');
+            var amount = (flt(d.export_rate)*flt(d.qty))*flt(d.discount / 100)
+            d.basic_charges = (flt(d.export_rate)*flt(d.qty)) - amount
+            refresh_field('basic_charges', d.name, 'entries');
+        }
+        else if(d.discount_in_amt){
+        	d.basic_charges= (flt(d.export_rate)*flt(d.qty))-flt(d.discount_in_amt);
+        	refresh_field('basic_charges', d.name, 'entries');
+        }
+        else{
+        	var amount = (flt(d.export_rate)*flt(d.qty))*flt(d.discount / 100)
+            d.basic_charges = (flt(d.export_rate)*flt(d.qty)) - amount
+            refresh_field('basic_charges', d.name, 'entries');
+        }   	
 	}
 }
 
@@ -648,12 +664,19 @@ cur_frm.cscript.custom_validate = function(doc,cdt,cdn){
 	cur_frm.cscript.outstanding_amt(doc,cdt,cdn)
 }
 
+cur_frm.cscript.discount_in_amt = function(doc,cdt,cdn){
+	console.log("test")
+	cur_frm.cscript.discount_type(doc, cdt, cdn)
+	cur_frm.cscript.calculate_amt(doc,cdt,cdn)
+}
+
 cur_frm.cscript.paid_amount_data=function(doc,cdt,cdn){
 	cur_frm.cscript.outstanding_amt(doc,cdt,cdn)
 }
 
 //Problem of outstanding amount check before leaving
 cur_frm.cscript.outstanding_amt=function(doc,cdt,cdn){
+	console.log("TEST")
 	var out_amt=getchildren('Sales Invoice Advance',doc.name,'advance_adjustment_details')
 	var amt=0;
 	if(out_amt)
@@ -663,12 +686,7 @@ cur_frm.cscript.outstanding_amt=function(doc,cdt,cdn){
 			amt=amt+parseFloat(out_amt[i].allocated_amount)
 		}
 	}
-	if(doc.__islocal){
-		doc.outstanding_amount = parseFloat(doc.paid_amount_data)-parseFloat(amt)
-	}
-	else{
-		doc.outstanding_amount = parseFloat(doc.outstanding_amount)-parseFloat(doc.paid_amount_data)
-	}
+	doc.outstanding_amount = parseFloat(doc.patient_amount) - parseFloat(doc.paid_amount_data)-parseFloat(amt)
 	
 	refresh_field('outstanding_amount')	
 	// console.log(doc.outstanding_amount)

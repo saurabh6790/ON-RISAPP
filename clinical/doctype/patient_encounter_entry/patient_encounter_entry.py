@@ -246,7 +246,8 @@ e.parent ='%(parent)s' and s.name = e.study) AS foo union
                         	        # cld.discount=srv['dis_value']
                         	        srv['basic_charges']=cstr(flt(srv['export_rate']-flt(flt(srv['export_rate'])*flt(srv['dis_value'])/100)))
                         	        srv['discount_in_amt']=cstr(flt(flt(srv['export_rate'])*flt(srv['dis_value'])/100))
-                        	else:
+
+                        	elif srv['discount_type']=='Referral discount':
                         	        if srv['referral_rule'] == 'Fixed Cost':
                         	                srv['basic_charges']=cstr(flt(srv['export_rate'])-flt(srv['referral_fee']))                              
                         	                srv['discount_in_amt']=cstr(srv['referral_fee'])
@@ -255,7 +256,8 @@ e.parent ='%(parent)s' and s.name = e.study) AS foo union
 						# webnotes.errprint(["sdas",srv['basic_charges']])
                         	                srv['dis_value'] = cstr(srv['referral_fee']) 
                         	        #cld.discount=cstr(round(flt(cld.referral_fee)/flt(cld.export_rate)*100,2))
-                        	
+                        	else:
+					srv['basic_charges']=cstr(flt(srv['export_rate']))
                         	# cld.description=srv['study_detials']    
                         	# cld.qty=1
                         	tot_amt = flt(srv['basic_charges']) + tot_amt
@@ -341,9 +343,9 @@ def get_patient_details(doctype, txt, searchfield, start, page_len, filters):
 def update_event(checked, dname,encounter):
 
         if cint(checked) == 1:
-                webnotes.conn.sql("update tabEvent set event_type='Confirm' where name='%s'"%dname)
+                webnotes.conn.sql("update tabEvent set event_type='Confirmed' where name='%s'"%dname)
                 # webnotes.errprint(encounter)
-                webnotes.conn.sql("update `tabSlot Child` set status='Confirm' where encounter='%s'"%encounter)
+                # webnotes.conn.sql("update `tabSlot Child` set status='Confirm' where encounter='%s'"%encounter)
 
 @webnotes.whitelist()
 def get_events(start, end, doctype,op,filters=None):
@@ -508,3 +510,7 @@ def get_patient_info(encounter_id):
     return webnotes.conn.sql(""" select age, gender, birth_date from `tabPatient Register` 
             where name = (select patient from `tabPatient Encounter Entry` 
                 where name = '%s')"""%(encounter_id),as_dict=1)[0]
+    
+@webnotes.whitelist()
+def status_validate():
+    webnotes.msgprint("Cant Change status once patient checked in",raise_exception=1)

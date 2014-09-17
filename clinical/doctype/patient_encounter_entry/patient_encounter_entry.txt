@@ -2,7 +2,7 @@
  {
   "creation": "2014-01-16 12:38:55", 
   "docstatus": 0, 
-  "modified": "2014-09-17 17:02:01", 
+  "modified": "2014-09-17 18:42:51", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -185,6 +185,13 @@
   "fieldtype": "Select", 
   "label": "Status", 
   "options": "Waiting\nConfirmed\nCanceled"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "report_status", 
+  "fieldtype": "Data", 
+  "label": "Report Status", 
+  "read_only": 1
  }, 
  {
   "doctype": "DocField", 

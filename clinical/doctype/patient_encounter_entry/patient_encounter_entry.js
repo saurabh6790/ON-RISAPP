@@ -126,8 +126,12 @@ make_linking('encounter_data')
 
 cur_frm.cscript.refresh = function(doc, cdt, cdn){
 	// cur_frm.cscript.referrer_name(doc)
-        cur_frm.appframe.add_primary_action(wn._('Make Bill'), cur_frm.cscript['Make Bill'])
-        cur_frm.appframe.add_primary_action(wn._('Make Report'), cur_frm.cscript['Make Report'])
+	if(doc.status != 'Canceled'){
+		cur_frm.appframe.add_primary_action(wn._('Make Bill'), cur_frm.cscript['Make Bill'])
+		if(doc.status == 'Confirmed'){
+	        cur_frm.appframe.add_primary_action(wn._('Make Report'), cur_frm.cscript['Make Report'])
+		}
+	}
 	setTimeout(function(){
                         for (var key in a)
                         {
@@ -189,17 +193,35 @@ cur_frm.cscript['Make Bill'] = function() {
 
 }
 
-/*cur_frm.cscript.checked_in = function(doc,dt,dn){
+cur_frm.cscript.checked_in = function(doc,dt,dn){
+	if(doc.checked_in==1){
+		cur_frm.set_value('status', 'Confirmed') 
+    	// set_field_permlevel('checked_in', 1); 
+    	refresh_field('status')
+	}
+	else{
+		cur_frm.set_value('status', 'Waiting') 
+    	// set_field_permlevel('checked_in', 1); 
+    	refresh_field('status')
+	}
     
-	wn.call({
-			method: "selling.doctype.patient_encounter_entry.patient_encounter_entry.update_event",
-			args:{checked:doc.checked_in,dname:doc.eventid,encounter:doc.name},
+}
+
+cur_frm.cscript.status=function(doc){
+	if(doc.checked_in == 1){
+		wn.call({
+			method:'clinical.doctype.patient_encounter_entry.patient_encounter_entry.status_validate',
 			callback: function(r) {
-				console.log("done")
+				cur_frm.set_value('status', 'Confirmed') 
+				refresh_field('status')
 			}
-		});
-  
-}*/
+		})
+	}
+	if(doc.status=='Confirmed'){
+		cur_frm.set_value('checked_in',1)
+		refresh_field('checked_in')
+	}
+}
 
 cur_frm.cscript['Make Report'] = function() {
 	//console.log("in the create quetionnnaire");

@@ -2,7 +2,7 @@
  {
   "creation": "2013-05-24 19:29:05", 
   "docstatus": 0, 
-  "modified": "2014-09-17 17:02:41", 
+  "modified": "2014-09-17 18:16:32", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -463,6 +463,18 @@
  }, 
  {
   "doctype": "DocField", 
+  "fieldname": "total_discount", 
+  "fieldtype": "Currency", 
+  "label": "Total Discount", 
+  "read_only": 1
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "column_break_32", 
+  "fieldtype": "Column Break"
+ }, 
+ {
+  "doctype": "DocField", 
   "fieldname": "outstanding_amount", 
   "fieldtype": "Currency", 
   "hidden": 0, 
@@ -487,11 +499,6 @@
   "label": "Paid Amount", 
   "options": "Company:company:default_currency", 
   "reqd": 0
- }, 
- {
-  "doctype": "DocField", 
-  "fieldname": "column_break_32", 
-  "fieldtype": "Column Break"
  }, 
  {
   "doctype": "DocField", 

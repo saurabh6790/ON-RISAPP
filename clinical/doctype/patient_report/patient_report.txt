@@ -2,7 +2,7 @@
  {
   "creation": "2014-03-03 11:41:45", 
   "docstatus": 0, 
-  "modified": "2014-09-17 17:01:00", 
+  "modified": "2014-09-17 19:19:27", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -37,6 +37,13 @@
  {
   "doctype": "DocType", 
   "name": "Patient Report"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "report_status", 
+  "fieldtype": "Data", 
+  "label": "Report Status", 
+  "read_only": 1
  }, 
  {
   "doctype": "DocField", 

@@ -27,3 +27,10 @@ cur_frm.cscript.onload = function(){
 	cur_frm.add_fetch("accession_number","referrer_name","referral_name")
 	cur_frm.add_fetch('technologist_id', 'employee_name', 'technologist_name');
 }
+
+cur_frm.cscript.refresh = function(doc){
+	if(doc.docstatus == 1){
+		cur_frm.set_value('report_status', 'Final')
+	}
+	refresh_field("report_status")
+}
