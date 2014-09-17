@@ -2,7 +2,7 @@
  {
   "creation": "2012-02-20 15:46:39", 
   "docstatus": 0, 
-  "modified": "2014-09-17 17:08:37", 
+  "modified": "2014-09-17 21:42:15", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -20,14 +20,18 @@
   "name": "__common__", 
   "parent": "selling-home", 
   "parentfield": "roles", 
-  "parenttype": "Page", 
-  "role": "Administrator"
+  "parenttype": "Page"
  }, 
  {
   "doctype": "Page", 
   "name": "selling-home"
  }, 
  {
-  "doctype": "Page Role"
+  "doctype": "Page Role", 
+  "role": "Administrator"
+ }, 
+ {
+  "doctype": "Page Role", 
+  "role": "System Manager"
  }
 ]
