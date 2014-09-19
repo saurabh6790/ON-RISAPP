@@ -600,6 +600,7 @@ cur_frm.cscript.invoice_period_from_date = function(doc, dt, dn) {
 
 cur_frm.cscript.discount_type = function(doc,cdt,cdn){
 	var d=locals[cdt][cdn];
+	console.log('adv')
 	if(d.discount_type=="Referral discount"){
 		d.discount = 0;
 		d.discount_in_amt = 0;
@@ -623,16 +624,20 @@ cur_frm.cscript.discount_type = function(doc,cdt,cdn){
             d.basic_charges = (flt(d.export_rate)*flt(d.qty)) - amount
             refresh_field('basic_charges', d.name, 'entries');
         }
-        else if(d.discount_in_amt){
+        else if(d.discount_in_amt!='0'){
         	d.basic_charges= (flt(d.export_rate)*flt(d.qty))-flt(d.discount_in_amt);
         	refresh_field('basic_charges', d.name, 'entries');
         }
         else{
+        	console.log('test123')
         	var amount = (flt(d.export_rate)*flt(d.qty))*flt(d.discount / 100)
             d.basic_charges = (flt(d.export_rate)*flt(d.qty)) - amount
             refresh_field('basic_charges', d.name, 'entries');
         }   	
 	}
+	cur_frm.cscript.calculate_amt(doc, cdt, cdn);
+	cur_frm.cscript.outstanding_amt(doc, cdt, cdn)
+
 }
 
 cur_frm.cscript.qty = function(doc,cdt,cdn){
