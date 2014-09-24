@@ -2,7 +2,7 @@
  {
   "creation": "2014-03-03 11:41:45", 
   "docstatus": 0, 
-  "modified": "2014-09-17 19:19:27", 
+  "modified": "2014-09-24 12:43:50", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -42,6 +42,7 @@
   "doctype": "DocField", 
   "fieldname": "report_status", 
   "fieldtype": "Data", 
+  "in_filter": 1, 
   "label": "Report Status", 
   "read_only": 1
  }, 
@@ -62,6 +63,7 @@
   "doctype": "DocField", 
   "fieldname": "patient_name", 
   "fieldtype": "Data", 
+  "in_filter": 1, 
   "label": "Patient Name"
  }, 
  {
@@ -104,6 +106,7 @@
   "doctype": "DocField", 
   "fieldname": "accession_number", 
   "fieldtype": "Link", 
+  "in_filter": 1, 
   "label": "Accassion Number", 
   "options": "Patient Encounter Entry"
  }, 
@@ -117,12 +120,14 @@
   "doctype": "DocField", 
   "fieldname": "modality", 
   "fieldtype": "Data", 
+  "in_filter": 1, 
   "label": "Modality"
  }, 
  {
   "doctype": "DocField", 
   "fieldname": "study", 
   "fieldtype": "Data", 
+  "in_filter": 1, 
   "label": "Study"
  }, 
  {
@@ -141,6 +146,7 @@
   "doctype": "DocField", 
   "fieldname": "referral_name", 
   "fieldtype": "Data", 
+  "in_filter": 1, 
   "label": "Referral Name"
  }, 
  {
@@ -160,6 +166,7 @@
   "doctype": "DocField", 
   "fieldname": "technologist_name", 
   "fieldtype": "Data", 
+  "in_filter": 1, 
   "label": "Technologist Name", 
   "options": "technologist_id.employee_name"
  }, 

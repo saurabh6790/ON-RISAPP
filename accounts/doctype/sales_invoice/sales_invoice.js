@@ -688,13 +688,13 @@ cur_frm.cscript.outstanding_amt=function(doc,cdt,cdn){
 	{
 		for(i=0;i<out_amt.length;i++)
 		{
-			amt=amt+parseFloat(out_amt[i].allocated_amount)
+			amt=amt+flt(out_amt[i].allocated_amount)
 		}
 	}
 	if(!doc.paid_amount_data){
 		doc.paid_amount_data = 0.0;
 	}
-	doc.outstanding_amount = parseFloat(doc.patient_amount) - parseFloat(doc.paid_amount_data)-parseFloat(amt)
+	doc.outstanding_amount = flt(doc.patient_amount) - flt(doc.paid_amount_data)-flt(amt)
 	
 	refresh_field('outstanding_amount')	
 	// console.log(doc.outstanding_amount)

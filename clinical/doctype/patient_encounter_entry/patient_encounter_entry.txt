@@ -2,7 +2,7 @@
  {
   "creation": "2014-01-16 12:38:55", 
   "docstatus": 0, 
-  "modified": "2014-09-17 18:42:51", 
+  "modified": "2014-09-24 12:47:28", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -113,6 +113,7 @@
   "doctype": "DocField", 
   "fieldname": "patient_name", 
   "fieldtype": "Data", 
+  "in_filter": 1, 
   "in_list_view": 1, 
   "label": "Patient Name", 
   "read_only": 1
@@ -183,6 +184,7 @@
   "doctype": "DocField", 
   "fieldname": "status", 
   "fieldtype": "Select", 
+  "in_filter": 1, 
   "label": "Status", 
   "options": "Waiting\nConfirmed\nCanceled"
  }, 
@@ -190,6 +192,7 @@
   "doctype": "DocField", 
   "fieldname": "report_status", 
   "fieldtype": "Data", 
+  "in_filter": 1, 
   "label": "Report Status", 
   "read_only": 1
  }, 
@@ -203,6 +206,7 @@
   "doctype": "DocField", 
   "fieldname": "encounter", 
   "fieldtype": "Link", 
+  "in_filter": 1, 
   "in_list_view": 1, 
   "label": "Modality", 
   "options": "Modality"
@@ -211,6 +215,7 @@
   "doctype": "DocField", 
   "fieldname": "study", 
   "fieldtype": "Link", 
+  "in_filter": 1, 
   "in_list_view": 1, 
   "label": "Study", 
   "options": "Study"
@@ -226,6 +231,7 @@
   "doctype": "DocField", 
   "fieldname": "radiologist_", 
   "fieldtype": "Data", 
+  "in_filter": 1, 
   "label": "Radiologist Name", 
   "read_only": 1
  }, 
@@ -244,6 +250,7 @@
   "doctype": "DocField", 
   "fieldname": "encounter_date", 
   "fieldtype": "Date", 
+  "in_filter": 1, 
   "label": " Encounter Date"
  }, 
  {
@@ -271,6 +278,7 @@
   "doctype": "DocField", 
   "fieldname": "referral", 
   "fieldtype": "Data", 
+  "in_filter": 1, 
   "label": "Referral", 
   "read_only": 1
  }, 
@@ -285,6 +293,7 @@
   "doctype": "DocField", 
   "fieldname": "technologist_name", 
   "fieldtype": "Data", 
+  "in_filter": 1, 
   "label": "Technologist Name ", 
   "read_only": 1
  }, 
