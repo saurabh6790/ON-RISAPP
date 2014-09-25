@@ -31,7 +31,7 @@ def make_columns():
 		return stored_cols
 
 	else:
-		return "name, patient, status, encounter, study, radiologist_name"
+		return "patient, patient_name, encounter, status, study, report_status, referral"
 
 def make_conditions(filters):
 	condition = []
@@ -98,6 +98,7 @@ def remove_redundant_cols(user_cols, col_str):
 def get_cols():
 	filters = webnotes.form_dict.get('doctype')
 	cols = webnotes.conn.sql("select columns from `tabReport Column` where name = '%s' "%(webnotes.form_dict.get('doctype')),as_list=1)
+	webnotes.errprint(cols)
 	if cols and cols[0][0]:
 		columns = form_cols_list(cols[0][0].split(','))
 	return columns
@@ -117,10 +118,10 @@ def form_cols_list(cols):
 		else:
 			columns.append({"fieldtype":'Check', "fieldname":'%s'%(i), "label":i.upper().replace('_', ' ')})
 		count = count + 1
-
+	webnotes.errprint(columns)
 	columns.append({"fieldtype":'Section Break', "fieldname":'SB' })
 	columns.append({"fieldtype":'Button', "fieldname":'save', "label":"Save Columns " })             
-
+	webnotes.errprint(columns)
 	return columns
 
 @webnotes.whitelist()

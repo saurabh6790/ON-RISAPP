@@ -354,6 +354,8 @@ class DocType:
                 self.create_patient_encounter_entry()
             self.doc.flag='True'
             self.doc.save()
+        self.doc.customer_name = self.doc.first_name + ' ' + self.doc.last_name
+        self.doc.save()
 
     def create_new_contact(self):
         details = {}

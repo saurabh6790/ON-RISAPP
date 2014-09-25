@@ -42,7 +42,7 @@ wn.pages['dashboard'].onload = function(wrapper) {
 						<td style="padding-left:15px;">Status</td>\
 						<td style="vertical-align:center">\
 							<select style="margin-left:5px;margin-top:5px;" class="col-md-12 input-with-feedback form-control input-sm" id="status" >\
-								<option value="All">All</option></select></td>\
+								<option value="All">All</option><option value="Waiting">Waiting</option><option value="Confirmed">Confirmed</option><option value="Canceled">Canceled</option></select></td>\
 						<td style="padding-left:15px;">Patient</td>\
 						<td style="vertical-align:center">\
 							<select style="margin-left:5px;margin-top:5px;" class="col-md-12 input-with-feedback form-control input-sm" id="patient" >\
@@ -133,6 +133,7 @@ wn.pages['dashboard'].onload = function(wrapper) {
 			title:wn._('Select Columns'),
 			fields:	field									
 		})
+		console.log(d.fields_dict)
 		var fd = d.fields_dict;
 		$(fd.save.input).click(function() {
 				var btn = this;
@@ -154,6 +155,7 @@ wn.pages['dashboard'].onload = function(wrapper) {
 	}
 
 	$("#search_button").click(function(){
+		console.log( $('#status').val());
 		filter_data={'modality': $('#modality').val(),'study': $('#study').val(),'status': $('#status').val(),'patient': $('#patient').val(), "accession_number":$('#accession_number').val(), 
 		'datepicker1':$('#datepicker1').val(), 'datepicker2':$('#datepicker2').val()};
 		wn.call({
