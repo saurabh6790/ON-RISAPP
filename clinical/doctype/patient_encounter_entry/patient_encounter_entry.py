@@ -199,7 +199,7 @@ class DocType():
                 d.save()
                 return d.name
 
-        def child_entry(self,patient_data):  
+        def child_entry(self,patient_data):
                 services = webnotes.conn.sql(""" SELECT foo.*, case when exists(select true from `tabPhysician Values` a WHERE a.study_name=foo.study AND a.parent=foo.referrer_name and a.referral_fee <> 0) then (select a.referral_fee from `tabPhysician Values` a WHERE a.study_name=foo.study AND a.parent=foo.referrer_name) else (select ifnull(referral_fee,0) from tabStudy where name=foo.study) end as referral_fee,
 case when exists(select true from `tabPhysician Values` a WHERE a.study_name=foo.study AND a.parent=foo.referrer_name and a.referral_fee <> 0) then (select a.referral_rule from `tabPhysician Values` a WHERE a.study_name=foo.study AND a.parent=foo.referrer_name) else (select referral_rule from tabStudy where name=foo.study) end as referral_rule
         FROM ( SELECT s.study_aim AS study,'' as item, '1' as qty,

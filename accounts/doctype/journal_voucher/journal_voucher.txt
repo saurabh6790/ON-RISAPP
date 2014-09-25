@@ -2,7 +2,7 @@
  {
   "creation": "2013-03-25 10:53:52", 
   "docstatus": 0, 
-  "modified": "2014-02-28 11:35:09", 
+  "modified": "2014-09-24 12:21:26", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -412,6 +412,13 @@
   "print_hide": 1, 
   "read_only": 1, 
   "report_hide": 1
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "bill_id", 
+  "fieldtype": "Link", 
+  "label": "Bill Id", 
+  "options": "Sales Invoice"
  }, 
  {
   "doctype": "DocField", 

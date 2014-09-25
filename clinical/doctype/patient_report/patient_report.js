@@ -6,6 +6,7 @@ cur_frm.cscript.show_images = function(doc, dt ,dn){
 		}
 	})	
 }
+
 cur_frm.fields_dict.technologist_id.get_query =function(doc,cdt,cdn)
 {
    return{
@@ -18,7 +19,7 @@ cur_frm.fields_dict.technologist_id.get_query =function(doc,cdt,cdn)
 
 cur_frm.cscript.onload = function(){
 	cur_frm.add_fetch("report","report_template","template_details")
-	cur_frm.add_fetch("patient_id","first_name","patient_name")
+	cur_frm.add_fetch("patient_id","customer_name","patient_name")
 	cur_frm.add_fetch("patient_id","birth_date","patient_birth_date")
 	cur_frm.add_fetch("patient_id","age","age")
 	cur_frm.add_fetch("patient_id","gender","sex")
@@ -33,4 +34,14 @@ cur_frm.cscript.refresh = function(doc){
 		cur_frm.set_value('report_status', 'Final')
 	}
 	refresh_field("report_status")
+}
+
+cur_frm.fields_dict.accession_number.get_query =function(doc,cdt,cdn)
+{
+   return{
+   		query:"clinical.doctype.patient_report.patient_report.get_encounters",
+   		filters: {
+			'patient': doc.patient_id 
+		}
+   	}
 }

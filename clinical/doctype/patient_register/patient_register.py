@@ -344,7 +344,8 @@ class DocType:
             self.create_account_head(cust)
 
         if self.doc.flag=='false':
-            self.create_profile()
+            if cint(self.doc.profile_required) == 1: 
+                self.create_profile()
             # self.generate_barcode()
             self.create_new_contact()
             a=webnotes.conn.sql("select name from `tabEncounter` where parent='"+self.doc.name+"'",as_list=1)        
@@ -353,6 +354,8 @@ class DocType:
                 self.create_patient_encounter_entry()
             self.doc.flag='True'
             self.doc.save()
+        self.doc.customer_name = self.doc.first_name + ' ' + self.doc.last_name
+        self.doc.save()
 
     def create_new_contact(self):
         details = {}
@@ -422,6 +425,8 @@ class DocType:
             "first_name": self.doc.first_name,
             "user_image":self.doc.user_image,
             "enabled": 1,
+            "mute_email":1,
+            "profile_type":"Patient",
             "user_type": "Customer"
         })
         profile.ignore_permissions = True

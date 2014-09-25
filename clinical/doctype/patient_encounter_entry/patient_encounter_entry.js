@@ -1,4 +1,4 @@
-cur_frm.add_fetch('patient', 'first_name', 'patient_name')
+cur_frm.add_fetch('patient', 'customer_name', 'patient_name')
 cur_frm.add_fetch('doctor', 'lead_name', 'doctor_name')
 // cur_frm.add_fetch('referrer_name','rules','rules')
 // cur_frm.add_fetch('referrer_name','value','value')
@@ -26,21 +26,23 @@ cur_frm.cscript.onload = function(doc, cdt, cdn) {
 			method: "clinical.doctype.patient_encounter_entry.patient_encounter_entry.set_slot",
 			args:{modality:this.frm.doc.encounter, study:this.frm.doc.study,start_time:this.frm.doc.start_time, end_time:this.frm.doc.end_time, patient_id: this.frm.doc.patient},
 			callback: function(r) {
-				cur_frm.set_value("start_time", r.message[0]);
-				cur_frm.set_value("end_time", r.message[1]);
-				cur_frm.set_value("patient_name",r.message[2].first_name);
-				cur_frm.set_value('patient_birth_date', r.message[2].birth_date);
-				cur_frm.set_value('age',r.message[2].age)
-				cur_frm.set_value('gender',r.message[2].gender)
-				cur_frm.set_value('referrer_name',r.message[2].referred_by)
-				cur_frm.set_value('referral',r.message[2].referral_name)
-				refresh_field('study_items')
-				refresh_field('patient_name')
-				refresh_field('patient_birth_date')
-				refresh_field('age')
-				refresh_field('gender')
-				refresh_field('referrer_name')
-				refresh_field('referral')
+					cur_frm.set_value("start_time", r.message[0]);
+					cur_frm.set_value("end_time", r.message[1]);
+				if(!this.frm.doc.__islocal){
+					cur_frm.set_value("patient_name",r.message[2].first_name);
+					cur_frm.set_value('patient_birth_date', r.message[2].birth_date);
+					cur_frm.set_value('age',r.message[2].age)
+					cur_frm.set_value('gender',r.message[2].gender)
+					cur_frm.set_value('referrer_name',r.message[2].referred_by)
+					cur_frm.set_value('referral',r.message[2].referral_name)
+					refresh_field('study_items')
+					refresh_field('patient_name')
+					refresh_field('patient_birth_date')
+					refresh_field('age')
+					refresh_field('gender')
+					refresh_field('referrer_name')
+					refresh_field('referral')
+				}
 			}
 		})
 		// return $c('runserverobj', args={'method':'fill_study_items', 'arg':this.frm.doc.study , 'docs': wn.model.compress(make_doclist(doc.doctype, doc.name))}, function(r,rt) {

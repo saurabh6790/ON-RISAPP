@@ -2,7 +2,7 @@
  {
   "creation": "2014-01-16 19:54:02", 
   "docstatus": 0, 
-  "modified": "2014-09-17 17:05:00", 
+  "modified": "2014-09-24 17:44:32", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -20,14 +20,38 @@
   "name": "__common__", 
   "parent": "clinical-home", 
   "parentfield": "roles", 
-  "parenttype": "Page", 
-  "role": "All"
+  "parenttype": "Page"
  }, 
  {
   "doctype": "Page", 
   "name": "clinical-home"
  }, 
  {
-  "doctype": "Page Role"
+  "doctype": "Page Role", 
+  "role": "Administrator"
+ }, 
+ {
+  "doctype": "Page Role", 
+  "role": "Receptionist"
+ }, 
+ {
+  "doctype": "Page Role", 
+  "role": "Technologist"
+ }, 
+ {
+  "doctype": "Page Role", 
+  "role": "Radiologist"
+ }, 
+ {
+  "doctype": "Page Role", 
+  "role": "Transcriptionist"
+ }, 
+ {
+  "doctype": "Page Role", 
+  "role": "Accounts Manager"
+ }, 
+ {
+  "doctype": "Page Role", 
+  "role": "Accounts User"
  }
 ]

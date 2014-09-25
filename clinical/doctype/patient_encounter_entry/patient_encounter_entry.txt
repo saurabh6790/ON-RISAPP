@@ -2,7 +2,7 @@
  {
   "creation": "2014-01-16 12:38:55", 
   "docstatus": 0, 
-  "modified": "2014-09-24 10:26:28", 
+  "modified": "2014-09-24 20:15:14", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -122,19 +122,19 @@
   "doctype": "DocField", 
   "fieldname": "age", 
   "fieldtype": "Data", 
-  "label": "age"
+  "label": "Age"
  }, 
  {
   "doctype": "DocField", 
   "fieldname": "gender", 
   "fieldtype": "Data", 
-  "label": "gender"
+  "label": "Gender"
  }, 
  {
   "doctype": "DocField", 
   "fieldname": "patient_birth_date", 
   "fieldtype": "Data", 
-  "label": "patient_birth_date"
+  "label": "DOB"
  }, 
  {
   "doctype": "DocField", 
@@ -728,5 +728,18 @@
  {
   "doctype": "DocPerm", 
   "role": "Transcriptionist"
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Radiologist", 
+  "write": 1
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Accounts Manager"
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Accounts User"
  }
 ]

@@ -26,15 +26,15 @@ def get_conditions(filters):
 def get_entries(filters):
 	conditions = get_conditions(filters)
 
-	return webnotes.conn.sql("""SELECT distinct acc.name, acc.master_name, ld.lead_name, gl.credit, jv.against_bill FROM `tabGL Entry` gl,
+	return webnotes.conn.sql("""SELECT distinct acc.name, acc.master_name, ld.lead_name, gl.credit, jv.bill_id FROM `tabGL Entry` gl,
 		tabAccount acc, `tabJournal Voucher` jv, `tabSales Invoice` si, `tabSales Invoice Item` sii, tabLead ld 
 		WHERE gl.against = acc.name
 			AND acc.parent_account LIKE '%s'
 			AND acc.master_type ='Lead'
 			AND acc.group_or_ledger='Ledger'
 			and gl.voucher_no = jv.name 
-			and jv.against_bill is not null
+			and jv.bill_id is not null
 			and sii.parent = si.name
-			and si.name = jv.against_bill
+			and si.name = jv.bill_id
 			and ld.name = acc.master_name %s
-		GROUP BY sii.study, jv.against_bill """  % ('%Accounts Payable%',conditions), as_list=1)
+		GROUP BY sii.study, jv.bill_id """  % ('%Accounts Payable%',conditions), as_list=1)

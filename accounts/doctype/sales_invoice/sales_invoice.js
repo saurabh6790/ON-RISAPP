@@ -691,7 +691,7 @@ cur_frm.cscript.outstanding_amt=function(doc,cdt,cdn){
 			amt=amt+flt(out_amt[i].allocated_amount)
 		}
 	}
-	console.log( flt(doc.paid_amount_data))
+	
 	doc.outstanding_amount = flt(doc.patient_amount) - flt(doc.paid_amount_data)-flt(amt)
 	
 	refresh_field('outstanding_amount')	

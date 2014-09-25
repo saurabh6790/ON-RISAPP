@@ -69,3 +69,10 @@ def set_report_status(name):
 				where name = "%(name)s"
 			"""%{'state':'Final', 'name': name })
 	webnotes.conn.commit()
+
+
+@webnotes.whitelist()
+def get_encounters(doctype, txt, searchfield, start, page_len, filters):
+        return webnotes.conn.sql("""select name, patient, patient_name from `tabPatient Encounter Entry` 
+        	where (%(key)s like "%(txt)s" 
+				or patient_name like "%(txt)s") """%{'key': searchfield, 'txt': "%%%s%%" % txt})

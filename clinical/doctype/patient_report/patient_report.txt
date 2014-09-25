@@ -2,7 +2,7 @@
  {
   "creation": "2014-03-03 11:41:45", 
   "docstatus": 0, 
-  "modified": "2014-09-24 10:31:33", 
+  "modified": "2014-09-24 17:34:50", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -151,12 +151,6 @@
  }, 
  {
   "doctype": "DocField", 
-  "fieldname": "study_comments", 
-  "fieldtype": "Text", 
-  "label": "Study Comments"
- }, 
- {
-  "doctype": "DocField", 
   "fieldname": "technologist_id", 
   "fieldtype": "Link", 
   "label": "Technologist Id", 
@@ -169,6 +163,24 @@
   "in_filter": 1, 
   "label": "Technologist Name", 
   "options": "technologist_id.employee_name"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "column_break_20", 
+  "fieldtype": "Column Break"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "problem_description", 
+  "fieldtype": "Small Text", 
+  "label": "Problem Description", 
+  "read_only": 1
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "study_comments", 
+  "fieldtype": "Text", 
+  "label": "Study Comments"
  }, 
  {
   "doctype": "DocField", 
