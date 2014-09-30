@@ -54,7 +54,9 @@ erpnext.accounts.SalesInvoiceController = erpnext.selling.SellingController.exte
 
 		cur_frm.cscript.is_opening(doc, dt, dn);
 		cur_frm.dashboard.reset();
-		cur_frm.cscript.outstanding_amt(doc,dt,dn);
+		if(flt(doc.outstanding_amount) != 0){
+			cur_frm.cscript.outstanding_amt(doc,dt,dn);
+		}
 		if(doc.docstatus==1) {
 			cur_frm.appframe.add_button('View Ledger', function() {
 				wn.route_options = {
@@ -329,9 +331,6 @@ cur_frm.cscript.advance_entry = function(doc, dt ,dn) {
 	d.show();
 }
 
-
-
-
 cur_frm.cscript.mode_of_payment = function(doc, cdt, cdn) {
 	get_server_fields('child_entry','','',doc,cdt,cdn,1,function(r,rt) { refresh_field("entries");refresh_field('id')});
 	cur_frm.cscript.calculate_amt(doc,cdt,cdn)
@@ -342,7 +341,6 @@ cur_frm.cscript.mode_of_payment = function(doc, cdt, cdn) {
 	});
 	
 }
-
 
 cur_frm.cscript.calculate_amt=function(doc,cdt,cdn){
 	var cl=getchildren('Sales Invoice Item',doc.name,'entries')
@@ -691,7 +689,7 @@ cur_frm.cscript.outstanding_amt=function(doc,cdt,cdn){
 			amt=amt+flt(out_amt[i].allocated_amount)
 		}
 	}
-	
+
 	doc.outstanding_amount = flt(doc.patient_amount) - flt(doc.paid_amount_data)-flt(amt)
 	
 	refresh_field('outstanding_amount')	
