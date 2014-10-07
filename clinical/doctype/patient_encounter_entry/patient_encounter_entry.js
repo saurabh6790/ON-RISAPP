@@ -29,7 +29,6 @@ cur_frm.cscript.onload = function(doc, cdt, cdn) {
 			callback: function(r) {
 					cur_frm.set_value("start_time", r.message[0]);
 					cur_frm.set_value("end_time", r.message[1]);
-					console.log(me.frm.doc.__islocal)
 				if(me.frm.doc.__islocal){
 					cur_frm.set_value("patient_name",r.message[2].customer_name);
 					cur_frm.set_value('patient_birth_date', r.message[2].birth_date);
