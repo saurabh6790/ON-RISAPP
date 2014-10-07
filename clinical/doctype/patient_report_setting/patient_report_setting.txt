@@ -2,7 +2,7 @@
  {
   "creation": "2014-08-25 20:09:41", 
   "docstatus": 0, 
-  "modified": "2014-09-06 12:43:37", 
+  "modified": "2014-10-06 11:30:46", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -130,6 +130,18 @@
   "fieldname": "study_comment", 
   "fieldtype": "Check", 
   "label": "Study Comment"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "subtitles_info", 
+  "fieldtype": "Section Break", 
+  "label": "Subtitles Info"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "subtitle", 
+  "fieldtype": "Data", 
+  "label": "Subtitle"
  }, 
  {
   "doctype": "DocField", 
