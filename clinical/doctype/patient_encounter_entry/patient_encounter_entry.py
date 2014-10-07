@@ -444,7 +444,7 @@ def calc_start_time(start_time, modality):
         return start_time
 
 def patient_details(patient_id):
-    return webnotes.conn.sql("""select first_name, birth_date, age, gender, referred_by, referral_name from `tabPatient Register` where name = '%s'"""%(patient_id),as_dict=1, debug=1)[0]
+    return webnotes.conn.sql("""select customer_name, birth_date, age, gender, referred_by, referral_name from `tabPatient Register` where name = '%s'"""%(patient_id),as_dict=1, debug=1)[0]
 
 @webnotes.whitelist()
 def get_patient(patient_id):

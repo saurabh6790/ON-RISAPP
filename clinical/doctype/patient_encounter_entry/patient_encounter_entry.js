@@ -20,7 +20,7 @@ cur_frm.cscript.images = function(doc, cdt, cdn){
 cur_frm.cscript.onload = function(doc, cdt, cdn) {
 	// cur_frm.cscript.referrer_name(doc)
 	// alert(this.frm.doc.encounter)
-	me=this
+	var me = this;
 	console.log(this.frm.doc.encounter,this.frm.doc.study,this.frm.doc.start_time,this.frm.doc.end_time)
 	if(this.frm.doc.encounter){
 		wn.call({
@@ -29,10 +29,9 @@ cur_frm.cscript.onload = function(doc, cdt, cdn) {
 			callback: function(r) {
 					cur_frm.set_value("start_time", r.message[0]);
 					cur_frm.set_value("end_time", r.message[1]);
-					// console.log(this.frm.doc.__islocal)
+					console.log(me.frm.doc.__islocal)
 				if(me.frm.doc.__islocal){
-					console.log(r.message)
-					cur_frm.set_value("patient_name",r.message[2].first_name);
+					cur_frm.set_value("patient_name",r.message[2].customer_name);
 					cur_frm.set_value('patient_birth_date', r.message[2].birth_date);
 					cur_frm.set_value('age',r.message[2].age)
 					cur_frm.set_value('gender',r.message[2].gender)
