@@ -6,15 +6,15 @@ wn.pages['dashboard'].onload = function(wrapper) {
 	});	
 
 	$('<head>\
-		<script type="text/javascript" language="javascript" src="files/jquery.dataTables.js"></script>\
-                <script type="text/javascript" charset="utf-8" src="files/TableTools.min.js"></script>\
+		<script type="text/javascript" language="javascript" src="files/datatable/jquery.dataTables.js"></script>\
+                <script type="text/javascript" charset="utf-8" src="files/datatable/TableTools.min.js"></script>\
                 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css">\
                 <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/media/images/favicon.ico" />\
-                 <script type="text/javascript" charset="utf-8" src="files/new_ZeroClipboard.js"></script>\
+                 <script type="text/javascript" charset="utf-8" src="files/datatable/new_ZeroClipboard.js"></script>\
                 <style type="text/css" title="currentStyle">\
-                        @import "files/demo_page.css";\
-                        @import "files/demo_table.css";\
-                        @import "files/TableTools.css";\
+                        @import "files/datatable/demo_page.css";\
+                        @import "files/datatable/demo_table.css";\
+                        @import "files/datatable/TableTools.css";\
                 </style>\
 		<script>\
 			$(function() {\

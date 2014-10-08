@@ -42,7 +42,8 @@ def setup_account(args=None):
 	
 	# suppress msgprints
 	webnotes.local.message_log = []
-
+	exec_in_shell("""cp -r {path}/lib/public/datatable {path}/public/files 
+		""".format(path=get_base_path()))
 	return "okay"
 
 def import_core_docs():
@@ -222,6 +223,7 @@ def encrypt_uuid(salt):
 def dump_sys_info():
 	exec_in_shell(""" echo ris | sudo -S lshw -xml > {path}/hardware.xml
 		""".format(path=os.path.join(get_base_path(), "public", "files")))
+	
 
 def get_uuid():
 	import xml.etree.ElementTree as ET
