@@ -43,4 +43,6 @@ cur_frm.cscript.disc_detail=function(doc,cdt,cdn){
 make_linking('disc_detail')
 }
 
-
+cur_frm.fields_dict.modality_mapper.grid.get_field("modality").get_query = function(doc) {
+        return{ query:"master.doctype.study.study.get_modality"}
+}

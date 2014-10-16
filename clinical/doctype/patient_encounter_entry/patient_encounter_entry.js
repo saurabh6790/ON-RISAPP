@@ -66,7 +66,7 @@ cur_frm.get_field("encounter").get_query=function(doc,cdt,cdn)
 
 cur_frm.get_field("study").get_query=function(doc,cdt,cdn)
 {
-   return "select name from `tabStudy` where modality= '"+doc.encounter+"' "
+   return "select s.name from `tabStudy` s, `tabModality Mapper` mm where s.name = mm.parent and mm.modality= '"+doc.encounter+"' "
 }
 
 cur_frm.get_field("appointment_slot").get_query=function(doc,cdt,cdn){
@@ -173,7 +173,7 @@ cur_frm.cscript['Make Bill'] = function() {
                                 d1.study=r.message[i]['study']
 				d1.item=r.message[i]['item']
 				d1.qty=r.message[i]['qty']
-                                d1.modality=r.message[i]['modality']
+                                d1.modality=r.message[i]['encounter']
                                 d1.description=r.message[i]['study_detials']
                                 d1.referrer_name = r.message[i]['referrer_name']
                                 d1.referrer_physician_credit_to=r.message[i]['referrer_physician_credit_to']

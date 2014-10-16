@@ -221,7 +221,7 @@ def encrypt_uuid(salt):
 	return digest
 
 def dump_sys_info():
-	exec_in_shell(""" echo ris | sudo -S lshw -xml > {path}/hardware.xml
+	exec_in_shell(""" echo MedSynaptic | sudo -S lshw -xml > {path}/hardware.xml
 		""".format(path=os.path.join(get_base_path(), "public", "files")))
 	
 

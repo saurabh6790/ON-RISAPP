@@ -2,7 +2,7 @@
  {
   "creation": "2014-01-21 18:39:40", 
   "docstatus": 0, 
-  "modified": "2014-09-17 17:00:31", 
+  "modified": "2014-10-13 09:44:31", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -83,6 +83,7 @@
   "doctype": "DocField", 
   "fieldname": "modality", 
   "fieldtype": "Link", 
+  "hidden": 1, 
   "label": "Modality", 
   "options": "Modality"
  }, 
@@ -110,6 +111,19 @@
   "fieldname": "study_time", 
   "fieldtype": "Data", 
   "label": "Study Time"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "study_modality_mapper", 
+  "fieldtype": "Section Break", 
+  "label": "Study Modality Mapper"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "modality_mapper", 
+  "fieldtype": "Table", 
+  "label": "Modality Mapper", 
+  "options": "Modality Mapper"
  }, 
  {
   "doctype": "DocField", 

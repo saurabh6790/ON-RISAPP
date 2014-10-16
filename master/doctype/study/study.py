@@ -11,3 +11,7 @@ class DocType:
 		self.doc, self.doclist = d, dl
 	def autoname(self):
 		self.doc.name = self.doc.study_aim
+
+@webnotes.whitelist()
+def get_modality(doctype, txt, searchfield, start, page_len, filters):
+	return webnotes.conn.sql("select name from tabModality where active = 'Yes'", as_list=1)

@@ -386,7 +386,7 @@ def get_modality():
 
 @webnotes.whitelist()
 def get_study(modality):
-        return webnotes.conn.sql("select name from tabStudy where modality = '%s'"%modality, as_list=1)
+        return webnotes.conn.sql("select s.name from `tabStudy` s, `tabModality Mapper` mm where s.name = mm.parent and mm.modality= '%s'"%modality, as_list=1)
 
 @webnotes.whitelist()
 def set_slot(modality=None, study=None, start_time=None, end_time=None, patient_id=None):

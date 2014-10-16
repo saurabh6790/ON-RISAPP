@@ -2,7 +2,7 @@
  {
   "creation": "2014-08-25 20:09:41", 
   "docstatus": 0, 
-  "modified": "2014-10-06 11:30:46", 
+  "modified": "2014-10-15 08:31:05", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -189,10 +189,22 @@
  }, 
  {
   "doctype": "DocPerm", 
-  "role": "Patient"
+  "role": "Administrator"
  }, 
  {
   "doctype": "DocPerm", 
-  "role": "Administrator"
+  "role": "Radiologist"
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Technologist"
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Transcriptionist"
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Receptionist"
  }
 ]

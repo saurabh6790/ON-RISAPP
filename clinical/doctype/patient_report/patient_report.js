@@ -27,6 +27,8 @@ cur_frm.cscript.onload = function(){
 	cur_frm.add_fetch("accession_number","study","study")
 	cur_frm.add_fetch("accession_number","referrer_name","referral_name")
 	cur_frm.add_fetch('technologist_id', 'employee_name', 'technologist_name');
+	cur_frm.add_fetch("accession_number","problem_description","problem_description")
+	cur_frm.add_fetch("accession_number", "encounter_date", "study_date");
 }
 
 cur_frm.cscript.refresh = function(doc){
@@ -39,9 +41,7 @@ cur_frm.cscript.refresh = function(doc){
 cur_frm.fields_dict.accession_number.get_query =function(doc,cdt,cdn)
 {
    return{
-   		query:"clinical.doctype.patient_report.patient_report.get_encounters",
-   		filters: {
-			'patient': doc.patient_id 
-		}
+   		query:"clinical.doctype.patient_report.patient_report.get_pee",
+   		
    	}
 }

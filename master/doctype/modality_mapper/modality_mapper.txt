@@ -1,23 +1,26 @@
 [
  {
-  "creation": "2014-08-25 17:37:16", 
+  "creation": "2014-10-13 09:04:19", 
   "docstatus": 0, 
-  "modified": "2014-10-15 08:42:56", 
+  "modified": "2014-10-13 09:44:16", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
  {
-  "allow_rename": 1, 
-  "autoname": "field:title", 
   "doctype": "DocType", 
-  "document_type": "Master", 
-  "module": "Clinical", 
+  "istable": 1, 
+  "module": "Master", 
   "name": "__common__"
  }, 
  {
   "doctype": "DocField", 
+  "fieldname": "modality", 
+  "fieldtype": "Link", 
+  "in_list_view": 1, 
+  "label": "Modality", 
   "name": "__common__", 
-  "parent": "Report Template", 
+  "options": "Modality", 
+  "parent": "Modality Mapper", 
   "parentfield": "fields", 
   "parenttype": "DocType", 
   "permlevel": 0
@@ -26,7 +29,7 @@
   "create": 1, 
   "doctype": "DocPerm", 
   "name": "__common__", 
-  "parent": "Report Template", 
+  "parent": "Modality Mapper", 
   "parentfield": "permissions", 
   "parenttype": "DocType", 
   "permlevel": 0, 
@@ -35,25 +38,10 @@
  }, 
  {
   "doctype": "DocType", 
-  "name": "Report Template"
+  "name": "Modality Mapper"
  }, 
  {
-  "doctype": "DocField", 
-  "fieldname": "title", 
-  "fieldtype": "Data", 
-  "label": "Title", 
-  "reqd": 1
- }, 
- {
-  "doctype": "DocField", 
-  "fieldname": "report_template", 
-  "fieldtype": "Text Editor", 
-  "label": "Report Template"
- }, 
- {
-  "cancel": 0, 
-  "doctype": "DocPerm", 
-  "role": "Patient"
+  "doctype": "DocField"
  }, 
  {
   "doctype": "DocPerm", 
@@ -61,10 +49,18 @@
  }, 
  {
   "doctype": "DocPerm", 
-  "role": "Transcriptionist"
+  "role": "Receptionist"
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Technologist"
  }, 
  {
   "doctype": "DocPerm", 
   "role": "Radiologist"
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Transcriptionist"
  }
 ]

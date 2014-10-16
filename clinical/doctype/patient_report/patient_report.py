@@ -80,3 +80,12 @@ def get_encounters(doctype, txt, searchfield, start, page_len, filters):
         return webnotes.conn.sql("""select name, patient, patient_name from `tabPatient Encounter Entry` 
         	where (%(key)s like "%(txt)s" 
 				or patient_name like "%(txt)s") """%{'key': searchfield, 'txt': "%%%s%%" % txt})
+
+
+
+@webnotes.whitelist()
+def get_pee(doctype, txt, searchfield, start, page_len, filters):
+        return webnotes.conn.sql("""select name, patient, patient_name from `tabPatient Encounter Entry` 
+        	where (%(key)s like "%(txt)s" 
+				or patient_name like "%(txt)s") and status='Confirmed'"""%{'key': searchfield, 'txt': "%%%s%%" % txt})
+

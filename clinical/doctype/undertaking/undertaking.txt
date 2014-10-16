@@ -2,7 +2,7 @@
  {
   "creation": "2014-03-19 11:50:41", 
   "docstatus": 0, 
-  "modified": "2014-03-19 11:52:10", 
+  "modified": "2014-10-15 08:02:13", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -30,8 +30,6 @@
   "parenttype": "DocType", 
   "permlevel": 0, 
   "read": 1, 
-  "report": 1, 
-  "role": "Administrator", 
   "write": 1
  }, 
  {
@@ -51,6 +49,24 @@
   "label": "Template Data"
  }, 
  {
-  "doctype": "DocPerm"
+  "doctype": "DocPerm", 
+  "report": 1, 
+  "role": "Administrator"
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Receptionist"
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Transcriptionist"
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Radiologist"
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Technologist"
  }
 ]
