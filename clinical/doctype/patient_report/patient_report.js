@@ -25,10 +25,15 @@ cur_frm.cscript.onload = function(){
 	cur_frm.add_fetch("patient_id","gender","sex")
 	cur_frm.add_fetch("accession_number","encounter","modality")
 	cur_frm.add_fetch("accession_number","study","study")
-	cur_frm.add_fetch("accession_number","referrer_name","referral_name")
+	cur_frm.add_fetch("accession_number","referral","referral_name")
 	cur_frm.add_fetch('technologist_id', 'employee_name', 'technologist_name');
 	cur_frm.add_fetch("accession_number","problem_description","problem_description")
 	cur_frm.add_fetch("accession_number", "encounter_date", "study_date");
+	cur_frm.add_fetch("accession_number","patient","patient_id")
+	cur_frm.add_fetch("accession_number","patient_name","patient_name")
+	cur_frm.add_fetch("accession_number","patient_birth_date","patient_birth_date")
+	cur_frm.add_fetch("accession_number","age","age")
+	cur_frm.add_fetch("accession_number","gender","sex")
 }
 
 cur_frm.cscript.refresh = function(doc){

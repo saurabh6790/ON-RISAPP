@@ -2,7 +2,7 @@
  {
   "creation": "2014-10-13 09:04:19", 
   "docstatus": 0, 
-  "modified": "2014-10-13 09:44:16", 
+  "modified": "2014-10-29 17:06:54", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -14,12 +14,8 @@
  }, 
  {
   "doctype": "DocField", 
-  "fieldname": "modality", 
-  "fieldtype": "Link", 
   "in_list_view": 1, 
-  "label": "Modality", 
   "name": "__common__", 
-  "options": "Modality", 
   "parent": "Modality Mapper", 
   "parentfield": "fields", 
   "parenttype": "DocType", 
@@ -41,7 +37,17 @@
   "name": "Modality Mapper"
  }, 
  {
-  "doctype": "DocField"
+  "doctype": "DocField", 
+  "fieldname": "modality", 
+  "fieldtype": "Link", 
+  "label": "Modality", 
+  "options": "Modality"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "fees", 
+  "fieldtype": "Float", 
+  "label": "Fees"
  }, 
  {
   "doctype": "DocPerm", 

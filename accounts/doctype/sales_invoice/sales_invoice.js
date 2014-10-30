@@ -23,9 +23,10 @@ wn.require('app/accounts/doctype/sales_invoice/pos.js');
 wn.provide("erpnext.accounts");
 var a={"currency_and_price_list":". Currency and Price List","amt":". Amount","items_data":". Items","customer_data":". Customer","more_info_data":". More Info"};
 erpnext.accounts.SalesInvoiceController = erpnext.selling.SellingController.extend({
-	onload: function() {
+	onload: function(doc, dt, dn) {
 		this._super();
 
+		//alert('test')
 		if(!this.frm.doc.__islocal && !this.frm.doc.customer && this.frm.doc.debit_to) {
 			// show debit_to in print format
 			this.frm.set_df_property("debit_to", "print_hide", 0);
@@ -47,6 +48,11 @@ erpnext.accounts.SalesInvoiceController = erpnext.selling.SellingController.exte
 			locals.DocType[cur_frm.doctype].default_print_format = "POS Invoice";
 			cur_frm.setup_print_layout();
 		}
+
+		cur_frm.cscript.calculate_amt(doc);
+		/*if(doc.outstanding_amount != 0){
+                        cur_frm.cscript.outstanding_amt(doc,dt,dn);
+                }*/
 	},
 	
 	refresh: function(doc, dt, dn) {
@@ -239,6 +245,7 @@ erpnext.accounts.SalesInvoiceController = erpnext.selling.SellingController.exte
 	write_off_amount: function() {
 		this.calculate_outstanding_amount();
 		this.frm.refresh_fields();
+		
 	},
 	
 	paid_amount: function() {
@@ -332,8 +339,8 @@ cur_frm.cscript.advance_entry = function(doc, dt ,dn) {
 }
 
 cur_frm.cscript.mode_of_payment = function(doc, cdt, cdn) {
-	get_server_fields('child_entry','','',doc,cdt,cdn,1,function(r,rt) { refresh_field("entries");refresh_field('id')});
-	cur_frm.cscript.calculate_amt(doc,cdt,cdn)
+	//get_server_fields('child_entry','','',doc,cdt,cdn,1,function(r,rt) { refresh_field("entries");refresh_field('id')});
+	//cur_frm.cscript.calculate_amt(doc,cdt,cdn)
 	
 	return cur_frm.call({
 		method: "get_bank_cash_account",
@@ -690,6 +697,7 @@ cur_frm.cscript.outstanding_amt=function(doc,cdt,cdn){
 		}
 	}
 
+	console.log([doc.patient_amount, doc.paid_amount_data])
 	doc.outstanding_amount = flt(doc.patient_amount) - flt(doc.paid_amount_data)-flt(amt)
 	
 	refresh_field('outstanding_amount')	

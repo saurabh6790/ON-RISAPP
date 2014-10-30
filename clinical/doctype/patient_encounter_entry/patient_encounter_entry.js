@@ -1,7 +1,7 @@
 cur_frm.add_fetch('patient', 'customer_name', 'patient_name')
 cur_frm.add_fetch('doctor', 'lead_name', 'doctor_name')
-// cur_frm.add_fetch('referrer_name','rules','rules')
-// cur_frm.add_fetch('referrer_name','value','value')
+cur_frm.add_fetch('patient','referred_by','referrer_name');
+cur_frm.add_fetch('patient','referral_name','referral');
 cur_frm.add_fetch('radiologist_name', 'employee_name', 'radiologist_');
 cur_frm.add_fetch('referrer_name', 'lead_name', 'referral');
 cur_frm.add_fetch('technologist', 'employee_name', 'technologist_name');
@@ -189,6 +189,7 @@ cur_frm.cscript['Make Bill'] = function() {
 				d1.income_account=r.message[i]['default_cash_account']
                                 si.patient_amount = r.message[i]['amount']
                                 si.patient_credit_to = r.message[i]['patient_credit_to']
+				si.outstanding_amount = r.message[i]['amount']
                                 d1.encounter_id = r.message[i]['name']
                         }
                         loaddoc('Sales Invoice', si.name);

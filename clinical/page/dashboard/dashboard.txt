@@ -2,7 +2,7 @@
  {
   "creation": "2014-05-06 14:50:08", 
   "docstatus": 0, 
-  "modified": "2014-05-06 18:48:09", 
+  "modified": "2014-10-29 17:04:49", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -19,14 +19,18 @@
   "name": "__common__", 
   "parent": "dashboard", 
   "parentfield": "roles", 
-  "parenttype": "Page", 
-  "role": "Administrator"
+  "parenttype": "Page"
  }, 
  {
   "doctype": "Page", 
   "name": "dashboard"
  }, 
  {
-  "doctype": "Page Role"
+  "doctype": "Page Role", 
+  "role": "Administrator"
+ }, 
+ {
+  "doctype": "Page Role", 
+  "role": "All"
  }
 ]

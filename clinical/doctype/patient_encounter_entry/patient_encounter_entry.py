@@ -229,7 +229,7 @@ e.parent ='%(parent)s' and s.name = e.study) AS foo union
                         	# cld.modality = srv['modality']
                         	# cld.encounter_id = srv['name']
                         	# cld.discount_type = srv['discount_type']
-                        	export_rate=webnotes.conn.sql("""select study_fees from tabStudy where name = '%s' """%srv['study'],as_list=1)
+                        	export_rate=webnotes.conn.sql("""select fees from `tabModality Mapper` where parent = '%s' and modality ='%s' """%(srv['study'], srv['encounter']), as_list=1, debug=1)
                         	srv['export_rate'] = export_rate[0][0] if export_rate else 0
 				if cint(srv['export_rate'])==0:
 					item_export_rate=webnotes.conn.sql("""select price from tabItem where name = '%s' """%srv['item'],as_list=1)

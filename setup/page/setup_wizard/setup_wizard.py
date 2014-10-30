@@ -9,6 +9,7 @@ from webnotes import _
 from webnotes.utils.file_manager import save_file
 from webnotes.utils import get_base_path
 from install_erpnext import exec_in_shell
+from webnotes.model.doc import Document
 import os
 
 @webnotes.whitelist()
@@ -44,7 +45,17 @@ def setup_account(args=None):
 	webnotes.local.message_log = []
 	exec_in_shell("""cp -r {path}/lib/public/datatable {path}/public/files 
 		""".format(path=get_base_path()))
+	
+	create_payment_modes()
+
 	return "okay"
+
+def create_payment_modes():
+	modes = ['Cash', 'Cheque Payment', 'Others']
+	for mode in modes:
+		d = Document('Mode of Payment')
+		d.mode_of_payment = mode
+		d.save()
 
 def import_core_docs():
 	install_docs = [

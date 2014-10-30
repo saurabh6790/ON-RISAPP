@@ -2,7 +2,7 @@
  {
   "creation": "2014-08-25 20:09:41", 
   "docstatus": 0, 
-  "modified": "2014-10-15 08:31:05", 
+  "modified": "2014-10-29 17:12:06", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -162,11 +162,12 @@
   "fieldtype": "Column Break"
  }, 
  {
+  "default": "10", 
   "doctype": "DocField", 
   "fieldname": "lable_size", 
   "fieldtype": "Select", 
   "label": "Lable Size", 
-  "options": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16"
+  "options": "\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n18\n20\n22\n24"
  }, 
  {
   "doctype": "DocField", 
