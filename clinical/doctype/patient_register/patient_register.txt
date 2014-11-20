@@ -2,7 +2,7 @@
  {
   "creation": "2014-01-31 12:25:24", 
   "docstatus": 0, 
-  "modified": "2014-10-07 13:01:25", 
+  "modified": "2014-10-31 18:34:54", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -999,5 +999,9 @@
  {
   "doctype": "DocPerm", 
   "role": "Accounts User"
+ }, 
+ {
+  "doctype": "DocPerm", 
+  "role": "Radiologist"
  }
 ]

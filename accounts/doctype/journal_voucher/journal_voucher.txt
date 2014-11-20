@@ -2,13 +2,14 @@
  {
   "creation": "2013-03-25 10:53:52", 
   "docstatus": 0, 
-  "modified": "2014-09-24 12:21:26", 
+  "modified": "2014-11-14 14:18:48", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
  {
   "allow_import": 1, 
   "autoname": "naming_series:", 
+  "default_print_format": "Journal Voucher Details", 
   "doctype": "DocType", 
   "icon": "icon-file-text", 
   "is_submittable": 1, 

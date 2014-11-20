@@ -20,7 +20,8 @@ def get_conditions(filters):
 	conditions = ""
 	if filters.get('from_date') and filters.get('to_date'):
 		conditions += "and jv.posting_date between '%(from_date)s' and '%(to_date)s'"%filters 	
-	
+	if filters.get('referral_name'):
+		conditions += "and ld.name = '%(referral_name)s'"%filters
 	return conditions
 	
 def get_entries(filters):

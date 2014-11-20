@@ -11,6 +11,13 @@ wn.query_reports["Referral Payment Info"] = {
 			"label": "To Date",
 			"fieldtype": "Date",
 			"default": get_today()
+		},
+		{
+			"fieldname":"referral_name",
+			"label": "Referral Name",
+			"fieldtype": "Link",
+			"options":"Lead"
+			// "default": get_today()
 		}
 	]
 }

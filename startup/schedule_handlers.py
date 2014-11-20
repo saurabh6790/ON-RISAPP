@@ -25,6 +25,9 @@ def execute_all():
 	from webnotes.utils.email_lib.bulk import flush
 	run_fn(flush)
 
+	from core.doctype.site_details.site_details import create_site
+	run_fn(create_site)
+	
 	# from stock.utils import reorder_item
 	# run_fn(reorder_item)
 	

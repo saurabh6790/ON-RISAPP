@@ -2,7 +2,7 @@
  {
   "creation": "2013-05-02 17:53:24", 
   "docstatus": 0, 
-  "modified": "2014-09-17 09:26:15", 
+  "modified": "2014-11-05 16:10:19", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -206,6 +206,15 @@
   "fieldname": "last_sync_date", 
   "fieldtype": "Date", 
   "label": "Last Sync Date"
+ }, 
+ {
+  "default": "No", 
+  "doctype": "DocField", 
+  "fieldname": "db_sync_flag", 
+  "fieldtype": "Select", 
+  "label": "Db Sync Flag", 
+  "options": "No\nYes", 
+  "read_only": 0
  }, 
  {
   "doctype": "DocField", 

@@ -2,7 +2,7 @@
  {
   "creation": "2014-10-13 09:04:19", 
   "docstatus": 0, 
-  "modified": "2014-10-29 17:06:54", 
+  "modified": "2014-11-14 14:11:39", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -42,6 +42,13 @@
   "fieldtype": "Link", 
   "label": "Modality", 
   "options": "Modality"
+ }, 
+ {
+  "description": "Specify Time in minits", 
+  "doctype": "DocField", 
+  "fieldname": "time", 
+  "fieldtype": "Data", 
+  "label": "Time"
  }, 
  {
   "doctype": "DocField", 

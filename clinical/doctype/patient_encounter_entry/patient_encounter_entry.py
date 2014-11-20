@@ -395,7 +395,7 @@ def set_slot(modality=None, study=None, start_time=None, end_time=None, patient_
         if patient_id:
             patient_info = patient_details(patient_id)
         fill_study_items(study)
-        time = get_study_time(study)
+        time = get_study_time(study,modality)
         if cint(time) > 30:
                 start_time = calc_start_time(start_time, modality)
         end_time = calc_end_time(cstr(start_time),time)
@@ -416,6 +416,8 @@ def check_availability(modality, start_time, end_time, time):
 
                 return check_availability(modality, start_time, end_time, time)
 
+
+
         else:
                 # webnotes.errprint(["else loop", start_time, end_time])
                 return start_time, end_time
@@ -424,8 +426,11 @@ def check_availability(modality, start_time, end_time, time):
 # def get_modality_time(modality):
 #         return webnotes.conn.get_value('Modality',modality,'time_required')
 
-def get_study_time(study):
-        return webnotes.conn.get_value('Study',study,'study_time')
+def get_study_time(study,modality):
+    res = webnotes.conn.sql("select time from `tabModality Mapper` where parent ='%s' and modality= '%s'"%(study,modality),as_dict=1,debug=1)
+    if res[0]['time']:
+        webnotes.errprint(res)
+        return cint(res[0]['time'])
 
 def calc_end_time(start_time,time):
         import datetime

@@ -181,9 +181,14 @@ cur_frm.cscript['Make Bill'] = function() {
                                 d1.basic_charges=r.message[i]['basic_charges']
                                 d1.referral_rule=r.message[i]['referral_rule']
                                 d1.discount_type=r.message[i]['discount_type']
-                                d1.discount_in_amt=r.message[i]['discount_in_amt']
+                                //d1.discount_in_amt=r.message[i]['discount_in_amt']
                                 d1.referral_fee=r.message[i]['referral_fee']
                                 d1.discount=r.message[i]['dis_value']
+				if(d1.discount)
+				{
+				d1.discount_in_amt='0.00'
+				
+				}
 				d1.warehouse=r.message[i]['warehouse']
 				d1.referrer_physician_debit_to=r.message[i]['default_cash_account']
 				d1.income_account=r.message[i]['default_cash_account']
