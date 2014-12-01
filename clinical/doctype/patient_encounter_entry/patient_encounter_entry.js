@@ -96,6 +96,7 @@ function make_linking(show_key){
 				$(".row:contains('. Other Info')").show()
 				$(".row:contains('. Alerts')").show()
 				$(".row:contains('. Procedure')").show()
+				$(".row:contains('. Test Undertacking')").show()
 				$(".row:contains('. Send Report/Image By')").show()
 			}
 			else{
@@ -103,6 +104,7 @@ function make_linking(show_key){
 				$(".row:contains('. Other Info')").hide()
 				$(".row:contains('. Alerts')").hide()
 				$(".row:contains('. Procedure')").hide()
+				$(".row:contains('. Test Undertacking')").hide()
 				$(".row:contains('. Send Report/Image By')").hide()
 			}
 		}

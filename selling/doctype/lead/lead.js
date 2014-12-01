@@ -5,7 +5,7 @@ wn.require('app/utilities/doctype/sms_control/sms_control.js');
 wn.require('app/setup/doctype/contact_control/contact_control.js');
 
 wn.provide("erpnext");
-// var a={"referring_physician_details":". Referring Physician Details","communication":". Communication","address_and_contact":". Address & Contact","referral_fee":". Referral Fee"};
+var a={"referring_physician_details":". Referring Physician Details","communication":". Communication","address_and_contact":". Address & Contact","referral_fee":". Referral Fee"};
 erpnext.LeadController = wn.ui.form.Controller.extend({
 	setup: function() {
 		this.frm.fields_dict.customer.get_query = function(doc,cdt,cdn) {

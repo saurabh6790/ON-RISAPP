@@ -200,10 +200,10 @@ class DocType():
                 return d.name
 
         def child_entry(self,patient_data):
-                services = webnotes.conn.sql(""" SELECT foo.*, case when exists(select true from `tabPhysician Values` a WHERE a.study_name=foo.study AND a.parent=foo.referrer_name and a.referral_fee <> 0) then (select a.referral_fee from `tabPhysician Values` a WHERE a.study_name=foo.study AND a.parent=foo.referrer_name) else (select ifnull(referral_fee,0) from tabStudy where name=foo.study) end as referral_fee,
-case when exists(select true from `tabPhysician Values` a WHERE a.study_name=foo.study AND a.parent=foo.referrer_name and a.referral_fee <> 0) then (select a.referral_rule from `tabPhysician Values` a WHERE a.study_name=foo.study AND a.parent=foo.referrer_name) else (select referral_rule from tabStudy where name=foo.study) end as referral_rule
+                services = webnotes.conn.sql(""" SELECT foo.*, case when exists(select true from `tabPhysician Values` a WHERE a.study_name=foo.study AND a.parent=foo.referrer_name and a.referral_fee <> 0 and a.modality = foo.encounter) then (select a.referral_fee from `tabPhysician Values` a WHERE a.study_name=foo.study AND a.parent=foo.referrer_name and a.modality = foo.encounter) else (select ifnull(referral_fee,0) from tabStudy where name=foo.study) end as referral_fee,
+case when exists(select true from `tabPhysician Values` a WHERE a.study_name=foo.study AND a.parent=foo.referrer_name and a.referral_fee <> 0 and a.modality = foo.encounter) then (select a.referral_rule from `tabPhysician Values` a WHERE a.study_name=foo.study AND a.parent=foo.referrer_name and a.modality = foo.encounter) else (select referral_rule from tabStudy where name=foo.study) end as referral_rule
         FROM ( SELECT s.study_aim AS study,'' as item, '1' as qty,
-            s.study_aim as parent,s.modality, e.encounter,e.referrer_name, e.name, s.discount_type,s.study_detials,s.discounted_value as dis_value FROM `tabEncounter` e, tabStudy s WHERE ifnull(e.is_invoiced,'False')='False' AND 
+            s.study_aim as parent,s.modality, e.encounter as encounter ,e.referrer_name, e.name, s.discount_type,s.study_detials,s.discounted_value as dis_value FROM `tabEncounter` e, tabStudy s WHERE ifnull(e.is_invoiced,'False')='False' AND 
 e.parent ='%(parent)s' and s.name = e.study) AS foo union
         
         select '',item_name,qty,parent,'','','','','','','','','' from `tabEncounter Study Item` where parent in(
@@ -217,7 +217,7 @@ e.parent ='%(parent)s' and s.name = e.study) AS foo union
         AND e.parent ='%(parent)s'
         AND pee.name = e.id  
         )
-        order by parent,qty"""%({"parent":patient_data}),as_dict=1)
+        order by parent,qty"""%({"parent":patient_data}),as_dict=1, debug=1)
                 
                 patient_data_new=[]
                 tot_amt = 0.0

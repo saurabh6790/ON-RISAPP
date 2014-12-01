@@ -2,7 +2,7 @@
  {
   "creation": "2014-01-23 16:01:02", 
   "docstatus": 0, 
-  "modified": "2014-02-02 11:53:08", 
+  "modified": "2014-12-01 15:13:03", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -52,7 +52,7 @@
  {
   "doctype": "DocField", 
   "fieldname": "referral_fee", 
-  "fieldtype": "Currency", 
+  "fieldtype": "Float", 
   "in_list_view": 1, 
   "label": "Referral Fee    (Amount/Percentage)"
  }, 

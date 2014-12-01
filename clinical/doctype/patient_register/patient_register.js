@@ -86,7 +86,7 @@ cur_frm.cscript.refresh = function(doc, cdt, cdn){
 	//}
 }
 
-var a={"general_information":". General Information","additional_information":". Additional Iformation","insurance_profile_data":". Insurance Profile","encounters_data":". Encounters"};
+var a={"general_information":". General Information","additional_information":". Additional Information","insurance_profile_data":". Insurance Profile","encounters_data":". Encounters"};
 
 
  cur_frm.cscript['Appointment Scheduler'] = function(doc){
