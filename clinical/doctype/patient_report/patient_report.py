@@ -24,12 +24,18 @@ class DocType:
 		subtitle=webnotes.conn.sql("""select value from `tabSingles` where doctype='Patient Report Setting' and field='subtitle'""")
 		company=webnotes.conn.sql("select value from tabSingles where doctype = 'Global Defaults' and field = 'default_company'")
 
-		webnotes.errprint(company)
+		# webnotes.errprint(company)
 		field_list=[]
 		print_dic={}
-		for field in get_head_field:
-			webnotes.errprint(field[0])
-		  	field_list.append(field[0])
+		
+		field_seq_list = ['accession_number', 'institution_name', 'patient_id', 'patient_name', 'sex', 'age',  
+			'patient_birth_date', 'patient_comment','modality','study', 'study_date', 'study_time', 'study_comment','referring_physician']
+		
+		for field in field_seq_list:
+			if [field] in get_head_field:
+				# webnotes.errprint(field)
+				field_list.append(field)
+		
 		print_dic={"head_fields":field_list,"label_size":label_size[0][0],"label_font":label_font[0][0],"show_border":show_border[0][0],"subtitle":subtitle[0][0],"company":company[0][0]}
 		if branch_id:
 			print_dic['branch_id']=branch_id[0][0] 
