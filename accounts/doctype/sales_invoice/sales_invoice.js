@@ -57,7 +57,7 @@ erpnext.accounts.SalesInvoiceController = erpnext.selling.SellingController.exte
 	
 	refresh: function(doc, dt, dn) {
 		this._super();
-
+		console.log('test')
 		cur_frm.cscript.is_opening(doc, dt, dn);
 		cur_frm.dashboard.reset();
 		if(flt(doc.outstanding_amount) != 0){
@@ -357,8 +357,9 @@ cur_frm.cscript.calculate_amt=function(doc,cdt,cdn){
 	for (i=0;i<cl.length;i++)
 	{
 		s=s+parseFloat(cl[i].basic_charges)
-		dic = dic+(parseFloat(cl[i].export_rate)-parseFloat(cl[i].basic_charges))
+		dic = dic+(parseFloat(cl[i].export_rate)*parseFloat(cl[i].qty)-parseFloat(cl[i].basic_charges))
 	}
+	console.log(doc.patient_amount)
 	doc.total_discount = String(dic)
 	doc.patient_amount=String(s)
 	doc.outstanding_amount_data=doc.patient_amount
@@ -444,15 +445,19 @@ cur_frm.cscript.export_rate=function(doc,cdt,cdn){
                 	}
         	});*/
 		cur_frm.cscript.discount_type(doc,cdt,cdn)
-	        cur_frm.cscript.calculate_amt(doc,cdt,cdn)
-		
+	    cur_frm.cscript.calculate_amt(doc,cdt,cdn)
+	    cur_frm.cscript.net_total_export(doc,cdt, cdn)
+		cur_frm.cscript.outstanding_amt(doc,cdt,cdn)
 
 	}
 	else
 	{
+		console.log('ttttt')
 		d.basic_charges=flt(d.export_rate) * flt(d.qty)
 	        refresh_field('entries')
 		cur_frm.cscript.calculate_amt(doc,cdt,cdn)
+		cur_frm.cscript.net_total_export(doc, cdt, cdn)
+		cur_frm.cscript.outstanding_amt(doc,cdt,cdn)
 	}
 
 }
@@ -652,7 +657,10 @@ cur_frm.cscript.qty = function(doc,cdt,cdn){
 	}
 	else{
 		d.basic_charges = flt(d.export_rate) * flt(d.qty)
-                refresh_field('basic_charges', d.name, 'entries');
+        refresh_field('basic_charges', d.name, 'entries');
+        cur_frm.cscript.calculate_amt(doc,cdt,cdn)
+		cur_frm.cscript.net_total_export(doc, cdt, cdn)
+		cur_frm.cscript.outstanding_amt(doc,cdt,cdn)
 	}
 }
 
@@ -705,3 +713,12 @@ cur_frm.cscript.outstanding_amt=function(doc,cdt,cdn){
 }
 
 
+cur_frm.cscript.net_total_export = function(doc, cdt, cdn){
+	var cl=getchildren('Sales Invoice Item',doc.name,'entries')
+	var s=0;
+	for (i=0;i<cl.length;i++){
+		s=s+parseFloat(cl[i].export_rate)*parseFloat(cl[i].qty)
+	}
+	doc.net_total_export = String(s)
+	refresh_field('net_total_export')
+}
