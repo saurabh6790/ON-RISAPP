@@ -2,7 +2,7 @@
  {
   "creation": "2014-03-03 11:41:45", 
   "docstatus": 0, 
-  "modified": "2014-09-30 20:51:22", 
+  "modified": "2014-12-15 09:05:57", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -144,7 +144,7 @@
  }, 
  {
   "doctype": "DocField", 
-  "fieldname": "referral_name", 
+  "fieldname": "referring_physician", 
   "fieldtype": "Data", 
   "in_filter": 1, 
   "label": "Referral Name"
@@ -213,6 +213,12 @@
   "fieldtype": "Data", 
   "hidden": 0, 
   "label": "Signiture Image"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "reported_by", 
+  "fieldtype": "Data", 
+  "label": "Reported By"
  }, 
  {
   "doctype": "DocField", 

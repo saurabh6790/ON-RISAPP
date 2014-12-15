@@ -53,6 +53,7 @@ class DocType:
 		self.update_report_state('New')
 
 	def on_submit(self):
+		set_reported_by(self.doc.name, webnotes.session.user)
 		set_report_status(self.doc.name)
 		self.update_report_state('Final')
 		# self.run_method('update_after_submit')
@@ -80,6 +81,13 @@ def set_report_status(name):
 			"""%{'state':'Final', 'name': name })
 	webnotes.conn.commit()
 
+@webnotes.whitelist()
+def set_reported_by(name, reported_by):
+	webnotes.conn.sql(""" update `tabPatient Report`
+				set reported_by = '%(reported_by)s' 
+				where name = "%(name)s"
+			"""%{'reported_by': reported_by, 'name': name })
+	webnotes.conn.commit()
 
 @webnotes.whitelist()
 def get_encounters(doctype, txt, searchfield, start, page_len, filters):

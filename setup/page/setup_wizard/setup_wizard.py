@@ -43,14 +43,15 @@ def setup_account(args=None):
 	
 	# suppress msgprints
 	webnotes.local.message_log = []
-	print "before copting file"
+	# print "before copting file"
 	exec_in_shell("""cp -r {path}/lib/public/datatable {path}/public/files 
 		""".format(path=get_base_path()))
-	print "after copying file"
+	# print "after copying file"
 	webnotes.conn.sql("create table ack(ENCOUNTER_ID varchar(20),ACK varchar(20))")
 	webnotes.conn.commit()
-	print "after copying file"
+	# print "after copying file"
 	create_payment_modes()
+	# create_item_group()
 
 	return "okay"
 
@@ -60,6 +61,15 @@ def create_payment_modes():
 		d = Document('Mode of Payment')
 		d.mode_of_payment = mode
 		d.save()
+
+def create_item_group():
+	webnotes.bean({
+			"doctype":"Item Group",
+			"name_field": 'Modality',
+			"is_group": 'No',
+			"parent_item_group":'All Item Groups',
+			"item_group_name": 'Modality'
+		}).insert()	
 
 def import_core_docs():
 	install_docs = [

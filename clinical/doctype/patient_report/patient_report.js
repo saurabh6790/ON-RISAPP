@@ -25,7 +25,7 @@ cur_frm.cscript.onload = function(){
 	cur_frm.add_fetch("patient_id","gender","sex")
 	cur_frm.add_fetch("accession_number","encounter","modality")
 	cur_frm.add_fetch("accession_number","study","study")
-	cur_frm.add_fetch("accession_number","referral","referral_name")
+	cur_frm.add_fetch("accession_number","referral","referring_physician")
 	cur_frm.add_fetch('technologist_id', 'employee_name', 'technologist_name');
 	cur_frm.add_fetch("accession_number","problem_description","problem_description")
 	cur_frm.add_fetch("accession_number", "encounter_date", "study_date");

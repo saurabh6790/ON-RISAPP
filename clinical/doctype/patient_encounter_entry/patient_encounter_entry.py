@@ -501,7 +501,7 @@ def make_report(source_name, target_doclist=None):
                 "encounter_date":"study_date",
                 "technologist": "technologist_id",
                 "technologist_name":"technologist_name",
-                "referral": "referral_name",
+                "referral": "referring_physician",
                 "gender": "sex"
             },
             "validation": {
