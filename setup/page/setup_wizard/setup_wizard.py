@@ -29,7 +29,7 @@ def setup_account(args=None):
 	create_territories()
 	# create_price_lists(args)
 	create_feed_and_todo()
-	import_core_docs()
+	# import_core_docs()
 	# create_email_digest()
 	# create_letter_head(args)
 	# create_taxes(args)
