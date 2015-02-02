@@ -54,16 +54,16 @@ wn.pages['setup-wizard'].onload = function(wrapper) {
 			wn._('Your setup is complete. Refreshing...') + 
 			'</p>',
 		slides: [
-			//db_page
-			{
-				icon: "icon-barcode",
-				title: wn._("Barcode Verification"),
-				help: wn._('Key Checking'),
-				fields: [
-					{fieldtype:"Data", fieldname:"barcode", label:"Barcode", reqd:1},
-					{fieldtype:"Data", fieldname:"site", label:"URL", reqd:1},
-				],
-			},
+			//db_page no need for online setup
+			// {
+			// 	icon: "icon-barcode",
+			// 	title: wn._("Barcode Verification"),
+			// 	help: wn._('Key Checking'),
+			// 	fields: [
+			// 		{fieldtype:"Data", fieldname:"barcode", label:"Barcode", reqd:1},
+			// 		{fieldtype:"Data", fieldname:"site", label:"URL", reqd:1},
+			// 	],
+			// },
 			// User
 			{
 				title: wn._("The First User: You"),
