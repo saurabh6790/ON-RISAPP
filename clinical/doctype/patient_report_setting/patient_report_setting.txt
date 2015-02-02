@@ -2,7 +2,7 @@
  {
   "creation": "2014-08-25 20:09:41", 
   "docstatus": 0, 
-  "modified": "2014-10-29 17:12:06", 
+  "modified": "2015-01-29 18:25:15", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -37,6 +37,30 @@
   "name": "Patient Report Setting"
  }, 
  {
+  "doctype": "DocField", 
+  "fieldname": "header_footer_setting", 
+  "fieldtype": "Section Break", 
+  "label": "Header-Footer Setting"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "is_header", 
+  "fieldtype": "Check", 
+  "label": "Is Header"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "column_break_3", 
+  "fieldtype": "Column Break"
+ }, 
+ {
+  "doctype": "DocField", 
+  "fieldname": "is_footer", 
+  "fieldtype": "Check", 
+  "label": "Is Footer"
+ }, 
+ {
+  "depends_on": "eval:doc.is_header==1", 
   "doctype": "DocField", 
   "fieldname": "pateint_information", 
   "fieldtype": "Section Break", 

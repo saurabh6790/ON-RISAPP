@@ -39,8 +39,10 @@ cur_frm.cscript.onload = function(){
 cur_frm.cscript.refresh = function(doc){
 	if(doc.docstatus == 1){
 		cur_frm.set_value('report_status', 'Final')
+		refresh_field('reported_by');
 	}
-	refresh_field("report_status")
+	refresh_field("report_status");
+	refresh_field("reported_by");
 }
 
 cur_frm.fields_dict.accession_number.get_query =function(doc,cdt,cdn)

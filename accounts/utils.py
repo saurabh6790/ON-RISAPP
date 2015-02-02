@@ -451,3 +451,14 @@ def get_gl_dict( args):
 		})
 		gl_dict.update(args)
 		return gl_dict
+
+def get_cost_center_list(doctype, txt, searchfield, start, page_len, filters):
+	if not filters.get("group_or_ledger"):
+		filters["group_or_ledger"] = "Ledger"
+
+	conditions, filter_values = build_filter_conditions(filters)
+	
+	return webnotes.conn.sql("""select name, parent_cost_center from `tabCost Center` 
+		where docstatus < 2 %s and %s like %s order by name limit %s, %s""" % 
+		(conditions, searchfield, "%s", "%s", "%s"), 
+		tuple(filter_values + ["%%%s%%" % txt, start, page_len]))

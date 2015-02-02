@@ -1,0 +1,23 @@
+[
+ {
+  "creation": "2015-01-20 21:01:40", 
+  "docstatus": 0, 
+  "modified": "2015-01-20 22:43:30", 
+  "modified_by": "Administrator", 
+  "owner": "Administrator"
+ }, 
+ {
+  "add_total_row": 1, 
+  "doctype": "Report", 
+  "is_standard": "Yes", 
+  "name": "__common__", 
+  "query": "select a.customer as \"Patient Id:Link/Customer:150\",a.patient_name as \"Patient Name:data :100\",b.study \"Study:data :80\",b.basic_charges \"Total Amount:Currency :100\",(case when (b.discount_type='Referral discount') then 0.0 else (b.discount_in_amt) end )as \"Discount :70\",\n(case when (b.discount_type!='Referral discount' or b.discount_type is null ) then b.basic_charges-b.discount_in_amt else (b.basic_charges) end ) as \"Net Pay:Currency :70\",(case when (a.paid_amount_data>=(case when (b.discount_type!='Referral discount') then b.basic_charges-b.discount_in_amt else (b.basic_charges) end)) then (case when (b.discount_type!='Referral discount') then b.basic_charges-b.discount_in_amt else (b.basic_charges) end) else a.paid_amount_data end ) as \"Received Amount:Currency :120\",b.referrer_name as \"Referrer Id:Link/Customer:130\",c.lead_name as \"Referrer Name:data:120\",(case when (b.discount_type='Referral discount') then b.discount_in_amt else 0.0 end ) as \"Referrer Payment:Currency :120\" from `tabSales Invoice` a ,`tabSales Invoice Item` b,`tabLead` c where a.name=b.parent and c.name=b.referrer_name", 
+  "ref_doctype": "Sales Invoice", 
+  "report_name": "payment details report", 
+  "report_type": "Query Report"
+ }, 
+ {
+  "doctype": "Report", 
+  "name": "payment details report"
+ }
+]

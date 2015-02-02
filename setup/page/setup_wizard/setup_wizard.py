@@ -11,6 +11,7 @@ from webnotes.utils import get_base_path
 from install_erpnext import exec_in_shell
 from webnotes.model.doc import Document
 import os
+import MySQLdb
 
 @webnotes.whitelist()
 def setup_account(args=None):
@@ -23,6 +24,7 @@ def setup_account(args=None):
 		args = json.loads(args)
 	args = webnotes._dict(args)
 	
+	# validate_tenant_barcode(args)
 	update_profile_name(args)
 	create_fiscal_year_and_company(args)
 	set_defaults(args)
@@ -54,6 +56,69 @@ def setup_account(args=None):
 	# create_item_group()
 
 	return "okay"
+
+def validate_tenant_barcode(args):
+	db = MySQLdb.connect('ho-eiims.medsynaptic.com', 'medsyn', 'medsyn', 'medsyn')
+	cursor = db.cursor()
+
+	cursor.execute("""select barcode from `tabBarcode Details` 
+			where site = '%s' 
+			and status = 'Pending'"""%args.get('site'))
+
+	barcodes = cursor.fetchall()
+	
+	if [args.get('barcode')] in map(list,barcodes):
+		cursor.execute("""update `tabBarcode Details`  
+					set status = 'Allotted', company_name = '%s:%s'
+					where site = '%s' and barcode  = '%s'
+					"""%(args.get('company_name'), 
+						args.get("email"),
+						args.get('site'), args.get('barcode')))
+
+		cursor.execute("commit")
+
+		db_sync = webnotes.bean('DB SYNC', 'DB SYNC')
+		db_sync.doc.fields.update({
+			'barcode': args.get('barcode'),
+			'host_id': args.get('site'),
+			'remote_dbuser':args.get('site')[:16].replace('.', '_'),
+			'remote_dbuserpassword': get_site_pwd(args, cursor),
+			"remote_dbname": args.get('site')[:16].replace('.', '_'),
+			"dbuser": 'rislate',
+			"dbuserpassword": 'rislate',
+			"dbname": 'rislate'
+		})
+		db_sync.save()
+
+	else:
+		webnotes.msgprint("Please Check URL/Barcode", raise_exception=1)
+
+def get_site_pwd(args, cursor):
+	tab = get_tab(args, cursor)
+
+	if tab:
+		cursor.execute("select %s from %s where %s = '%s' "%(tab['select'], tab['tab'], tab['field'], args.get('site')))		
+		pwd = cursor.fetchone()
+
+		if pwd:
+			return pwd[0]
+
+def get_tab(args, cursor):
+
+	cursor.execute("select true from `tabSite Details` where name = '%s'"%(args.get('site')))
+	is_tenant = cursor.fetchone()
+
+	if is_tenant:
+		return {'tab': '`tabSite Details`', 'field':'name', 'select':'database_password'}
+
+	cursor.execute("select true from `tabSub Tenant Details` where sub_tenant_url = '%s'"%(args.get('site')))
+	is_tenant = cursor.fetchone()
+
+	if is_tenant:
+		return {'tab':'`tabSub Tenant Details`', 'field': 'sub_tenant_url', 'select':'pwd'}
+
+	else:
+		webnotes.msgprint('Tenant Not Yet Registered',raise_exception=1)
 
 def create_payment_modes():
 	modes = ['Cash', 'Cheque Payment', 'Others']
@@ -181,6 +246,7 @@ def set_defaults(args):
 		"last_sync_date":nowdate(),
 		"branch_id":  ''.join(random.choice(string.digits) for letter in xrange(4)),
 		"uuid": digest,
+		"db_sync_flag": "Yes"
 		"salt": salt
 	})
 	global_defaults.save()

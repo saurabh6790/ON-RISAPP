@@ -38,6 +38,17 @@ cur_frm.cscript.birth_date = function(doc, cdt, cdn){
         })
 }
 
+cur_frm.cscript.age = function(doc, cdt, cdn){
+        wn.call({
+                method:"clinical.doctype.patient_register.patient_register.get_birth_date",
+                args:{"age":doc.age},
+                callback:function(r){
+                        cur_frm.set_value("birth_date", r.message);
+                        refresh_field("birth_date");
+                }
+        })
+}
+
 cur_frm.cscript.refresh = function(doc, cdt, cdn){
         cur_frm.appframe.add_primary_action(wn._('Appointment Scheduler'), cur_frm.cscript['Appointment Scheduler'])
 //
@@ -139,7 +150,24 @@ make_linking('encounters_data')
 
 }
 
-/*cur_frm.cscript.title=function(doc,cdt,cdn){
-        get_server_fields('test_data','','',doc,cdt,cdn,1)
+cur_frm.cscript.title=function(doc,cdt,cdn){
+    //console.log("in title");
+    if(doc.title){
+        var title=doc.title
+        title=title.toUpperCase()
+        //console.log(title);
+        if (title=='MRS' || title=='MISS' || title=='MS'){
+            doc.gender='Female';
+            refresh_field('gender');
+        }
+        else if (title=='MR' || title=='MASTER'){
+            doc.gender='Male';
+            refresh_field('gender');
+        }
+        else{
+            doc.gender='';
+            refresh_field('gender');
+        }
+    }
 }
-*/
+
