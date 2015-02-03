@@ -523,7 +523,9 @@ class DocType:
 def get_age(born):
     from datetime import date
     from webnotes.utils import getdate
+    #webnotes.errprint(born)
     born = getdate(born)
+    #webnotes.errprint(born)
     today = date.today()
     try: 
         birthday = born.replace(year=today.year)
@@ -533,3 +535,18 @@ def get_age(born):
         return today.year - born.year - 1
     else:
         return today.year - born.year
+
+
+
+@webnotes.whitelist()
+def get_birth_date(age):
+    from datetime import date
+    from webnotes.utils import getdate
+    today = date.today()
+    #webnotes.errprint(type(age))
+    #webnotes.errprint(type(today.year))
+    birthday_year=today.year-cint(age)
+    #webnotes.errprint(birthday_year)
+    return date(cint(birthday_year),1,1)
+
+

@@ -80,6 +80,8 @@ def get_entries(filters):
 		from `tabJournal Voucher Detail` jvd, `tabJournal Voucher` jv 
 		where jvd.parent = jv.name and jv.docstatus=1 %s order by jv.name DESC""" % 
 		(conditions), tuple(party_accounts), as_dict=1)
+
+	webnotes.errprint(entries)
 		
 	return entries
 	

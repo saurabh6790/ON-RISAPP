@@ -564,11 +564,11 @@ cur_frm.cscript.cost_center = function(doc, cdt, cdn) {
 	cur_frm.cscript.copy_account_in_all_row(doc, cdt, cdn, "cost_center");
 }
 
-cur_frm.cscript.on_submit = function(doc, cdt, cdn) {
-	if(cint(wn.boot.notification_settings.sales_invoice)) {
-		cur_frm.email_doc(wn.boot.notification_settings.sales_invoice_message);
-	}
-}
+// cur_frm.cscript.on_submit = function(doc, cdt, cdn) {
+// 	if(cint(wn.boot.notification_settings.sales_invoice)) {
+// 		cur_frm.email_doc(wn.boot.notification_settings.sales_invoice_message);
+// 	}
+// }
 
 cur_frm.cscript.referrer_name=function(doc,cdt,cdn){
 	var d=locals[cdt][cdn]
