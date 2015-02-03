@@ -205,6 +205,16 @@
  }, 
  {
   "doctype": "DocField", 
+  "fieldname": "birth_date", 
+  "fieldtype": "Date", 
+  "in_filter": 1, 
+  "in_list_view": 1, 
+  "label": "Date of Birth", 
+  "permlevel": 0, 
+  "reqd": 1
+ }, 
+ {
+  "doctype": "DocField", 
   "fieldname": "gender", 
   "fieldtype": "Select", 
   "label": "Gender", 
@@ -216,16 +226,6 @@
   "fieldname": "age", 
   "fieldtype": "Int", 
   "label": "Age", 
-  "permlevel": 0, 
-  "reqd": 1
- }, 
- {
-  "doctype": "DocField", 
-  "fieldname": "birth_date", 
-  "fieldtype": "Date", 
-  "in_filter": 1, 
-  "in_list_view": 1, 
-  "label": "Date of Birth", 
   "permlevel": 0, 
   "reqd": 1
  }, 

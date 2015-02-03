@@ -24,8 +24,6 @@ class DocType:
 		subtitle=webnotes.conn.sql("""select value from `tabSingles` where doctype='Patient Report Setting' and field='subtitle'""")
 		header=webnotes.conn.sql("""select ifnull(value,0) from `tabSingles` where doctype='Patient Report Setting' and field='is_header'""")
 		footer=webnotes.conn.sql("""select ifnull(value,0) from `tabSingles` where doctype='Patient Report Setting' and field='is_footer'""")
-		#webnotes.errprint(header[0][0])
-		#webnotes.errprint(footer[0][0])
 
 		company=webnotes.conn.sql("select value from tabSingles where doctype = 'Global Defaults' and field = 'default_company'")
 
@@ -39,12 +37,13 @@ class DocType:
 			if [field] in get_head_field:
 				# webnotes.errprint(field)
 				field_list.append(field)
-		#webnotes.errprint(["field_list",field_list])
+		#webnotes.errprint(["field_list")
 		print_dic={"head_fields":field_list,"label_size":label_size[0][0],"label_font":label_font[0][0],"show_border":show_border[0][0],"subtitle":subtitle[0][0],"company":company[0][0],"is_header":header[0][0],"is_footer":footer[0][0]}
 		if branch_id:
 			print_dic['branch_id']=branch_id[0][0] 
 		
 		strjson=json.dumps(print_dic)
+
 		#webnotes.errprint(strjson)
 		self.doc.print_details = strjson
 		signature_path=webnotes.conn.sql("""select signature_image from `tabProfile` where name in (select user_id from `tabEmployee` where name='%s')"""%(self.doc.technologist_id),as_list=1) 

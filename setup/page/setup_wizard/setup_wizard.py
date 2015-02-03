@@ -23,8 +23,7 @@ def setup_account(args=None):
 	if isinstance(args, basestring):
 		args = json.loads(args)
 	args = webnotes._dict(args)
-	
-	# validate_tenant_barcode(args)
+	# validate_tenant_barcode(args) no need for online setup
 	update_profile_name(args)
 	create_fiscal_year_and_company(args)
 	set_defaults(args)
