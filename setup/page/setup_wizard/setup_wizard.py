@@ -245,7 +245,7 @@ def set_defaults(args):
 		"last_sync_date":nowdate(),
 		"branch_id":  ''.join(random.choice(string.digits) for letter in xrange(4)),
 		"uuid": digest,
-		"db_sync_flag": "Yes"
+		"db_sync_flag": "Yes",
 		"salt": salt
 	})
 	global_defaults.save()
