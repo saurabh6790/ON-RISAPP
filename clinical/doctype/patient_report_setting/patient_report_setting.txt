@@ -2,7 +2,7 @@
  {
   "creation": "2014-08-25 20:09:41", 
   "docstatus": 0, 
-  "modified": "2015-01-29 18:25:15", 
+  "modified": "2015-02-04 12:17:00", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -60,7 +60,6 @@
   "label": "Is Footer"
  }, 
  {
-  "depends_on": "eval:doc.is_header==1", 
   "doctype": "DocField", 
   "fieldname": "pateint_information", 
   "fieldtype": "Section Break", 
