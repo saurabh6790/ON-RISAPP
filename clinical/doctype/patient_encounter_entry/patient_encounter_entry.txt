@@ -2,7 +2,7 @@
  {
   "creation": "2014-01-16 12:38:55", 
   "docstatus": 0, 
-  "modified": "2014-09-24 20:15:14", 
+  "modified": "2015-02-04 13:45:20", 
   "modified_by": "Administrator", 
   "owner": "Administrator"
  }, 
@@ -239,7 +239,8 @@
   "doctype": "DocField", 
   "fieldname": "problem_description", 
   "fieldtype": "Small Text", 
-  "label": "Problem Description"
+  "label": "Problem Description", 
+  "reqd": 1
  }, 
  {
   "doctype": "DocField", 

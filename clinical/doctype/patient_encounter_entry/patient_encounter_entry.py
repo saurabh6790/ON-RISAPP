@@ -200,29 +200,16 @@ class DocType():
                 return d.name
 
         def child_entry(self,patient_data):
-                services = webnotes.conn.sql(""" SELECT foo.*, case when exists(select true from `tabPhysician Values` a WHERE a.study_name=foo.study AND a.parent=foo.referrer_name and a.referral_fee <> 0 and a.modality = foo.encounter) then (select a.referral_fee from `tabPhysician Values` a WHERE a.study_name=foo.study AND a.parent=foo.referrer_name and a.modality = foo.encounter) else (select ifnull(referral_fee,0) from tabStudy where name=foo.study) end as referral_fee,
-case when exists(select true from `tabPhysician Values` a WHERE a.study_name=foo.study AND a.parent=foo.referrer_name and a.referral_fee <> 0 and a.modality = foo.encounter) then (select a.referral_rule from `tabPhysician Values` a WHERE a.study_name=foo.study AND a.parent=foo.referrer_name and a.modality = foo.encounter) else (select referral_rule from tabStudy where name=foo.study) end as referral_rule
-        FROM ( SELECT s.study_aim AS study,'' as item, '1' as qty,
-            s.study_aim as parent,s.modality, e.encounter as encounter ,e.referrer_name, e.name, s.discount_type,s.study_detials,s.discounted_value as dis_value FROM `tabEncounter` e, tabStudy s WHERE ifnull(e.is_invoiced,'False')='False' AND 
-e.parent ='%(parent)s' and s.name = e.study) AS foo union
-        
-        select '',item_name,qty,parent,'','','','','','','','','' from `tabEncounter Study Item` where parent in(
-        SELECT
-            pee.name AS study
-        FROM
-            `tabEncounter` e,
-            `tabPatient Encounter Entry` pee
-        WHERE
-            ifnull(e.is_invoiced,'False')='False'
-        AND e.parent ='%(parent)s'
-        AND pee.name = e.id  
-        )
-        order by parent,qty"""%({"parent":patient_data}),as_dict=1, debug=1)
+                services = webnotes.conn.sql("""select  s.study_aim AS study,'' as item, '1' as qty,'' as referral_rule,'0.00' as referral_fee, s.study_aim as parent,s.modality, e.encounter as encounter ,e.referrer_name, e.name, s.discount_type,s.study_detials,s.discounted_value as dis_value FROM `tabEncounter` e, tabStudy s WHERE  s.name = e.study and ifnull(e.is_invoiced,'False')='False' AND e.parent ='%s'"""%(patient_data),as_dict=1, debug=1)
                 
                 patient_data_new=[]
                 tot_amt = 0.0
+                self.get_referral_details(services)
+                webnotes.errprint("in the main")
+                webnotes.errprint(services)
 		if services:
                 	for srv in services:
+                            # webnotes.errprint(srv['referral_rule'])
                         	        
                         	# cld = addchild(self.doc, 'entries', 'Sales Invoice Item',self.doclist)          
                         	# cld.study = srv['study']
@@ -248,6 +235,7 @@ e.parent ='%(parent)s' and s.name = e.study) AS foo union
                         	        srv['discount_in_amt']=cstr(flt(flt(srv['export_rate'])*flt(srv['dis_value'])/100))
 
                         	elif srv['discount_type']=='Referral discount':
+                                    # webnotes.errprint(srv['referral_rule'])
                         	        if srv['referral_rule'] == 'Fixed Cost':
                         	                srv['basic_charges']=cstr(flt(srv['export_rate'])-flt(srv['referral_fee']))                              
                         	                srv['discount_in_amt']=cstr(srv['referral_fee'])
@@ -270,6 +258,33 @@ e.parent ='%(parent)s' and s.name = e.study) AS foo union
                 	return patient_data_new
 		else:
 			webnotes.msgprint("Bill already made")
+
+
+
+
+
+
+        def get_referral_details(self,services):
+            if services:
+                for srv in services:
+                    if srv['referrer_name']:
+                        referral_details=webnotes.conn.sql("""select referral_rule,referral_fee from `tabPhysician Values` where parent='%s' and study_name='%s' and modality='%s'"""%(srv['referrer_name'],srv['study'],srv['encounter']), as_dict=1, debug=1)
+                        if referral_details:
+                            srv['referral_rule']=referral_details[0]['referral_rule']
+                            srv['referral_fee']=referral_details[0]['referral_fee']
+                        else:
+                            modality_details=webnotes.conn.sql("""select referral_rule,referral_fee from `tabPhysician Values` where parent='%s' and modality='%s' and ifnull(study_name,'') = ''"""%(srv['referrer_name'],srv['encounter']), as_dict=1, debug=1)
+                            if modality_details:
+                                srv['referral_rule']=modality_details[0]['referral_rule']
+                                srv['referral_fee']=modality_details[0]['referral_fee']
+                            else:
+                                if srv['study']:
+                                    study_details=webnotes.conn.sql("""select referral_rule,referral_fee from `tabStudy` where name='%s' """%(srv['study']), as_dict=1, debug=1)
+                                    if study_details:
+                                        srv['referral_rule']=study_details[0]['referral_rule']
+                                        srv['referral_fee']=study_details[0]['referral_fee']
+                                
+
 
         def make_child_entry(self, patient_id=None):
                 enct = Document('Encounter')
